@@ -78,7 +78,7 @@ watch(() => route.path, updateIndicator);
             <span class="font-black italic text-xl uppercase tracking-widest leading-none group-hover:text-indigo-500 transition-colors">
               TIMI <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500">DB</span>
             </span>
-            <span class="text-[8px] font-bold tracking-[0.4em] uppercase opacity-60">Back to Home</span>
+            <span class="text-[8px] font-bold tracking-[0.4em] uppercase opacity-60">Toram Online Tools</span>
           </div>
         </div>
 
