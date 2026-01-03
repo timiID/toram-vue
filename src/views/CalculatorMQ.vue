@@ -60,11 +60,12 @@ const calculation = computed(() => {
 
   const [resLv, resP] = addXP(lv, p, totalMqXP);
 
+  // LOGIKA DIARY
   let diaryRuns = [];
   if (useDiary.value && totalMqXP > 0) {
     let loopLv = lv;
     let loopP = p;
-    for (let i = 1; i <= 50; i++) {
+    for (let i = 1; i <= 20; i++) {
       const [nextLv, nextP] = addXP(loopLv, loopP, totalMqXP);
       diaryRuns.push({ run: i, lv: nextLv, p: nextP });
       loopLv = nextLv;
@@ -85,10 +86,10 @@ const calculation = computed(() => {
     
     <div class="flex flex-col items-center gap-6 animate-bounce-slow">
       <div class="text-center">
-        <h1 class="text-5xl font-black italic tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 drop-shadow-2xl">
+        <h1 class="text-5xl md:text-6xl font-black italic tracking-tighter uppercase text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 drop-shadow-2xl">
           MQ Calculator 
         </h1>
-        <p class="text-[10px] font-bold opacity-50 tracking-[0.4em] uppercase animate-pulse">Timi DB</p>
+        <p class="text-[10px] font-bold opacity-50 tracking-[0.4em] uppercase animate-pulse">Timi DB System</p>
       </div>
 
       <div :class="['p-1 rounded-full flex gap-1 border backdrop-blur-md transition-all shadow-xl', 
@@ -114,7 +115,7 @@ const calculation = computed(() => {
               <input v-model.number="currentP" type="number" class="input-style" :class="isDark ? 'dark-input' : 'light-input'" />
             </div>
             <div class="group">
-              <label class="label-text">Target Lv</label>
+              <label class="label-text text-pink-500">Target Lv</label>
               <input v-model.number="targetLv" type="number" class="input-style" :class="isDark ? 'dark-input' : 'light-input'" />
             </div>
           </div>
@@ -124,20 +125,28 @@ const calculation = computed(() => {
               <div class="relative group select-container">
                 <label class="label-text text-indigo-400">Start From</label>
                 <div class="relative">
-                  <select v-model="mqFromIdx" class="input-style custom-select" :class="isDark ? 'dark-input' : 'light-input'">
+                  <select v-model="mqFromIdx" class="input-style custom-select pr-10" :class="isDark ? 'dark-input' : 'light-input'">
                     <option v-for="opt in mqOptions" :key="opt.id" :value="opt.id" class="dropdown-item">{{ opt.label }}</option>
                   </select>
-                  <div class="select-arrow">▼</div>
+                  <div class="select-arrow text-indigo-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
                 </div>
               </div>
 
               <div class="relative group select-container">
                 <label class="label-text text-indigo-400">End At</label>
                 <div class="relative">
-                  <select v-model="mqUntilIdx" class="input-style custom-select" :class="isDark ? 'dark-input' : 'light-input'">
+                  <select v-model="mqUntilIdx" class="input-style custom-select pr-10" :class="isDark ? 'dark-input' : 'light-input'">
                     <option v-for="opt in mqOptions" :key="opt.id" :value="opt.id" class="dropdown-item">{{ opt.label }}</option>
                   </select>
-                  <div class="select-arrow">▼</div>
+                  <div class="select-arrow text-indigo-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>
@@ -159,10 +168,14 @@ const calculation = computed(() => {
               <div class="relative group select-container">
                 <label class="label-text text-emerald-400">Select Quest</label>
                 <div class="relative">
-                  <select v-model="selectedSQ" class="input-style custom-select" :class="isDark ? 'dark-input' : 'light-input'">
+                  <select v-model="selectedSQ" class="input-style custom-select pr-10" :class="isDark ? 'dark-input' : 'light-input'">
                     <option v-for="(val, key) in quest_data" :key="key" :value="key" class="dropdown-item">{{ key }}</option>
                   </select>
-                  <div class="select-arrow text-emerald-500">▼</div>
+                  <div class="select-arrow text-emerald-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
                 </div>
               </div>
               <div>
@@ -175,52 +188,69 @@ const calculation = computed(() => {
       </div>
 
       <div class="lg:col-span-1">
-        <div :class="[
-          'p-8 rounded-[3rem] shadow-2xl text-white relative overflow-hidden h-full flex flex-col justify-between transition-all duration-500 result-card-interactive',
-          activeTab === 'mq' ? 'bg-gradient-to-br from-indigo-600 to-purple-800 shadow-indigo-500/30' : 'bg-gradient-to-br from-emerald-600 to-teal-800 shadow-emerald-500/30'
-        ]">
-          <div class="relative z-10 space-y-8">
-            <div class="result-item">
-              <p class="text-[10px] font-black tracking-widest opacity-60 uppercase mb-1">XP Required to Target</p>
-              <h3 class="text-2xl font-black tabular-nums">{{ calculation.xpNeeded.toLocaleString() }}</h3>
-            </div>
-            
-            <div class="pt-8 border-t border-white/20 result-item">
-              <p class="text-[10px] font-black tracking-widest opacity-60 uppercase mb-2">
-                {{ activeTab === 'mq' ? 'Result After 1 Run' : 'Result After Turn-in' }}
-              </p>
-              <div class="flex items-baseline gap-2">
-                <span class="text-6xl font-black italic tracking-tighter drop-shadow-lg block">
-                  Lv {{ activeTab === 'mq' ? calculation.resLv : calculation.sqLv }}
-                </span>
-                <span class="text-xl font-bold opacity-70">
-                  {{ activeTab === 'mq' ? calculation.resP : calculation.sqPercent }}%
-                </span>
+        <div class="space-y-6 sticky top-8">
+          <div :class="[
+            'p-8 rounded-[3rem] shadow-2xl text-white relative overflow-hidden flex flex-col justify-between transition-all duration-500 result-card-interactive',
+            activeTab === 'mq' ? 'bg-gradient-to-br from-indigo-600 to-purple-800 shadow-indigo-500/30' : 'bg-gradient-to-br from-emerald-600 to-teal-800 shadow-emerald-500/30'
+          ]">
+            <div class="relative z-10 space-y-8">
+              <div class="result-item">
+                <p class="text-[10px] font-black tracking-widest opacity-60 uppercase mb-1">XP Required to Target</p>
+                <h3 class="text-2xl font-black tabular-nums tracking-tighter">{{ calculation.xpNeeded.toLocaleString() }}</h3>
+              </div>
+              
+              <div class="pt-8 border-t border-white/20 result-item">
+                <p class="text-[10px] font-black tracking-widest opacity-60 uppercase mb-2">
+                  {{ activeTab === 'mq' ? 'Result After 1 Run' : 'Result After Turn-in' }}
+                </p>
+                <div class="flex items-baseline gap-2">
+                  <span class="text-6xl font-black italic tracking-tighter drop-shadow-lg block">
+                    Lv {{ activeTab === 'mq' ? calculation.resLv : calculation.sqLv }}
+                  </span>
+                  <span class="text-xl font-bold opacity-70">
+                    {{ activeTab === 'mq' ? calculation.resP : calculation.sqPercent }}%
+                  </span>
+                </div>
+              </div>
+
+              <div class="bg-black/20 p-4 rounded-2xl border border-white/10 backdrop-blur-sm result-item">
+                <p class="text-[9px] font-bold opacity-50 uppercase tracking-widest mb-1">Total XP Gained</p>
+                <p class="text-sm font-black tabular-nums tracking-wide">
+                  {{ (activeTab === 'mq' ? calculation.totalMqXP : calculation.sqXP).toLocaleString() }} XP
+                </p>
               </div>
             </div>
-
-            <div class="bg-black/20 p-4 rounded-2xl border border-white/10 backdrop-blur-sm result-item">
-              <p class="text-[9px] font-bold opacity-50 uppercase tracking-widest mb-1">Total XP Gained</p>
-              <p class="text-sm font-black tabular-nums">
-                {{ (activeTab === 'mq' ? calculation.totalMqXP : calculation.sqXP).toLocaleString() }} XP
-              </p>
+            
+            <div class="absolute -right-6 -bottom-6 text-[12rem] font-black italic opacity-10 pointer-events-none uppercase tracking-tighter transition-transform duration-700 deco-text">
+              {{ activeTab }}
             </div>
           </div>
-          
-          <div class="absolute -right-6 -bottom-6 text-[12rem] font-black italic opacity-10 pointer-events-none uppercase tracking-tighter transition-transform duration-700 deco-text">
-            {{ activeTab }}
+
+          <div v-if="activeTab === 'mq' && useDiary && calculation.diaryRuns.length > 0" 
+               class="p-6 rounded-[2.5rem] border backdrop-blur-md animate-in slide-in-from-bottom-4"
+               :class="isDark ? 'bg-white/5 border-white/10' : 'bg-white border-slate-200 shadow-lg'">
+            <p class="text-[10px] font-black uppercase tracking-widest opacity-50 mb-4 px-2">Diary Projection</p>
+            <div class="space-y-2 max-h-[300px] overflow-y-auto pr-2 custom-scroll">
+              <div v-for="run in calculation.diaryRuns" :key="run.run" 
+                   class="flex justify-between items-center p-3 rounded-xl hover:bg-indigo-500/10 transition-colors">
+                <span class="text-[11px] font-black opacity-40">RUN #{{ run.run }}</span>
+                <div class="text-right">
+                  <span class="font-black" :class="isDark ? 'text-white' : 'text-slate-800'">Lv {{ run.lv }}</span>
+                  <span class="text-[10px] font-bold opacity-50 ml-1">{{ run.p }}%</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
 <style scoped>
 @reference "tailwindcss";
 
-/* --- ANIMASI BOUNCE SLOW UNTUK HEADER --- */
+/* --- ANIMASI BOUNCE SLOW --- */
 @keyframes bounce-slow {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
@@ -229,47 +259,27 @@ const calculation = computed(() => {
   animation: bounce-slow 4s ease-in-out infinite; 
 }
 
-/* --- ANIMASI INTERAKTIF RESULT CARD --- */
-.result-card-interactive {
-  cursor: pointer;
-}
+/* --- INTERACTIVE RESULT CARD --- */
+.result-card-interactive { cursor: pointer; }
 .result-card-interactive:hover {
   transform: scale(1.02) translateY(-2px);
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
-.result-card-interactive:active {
-  transform: scale(0.98);
-}
+.result-card-interactive:active { transform: scale(0.98); }
 .result-card-interactive:hover .result-item {
   transform: translateX(8px);
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.result-card-interactive:hover .deco-text {
-  transform: scale(1.1) rotate(-8deg);
-}
+.result-card-interactive:hover .deco-text { transform: scale(1.1) rotate(-8deg); }
 
-/* --- DROPDOWN STABILITY --- */
-.select-container {
-  isolation: isolate;
-  position: relative;
-  z-index: 50;
-}
+/* --- DROPDOWN STABILITY & VECTOR --- */
+.select-container { isolation: isolate; position: relative; z-index: 50; }
 .custom-select {
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
   position: relative;
   z-index: 10;
-  touch-action: manipulation;
-}
-.dropdown-item {
-  background-color: #0f172a !important; 
-  color: white !important;
-  padding: 12px;
-}
-.light-input .dropdown-item {
-  background-color: white !important;
-  color: #0f172a !important;
 }
 .select-arrow {
   position: absolute;
@@ -277,10 +287,10 @@ const calculation = computed(() => {
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  font-size: 0.7rem;
-  opacity: 0.5;
   z-index: 20;
+  transition: transform 0.3s ease;
 }
+.select-container:hover .select-arrow { transform: translateY(-50%) scale(1.2); }
 
 /* --- UI COMPONENTS --- */
 .tab-btn {
@@ -289,24 +299,14 @@ const calculation = computed(() => {
 .tab-active {
   @apply bg-indigo-600 !text-white shadow-[0_10px_20px_-5px_rgba(79,70,229,0.5)];
 }
-.label-text {
-  @apply text-[10px] font-black uppercase tracking-[0.2em] ml-2 mb-2 block;
-}
-.input-style {
-  @apply w-full p-4 rounded-2xl outline-none font-bold transition-all border shadow-sm;
-}
-.dark-input {
-  @apply bg-slate-950/50 border-white/5 text-white focus:border-indigo-600;
-}
-.light-input {
-  @apply bg-white border-slate-200 text-slate-900 focus:border-indigo-400;
-}
+.label-text { @apply text-[10px] font-black uppercase tracking-[0.2em] ml-2 mb-2 block; }
+.input-style { @apply w-full p-4 rounded-2xl outline-none font-bold transition-all border shadow-sm; }
+.dark-input { @apply bg-slate-950/50 border-white/5 text-white focus:border-indigo-600; }
+.light-input { @apply bg-white border-slate-200 text-slate-900 focus:border-indigo-400; }
 
-/* Menghilangkan arrow number */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+.custom-scroll::-webkit-scrollbar { width: 4px; }
+.custom-scroll::-webkit-scrollbar-thumb { background: rgba(99, 102, 241, 0.3); border-radius: 10px; }
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 input[type=number] { -moz-appearance: textfield; }
 </style>
