@@ -80,10 +80,10 @@ const displayedPages = computed(() => {
 });
 
 const stats = computed(() => [
-    { label: 'DATABASE', val: mqData.length, grad: 'from-blue-700 to-blue-500' },
+    { label: 'ALL ITEM', val: mqData.length, grad: 'from-blue-700 to-blue-500' },
     { label: 'CHAPTERS', val: all_chapters.length, grad: 'from-purple-600 to-fuchsia-600' },
     { label: 'RESULTS', val: filteredItems.value.length, grad: 'from-emerald-600 to-teal-600' },
-    { label: 'TOTAL QTY', val: filteredItems.value.reduce((acc, curr) => acc + (parseInt(curr.jumlah) || 0), 0), grad: 'from-orange-600 to-amber-600' }
+    { label: 'LATEST', val: all_chapters.length > 0 ? all_chapters[all_chapters.length - 1].split(' ').pop() : '-', grad: 'from-orange-600 to-amber-500' }
 ]);
 </script>
 
@@ -121,7 +121,7 @@ const stats = computed(() => [
                 props.isDark ? 'border-fuchsia-500 bg-black/40' : 'border-fuchsia-600 bg-white/80']">
                 <div class="flex flex-col gap-2">
                     <label class="text-[10px] font-black uppercase tracking-widest ml-4 text-fuchsia-500">Search Item</label>
-                    <input v-model="search" type="text" placeholder="Find quest item..." 
+                    <input v-model="search" type="text" placeholder="Find MQ item..." 
                         :class="['w-full border-[3px] rounded-xl md:rounded-2xl p-4 md:p-5 text-sm font-bold outline-none transition-all focus:border-indigo-500', 
                         props.isDark ? 'bg-white/5 border-white/10 text-white placeholder:text-white/20' : 'bg-slate-50 border-slate-200 text-slate-900']" />
                 </div>
@@ -147,7 +147,7 @@ const stats = computed(() => [
                                 <th :class="['p-8 w-[10%] text-center border-r-[2px]', props.isDark ? 'border-white/10' : 'border-slate-200']">No.</th>
                                 <th :class="['p-8 w-[25%] text-left border-r-[2px]', props.isDark ? 'border-white/10' : 'border-slate-200']">Chapter Info</th>
                                 <th :class="['p-8 w-[45%] text-left border-r-[2px]', props.isDark ? 'border-white/10' : 'border-slate-200']">Required Item</th>
-                                <th class="p-8 w-[20%] text-center">Quantity</th>
+                                <th class="p-8 w-[20%] text-center">Need</th>
                             </tr>
                         </thead>
                         <tbody :class="['divide-y-[2px]', props.isDark ? 'divide-white/10 text-white/80' : 'divide-slate-200 text-slate-700']">
@@ -184,7 +184,7 @@ const stats = computed(() => [
                             props.isDark ? 'bg-white/5 border-white/10 text-white' : 'bg-slate-50 border-slate-200 text-slate-900 shadow-inner']">
                             <div class="font-black uppercase text-sm leading-tight max-w-[60%]">{{ item.nama_item }}</div>
                             <div class="text-right">
-                                <span class="block text-[9px] font-black uppercase text-indigo-600 opacity-60">QTY</span>
+                                <span class="block text-[9px] font-black uppercase text-indigo-600 opacity-60">Need</span>
                                 <span class="text-4xl font-black italic text-indigo-600">{{ item.jumlah }}</span>
                             </div>
                         </div>
@@ -235,4 +235,18 @@ const stats = computed(() => [
 ::-webkit-scrollbar-thumb { background: rgba(79, 70, 229, 0.3); border-radius: 10px; }
 
 .border-inherit { border-color: inherit; }
+
+/* Tambahan untuk background dropdown saat dark mode */
+select option {
+    background-color: #1a1a1a; /* Warna gelap saat dropdown terbuka */
+    color: white;
+}
+
+/* Memastikan input/select tidak berubah warna putih saat auto-fill atau fokus */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: inherit;
+    transition: background-color 5000s ease-in-out 0s;
+}
 </style>
