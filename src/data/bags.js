@@ -25,7 +25,7 @@ export const bags = [
   {
     id: 3,
     slot: '52 ➔ 53',
-    nama_item: 'Hanya Spina',
+    nama_item: 'Spina',
     jumlah: '-',
     spina: 1000,
     monster: '-',
@@ -80,7 +80,7 @@ export const bags = [
   {
     id: 8,
     slot: '55 ➔ 56',
-    nama_item: 'Hanya Spina',
+    nama_item: 'Spina',
     jumlah: '-',
     spina: 2000,
     monster: '-',
@@ -157,7 +157,7 @@ export const bags = [
   {
     id: 15,
     slot: '59 ➔ 60',
-    nama_item: 'Hanya Spina',
+    nama_item: 'Spina',
     jumlah: '-',
     spina: 4000,
     monster: '-',
@@ -236,7 +236,7 @@ export const bags = [
   {
     id: 22,
     slot: '63 ➔ 64',
-    nama_item: 'Hanya Spina',
+    nama_item: 'Spina',
     jumlah: '-',
     spina: 8000,
     monster: '-',
@@ -313,7 +313,7 @@ export const bags = [
   {
     id: 29,
     slot: '67 ➔ 68',
-    nama_item: 'Hanya Spina',
+    nama_item: 'Spina',
     jumlah: '-',
     spina: 16000,
     monster: '-',
@@ -434,7 +434,7 @@ export const bags = [
   {
     id: 40,
     slot: '72 ➔ 73',
-    nama_item: 'Hanya Spina',
+    nama_item: 'Spina',
     jumlah: '-',
     spina: 32000,
     monster: '-',
@@ -579,7 +579,7 @@ export const bags = [
   {
     id: 53,
     slot: '77 ➔ 78',
-    nama_item: 'Hanya Spina',
+    nama_item: 'Spina',
     jumlah: '-',
     spina: 64000,
     monster: '-',
@@ -722,7 +722,7 @@ export const bags = [
   {
     id: 66,
     slot: '82 ➔ 83',
-    nama_item: 'Hanya Spina',
+    nama_item: 'Spina',
     jumlah: '-',
     spina: 100000,
     monster: '-',
@@ -898,7 +898,7 @@ export const bags = [
   {
     id: 82,
     slot: '88 ➔ 89',
-    nama_item: 'Hanya Spina',
+    nama_item: 'Spina',
     jumlah: '-',
     spina: 200000,
     monster: '-',
@@ -1076,7 +1076,7 @@ export const bags = [
   {
     id: 98,
     slot: '94 ➔ 95',
-    nama_item: 'Hanya Spina',
+    nama_item: 'Spina',
     jumlah: '-',
     spina: 300000,
     monster: '-',
