@@ -18,6 +18,10 @@ export const mqData = [
     { id: 16, chapter: 'Chapter 11', nama_item: 'Broken Horn (Tanduk Patah)', jumlah: 'x20' },
     { id: 17, chapter: 'Chapter 12', nama_item: 'Jabali Stone (Batu Jabali)', jumlah: 'x5' },
     { id: 18, chapter: 'Chapter 12', nama_item: 'Growing Ore (Biji Berkembang)', jumlah: 'x5' },
+    { id: 19, chapter: 'Chapter 14', nama_item: 'Kulit Tebal Berlendir (Slimy Thick Skin)', jumlah: 'x20' },
+    { id: 20, chapter: 'Chapter 14', nama_item: 'Akar Melilit (Tangled Roots)', jumlah: 'x10' },
+    { id: 21, chapter: 'Chapter 14', nama_item: 'Kayu Menabra (Menabra Wood)', jumlah: 'x10' },
+    { id: 22, chapter: 'Chapter 15', nama_item: 'Pupuk Keruh (Stagnant Fertillizer)', jumlah: 'x10' },
 ];
 
 // --- HELPER FUNCTIONS ---

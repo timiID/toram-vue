@@ -32,21 +32,21 @@
         </div>
       </div>
 
-      <div class="lg:col-span-4 space-y-6 animate-float-delayed">
-        <div :class="[cardClass, 'relative border-t-4 border-t-cyan-500/50']">
+      <div class="lg:col-span-4 space-y-6">
+        <div :class="[cardClass, 'relative border-t-4 border-t-cyan-500/50 shadow-cyan-500/5']">
           <p class="text-[10px] font-black uppercase tracking-widest text-cyan-400 mb-6 border-b border-cyan-500/10 pb-2">Crafting Configuration</p>
 
           <div class="space-y-4">
-            <div class="relative group">
+            <div class="relative group select-container">
               <label class="block text-[9px] font-black text-slate-500 uppercase mb-1.5 group-hover:text-cyan-400 transition-colors">Equipment Type</label>
               <div class="relative overflow-hidden rounded-xl">
                 <select v-model="form.craftType" @change="handleTypeChange" 
-                  class="w-full bg-slate-500/10 border dark:border-white/10 border-slate-200 rounded-xl p-4 font-black dark:text-cyan-100 text-slate-900 outline-none cursor-pointer appearance-none transition-all focus:ring-4 focus:ring-cyan-500/10 focus:border-cyan-500">
-                  <option v-for="type in craftTypes" :key="type" :value="type" class="dark:bg-slate-900 dark:text-white bg-white text-slate-900">
+                  class="w-full bg-slate-500/10 border dark:border-white/10 border-slate-200 rounded-xl p-4 font-black dark:text-cyan-100 text-slate-900 outline-none cursor-pointer appearance-none transition-all focus:ring-4 focus:ring-cyan-500/10 focus:border-cyan-500 custom-select">
+                  <option v-for="type in craftTypes" :key="type" :value="type" class="dropdown-item">
                     {{ type }}
                   </option>
                 </select>
-                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-cyan-500 group-hover:scale-125 transition-transform">
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-cyan-500 group-hover:scale-125 transition-transform z-20">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
                   </svg>
@@ -191,16 +191,37 @@ const totalPot = computed(() => BS.calculatePotential(form.basePot, form.careful
 </script>
 
 <style scoped>
-/* PERBAIKAN DROPDOWN OPTION */
-select option {
-  background-color: #0f172a !important; /* Dark Slate */
-  color: white !important;
-  padding: 1rem;
+/* DROPDOWN STABILITY FIX */
+.select-container {
+  isolation: isolate;
 }
 
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  touch-action: manipulation;
+  z-index: 10;
+}
+
+.dropdown-item {
+  background-color: #0f172a !important; 
+  color: white !important;
+}
+
+/* ANIMATIONS */
 @keyframes float {
   0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(1deg); }
+  50% { transform: translateY(-15px) rotate(0.5deg); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.02); }
+}
+
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-10px) scale(1.05); }
 }
 
 @keyframes shake {
@@ -209,17 +230,24 @@ select option {
   75% { transform: translateX(5px); }
 }
 
-@keyframes bounce-slow {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-10px) scale(1.05); }
+/* Mengatur Animasi yang Berbeda untuk Setiap Kolom */
+.animate-float { 
+  animation: float 6s ease-in-out infinite; 
 }
 
-.animate-float { animation: float 6s ease-in-out infinite; }
-.animate-float-delayed { animation: float 6s ease-in-out infinite; animation-delay: 1.5s; }
-.animate-float-slow { animation: float 8s ease-in-out infinite; animation-delay: 3s; }
-.animate-shake { animation: shake 0.5s ease-in-out infinite; }
-.animate-bounce-slow { animation: bounce-slow 4s ease-in-out infinite; }
+.animate-float-slow { 
+  animation: float-slow 8s ease-in-out infinite; 
+}
 
+.animate-bounce-slow { 
+  animation: bounce-slow 4s ease-in-out infinite; 
+}
+
+.animate-shake { 
+  animation: shake 0.5s ease-in-out infinite; 
+}
+
+/* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
