@@ -87,7 +87,7 @@ watch([search, selectedChapter], () => {
                 </div>
                 <div class="relative z-10">
                     <h2 class="text-5xl md:text-8xl font-black italic uppercase leading-[0.9] tracking-tighter">
-                        Main Quest<br>Ingredients
+                        Main Quest<br>List
                     </h2>
                     <div class="mt-6 flex items-center gap-4">
                         <img src="/images/logo.png" class="h-12 w-auto object-contain" />

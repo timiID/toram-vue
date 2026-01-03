@@ -57,7 +57,7 @@ const stars = Array.from({ length: 45 }, (_, i) => ({
         <div class="hidden md:flex p-1.5 rounded-full border gap-1 items-center" 
              :class="isDark ? 'bg-slate-800/40 border-white/5' : 'bg-slate-200/50 border-slate-300/30'">
           <router-link to="/" class="nav-link" active-class="active-link">LIST BAG</router-link>
-          <router-link to="/mq" class="nav-link" active-class="active-link">MAIN QUEST</router-link>
+          <router-link to="/mq" class="nav-link" active-class="active-link">LIST MQ</router-link>
           <router-link to="/mq-calc" class="nav-link" active-class="active-link">MQ CALC</router-link>
           <router-link to="/bs-calc" class="nav-link" active-class="active-link">BS CALC</router-link>
           <router-link to="/xtall" class="nav-link" active-class="active-link">LIST XTALL</router-link>
