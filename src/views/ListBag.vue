@@ -152,8 +152,8 @@ const getBadgeClass = (kelas) => {
                             <input v-model="search" type="text" placeholder="Find items..." 
                                 :class="['w-full h-14 pl-14 pr-6 rounded-2xl border-[3px] font-bold outline-none transition-all',
                                 isDark ? 'bg-white/5 border-white/10 text-white focus:border-indigo-500' : 'bg-slate-50 border-slate-200 text-slate-900 focus:border-indigo-600 focus:bg-white']" />
-                            <div class="absolute left-5 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                            <div class="absolute left-5 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none group-focus-within:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                             </div>
                         </div>
                     </div>
@@ -170,10 +170,10 @@ const getBadgeClass = (kelas) => {
                                 <option>Boss</option>
                                 <option>Spina</option>
                             </select>
-                            <div class="absolute left-5 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M7 12h10"/><path d="M10 18h4"/></svg>
+                            <div class="absolute left-5 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none group-focus-within:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
                             </div>
-                            <div class="absolute right-5 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none">
+                            <div class="absolute right-5 top-1/2 -translate-y-1/2 text-indigo-500/50 pointer-events-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                             </div>
                         </div>
@@ -188,10 +188,14 @@ const getBadgeClass = (kelas) => {
                                 <option>All Slot</option>
                                 <option v-for="s in uniqueSlots" :key="s" :value="s">Slot {{ s }}</option>
                             </select>
-                            <div class="absolute left-5 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none">
-                                <svg xmlns="dist\images\plus.png" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.886L4 9l4.912 1.114L11 16l1.912-5.886L18 9l-4.912-1.114z"/><path d="M5 21l14 0"/></svg>
+                            <div class="absolute left-5 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none group-focus-within:scale-110 transition-transform">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="8" x2="12" y2="16" />
+                                    <line x1="8" y1="12" x2="16" y2="12" />
+                                </svg>
                             </div>
-                            <div class="absolute right-5 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none">
+                            <div class="absolute right-5 top-1/2 -translate-y-1/2 text-indigo-500/50 pointer-events-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                             </div>
                         </div>
@@ -218,23 +222,22 @@ const getBadgeClass = (kelas) => {
                         </thead>
                         <tbody :class="['divide-y-[2px]', isDark ? 'divide-white/10 text-white/80' : 'divide-slate-200 text-slate-700']">
                             <tr v-for="item in paginatedItems" :key="item.id" class="hover:bg-indigo-500/5 transition-all group">
-                                <td :class="['p-8 text-center border-r-[2px]', isDark ? 'border-white/10' : 'border-slate-200']">
-                                    <span class="font-black text-blue-500 italic text-3xl group-hover:scale-110 block transition-transform">{{ item.slot }}</span>
+                                <td class="p-8 text-center border-r-[2px] border-lime-500/10">
+                                    <span class="font-black text-blue-500 italic text-3xl">{{ item.slot }}</span>
                                 </td>
-                                <td :class="['p-8 font-black uppercase text-base border-r-[2px]', 
-                                    isDark ? 'text-white border-white/10' : 'text-slate-900 border-slate-200']">
+                                <td class="p-8 font-black uppercase text-base border-r-[2px] border-lime-500/10">
                                     {{ item.nama_item }}
                                 </td>
-                                <td :class="['p-8 text-center bg-black/5 border-r-[2px]', isDark ? 'border-white/10' : 'border-slate-200']">
+                                <td class="p-8 text-center bg-black/5 border-r-[2px] border-lime-500/10">
                                     <span class="font-black italic text-lime-600 text-5xl">{{ formatQty(item.jumlah) }}</span>
                                 </td>
-                                <td :class="['p-8 text-center font-black text-xl text-amber-600 border-r-[2px]', isDark ? 'border-white/10' : 'border-slate-200']">
+                                <td class="p-8 text-center font-black text-xl text-amber-600 border-r-[2px] border-lime-500/10">
                                     {{ item.spina > 0 ? Number(item.spina).toLocaleString() : '-' }}
                                 </td>
-                                <td :class="['p-8 text-[11px] font-bold uppercase opacity-60 border-r-[2px]', isDark ? 'border-white/10' : 'border-slate-200']">
+                                <td class="p-8 text-[11px] font-bold uppercase opacity-60 border-r-[2px] border-lime-500/10">
                                     {{ item.monster || '-' }}
                                 </td>
-                                <td :class="['p-8 text-center border-r-[2px]', isDark ? 'border-white/10' : 'border-slate-200']">
+                                <td class="p-8 text-center border-r-[2px] border-lime-500/10">
                                     <span :class="getBadgeClass(item.kelas_mob)">{{ item.kelas_mob }}</span>
                                 </td>
                                 <td class="p-8 font-black text-xl italic text-blue-600 uppercase tracking-tighter">
@@ -248,21 +251,43 @@ const getBadgeClass = (kelas) => {
                 <div :class="['lg:hidden divide-y-[3px]', isDark ? 'divide-white/10' : 'divide-slate-200']">
                     <div v-for="item in paginatedItems" :key="item.id" class="p-6 space-y-4">
                         <div class="flex justify-between items-start">
-                            <div>
-                                <h3 :class="['font-black uppercase text-lg leading-tight', isDark ? 'text-white' : 'text-slate-900']">{{ item.nama_item }}</h3>
-                                <div :class="getBadgeClass(item.kelas_mob)" class="mt-2 !min-w-fit !px-2">{{ item.kelas_mob }}</div>
+                            <div class="flex-1 pr-4">
+                                <div class="text-[10px] font-black text-blue-500 mb-1">SLOT {{ item.slot }}</div>
+                                <h3 :class="['font-black uppercase text-xl leading-tight', isDark ? 'text-white' : 'text-slate-900']">{{ item.nama_item }}</h3>
                             </div>
-                            <div class="text-2xl font-black italic text-blue-600 leading-none">#{{ item.slot }}</div>
+                            <div :class="getBadgeClass(item.kelas_mob)" class="!min-w-fit !px-2">{{ item.kelas_mob }}</div>
                         </div>
-                        <div :class="['grid grid-cols-2 gap-4 border-[3px] p-4 rounded-2xl', 
-                            isDark ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-slate-50 shadow-inner']">
+                        
+                        <div :class="['grid grid-cols-2 gap-3 border-[3px] p-4 rounded-2xl', 
+                            isDark ? 'border-white/10 bg-white/5' : 'border-slate-100 bg-slate-50']">
                             <div>
                                 <span class="text-[9px] font-black text-lime-600 uppercase block">Need</span>
-                                <span :class="['text-3xl font-black italic', isDark ? 'text-white' : 'text-slate-900']">{{ formatQty(item.jumlah) }}</span>
+                                <span class="text-4xl font-black italic text-lime-600">{{ formatQty(item.jumlah) }}</span>
                             </div>
-                            <div>
+                            <div class="border-l-[2px] pl-3 border-slate-300/30">
                                 <span class="text-[9px] font-black text-amber-600 uppercase block">Cost</span>
-                                <span :class="['text-xl font-black', isDark ? 'text-white' : 'text-slate-900']">{{ item.spina > 0 ? Number(item.spina).toLocaleString() : '-' }}</span>
+                                <span class="text-xl font-black block mt-1">{{ item.spina > 0 ? Number(item.spina).toLocaleString() : '-' }}</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-indigo-500"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="text-[9px] font-black text-slate-500 uppercase block">Drop From:</span>
+                                    <span class="text-xs font-black uppercase text-indigo-500">{{ item.monster || '-' }}</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" class="text-red-500"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                                </div>
+                                <div class="flex-1">
+                                    <span class="text-[9px] font-black text-slate-500 uppercase block">Map:</span>
+                                    <span class="text-sm font-black italic text-blue-600 uppercase">{{ item.lokasi }}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -301,7 +326,6 @@ const getBadgeClass = (kelas) => {
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Custom Styling for Select Option in Dark Mode */
 select option {
     background-color: #1a1a1a;
     color: white;
