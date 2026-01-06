@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import ListBag from '../views/ListBag.vue' 
+import ListBag from '../views/ListBag.vue'
 import MainQuest from '../views/MainQuest.vue'
 import XtallView from '../views/XtallView.vue'
 import CalculatorMQ from '../views/CalculatorMQ.vue'
@@ -11,18 +11,17 @@ const routes = [
   {
     path: '/',
     name: 'bag',
-    component: ListBag,
-    
+    component: ListBag
   },
   {
     path: '/mq',
     name: 'main-quest',
-    component: MainQuest 
+    component: MainQuest
   },
   {
-    path: '/mq-calc', 
-    name: 'mq-calc', 
-    component: CalculatorMQ 
+    path: '/mq-calc',
+    name: 'mq-calc',
+    component: CalculatorMQ
   },
   {
     path: '/bs-calc',
@@ -36,7 +35,7 @@ const routes = [
   },
   {
     path: '/xtall/:id',
-    name: 'Xtall-Detail',
+    name: 'xtall-detail',
     component: XtallDetail,
     props: true
   }
