@@ -151,6 +151,7 @@ const getIconPath = (type) => {
 const getBadgeColor = (type) => {
   const map = { 
     'NORMAL': 'bg-blue-500 text-white border-blue-400', 
+    'ADDITIONAL': 'bg-yellow-500 text-white border-yellow-400', 
     'UPGRADE': 'bg-purple-500 text-white border-purple-400',
     'WEAPON': 'bg-red-500 text-white border-red-400',
     'ARMOR': 'bg-green-500 text-white border-green-400'
