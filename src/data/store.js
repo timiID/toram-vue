@@ -2502,10 +2502,10 @@ export const crystalData = [
         },
         {
           code: 359,
-          link: null,
-          type: "ARMOR",
-          name: "",
-          view: `\n`,
+          link: 357,
+          type: "UPGRADE",
+          name: "Bemoz",
+          view: `\nMaxMP -150\nATK 6%\nMATK +6%\nPhysical Pierce +8%\nPeneterasi Sihir +8%\nCritical Rate +17`,
         },
         {
           code: 360,

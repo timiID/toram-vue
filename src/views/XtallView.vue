@@ -1,307 +1,622 @@
 <template>
-  <div :class="['relative z-10 w-full max-w-7xl mx-auto p-4 md:p-8 space-y-8 min-h-screen font-sans transition-all duration-500']">
-    
-    <div class="fixed inset-0 pointer-events-none z-[-1] opacity-30">
-      <svg class="absolute -top-20 -left-20 w-[500px] h-[500px] blur-[100px] animate-slow-float" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="80" fill="#06b6d4" />
-      </svg>
-      <svg class="absolute -bottom-20 -right-20 w-[500px] h-[500px] blur-[100px] animate-slow-float-delayed" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="80" fill="#a855f7" />
-      </svg>
+  <div :class="['min-h-screen relative overflow-x-hidden font-sans transition-all duration-700 bg-transparent', isDark ? 'text-slate-200' : 'text-slate-900']">
+    <div class="fixed inset-0 pointer-events-none z-0">
+      <div :class="['absolute inset-0 bg-[url(\'/images/logo.png\')] bg-center bg-no-repeat bg-[length:60%_auto] opacity-[0.03] transition-opacity duration-1000', isDark ? 'brightness-200' : 'invert opacity-[0.02]']"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent to-transparent"></div>
+      <div v-if="isDark" class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full animate-pulse"></div>
+      <div v-if="isDark" class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
     </div>
 
-    <div :class="['grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-8 rounded-[3rem] border backdrop-blur-xl shadow-2xl transition-all relative z-[100] overflow-visible', 
-      isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white/70 border-white shadow-blue-100/50 text-slate-900']">
+    <div class="relative z-10 max-w-[1700px] mx-auto p-4 md:p-10 space-y-8 md:space-y-14">
       
-      <div class="space-y-2 relative">
-        <label :class="['block text-[10px] font-black uppercase tracking-widest ml-4', isDark ? 'text-cyan-400' : 'text-cyan-600']">Search Name</label>
-        <div class="relative group">
-          <input v-model="searchQuery" type="text" placeholder="Search Crysta..." 
-            :class="['w-full pl-14 pr-4 py-5 rounded-[2rem] border outline-none transition-all shadow-inner', 
-            isDark ? 'bg-slate-800/50 border-white/10 text-white focus:ring-cyan-500/50' : 'bg-white/80 border-slate-100 text-slate-900 shadow-blue-50/50']">
-          <div class="absolute left-5 top-1/2 -translate-y-1/2 p-2 rounded-xl bg-cyan-500/10">
-             <svg class="w-5 h-5 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round"/></svg>
+      <header :class="['relative group flex flex-col md:flex-row justify-between items-center md:items-end gap-8 pb-10 border-b-2 transition-all duration-500', isDark ? 'border-white/5' : 'border-black/5']">
+        <div class="flex items-center gap-6">
+          <div class="relative group">
+            <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+            <img src="/images/logo.png" class="relative h-16 w-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" alt="Logo" />
           </div>
-        </div>
-      </div>
-
-      <div class="space-y-2 relative">
-        <label :class="['block text-[10px] font-black uppercase tracking-widest ml-4', isDark ? 'text-orange-400' : 'text-orange-600']">Type Crysta</label>
-        <div class="relative">
-          <select v-model="selectedType" 
-            :class="['w-full pl-14 pr-12 py-5 rounded-[2rem] border outline-none cursor-pointer font-bold appearance-none transition-all shadow-inner', 
-            isDark ? 'bg-slate-800/50 border-white/10 text-white' : 'bg-white/80 border-slate-100 text-slate-900 shadow-orange-50/50']">
-            <option value="">All Types</option>
-            <option v-for="type in CrystalType" :key="type" :value="type">{{ type }}</option>
-          </select>
-          <div class="absolute left-5 top-1/2 -translate-y-1/2 p-2 rounded-xl bg-orange-500/10 pointer-events-none">
-            <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" stroke-linecap="round"/></svg>
-          </div>
-          <div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
-            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </div>
-      </div>
-
-      <div class="space-y-2 relative">
-        <label :class="['block text-[10px] font-black uppercase tracking-widest ml-4', isDark ? 'text-emerald-400' : 'text-emerald-600']">
-          Status ({{ selectedStats.length }})
-        </label>
-        <div class="relative">
-          <button @click.stop="isStatusOpen = !isStatusOpen" 
-            :class="['w-full pl-14 pr-12 py-5 rounded-[2rem] border text-left font-bold transition-all shadow-inner truncate relative', 
-            isDark ? 'bg-slate-800/50 border-white/10 text-white' : 'bg-white/80 border-slate-100 text-slate-900 shadow-emerald-50/50']">
-            {{ selectedStats.length > 0 ? selectedStats.length + ' dipilih' : 'Pilih Status...' }}
-            <div :class="['absolute right-5 top-1/2 -translate-y-1/2 transition-transform duration-300 opacity-40', isStatusOpen ? 'rotate-180' : '']">
-              <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </button>
           
-          <div v-if="isStatusOpen" 
-            class="absolute left-0 top-full mt-4 w-[320px] md:w-[500px] z-[9999] p-6 rounded-[2.5rem] border shadow-2xl backdrop-blur-3xl max-h-[500px] overflow-y-auto scale-in-center"
-            :class="isDark ? 'bg-slate-900/95 border-white/10 shadow-black' : 'bg-white/95 border-slate-200 shadow-emerald-200/50'">
+          <div class="text-center md:text-left space-y-1">
+            <div class="flex items-center gap-3">
+              <h1 class="text-4xl md:text-6xl font-[1000] italic uppercase tracking-tighter leading-none transition-all">
+                <span :class="isDark ? 'text-white' : 'text-slate-900'">TIMI</span>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">DB</span>
+              </h1>
+              <div class="px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-[8px] font-black text-blue-500 tracking-widest uppercase">Bahasa Indonesia</div>
+            </div>
+            <p :class="['text-xs font-black uppercase tracking-[0.5em] opacity-60', isDark ? 'text-slate-400' : 'text-slate-500']">Toram Online Database</p>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center md:items-end gap-3">
+          <div :class="['group relative px-8 py-3 rounded-2xl border-2 overflow-hidden transition-all duration-500', isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white border-slate-200 shadow-xl shadow-slate-200/50']">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+            <span :class="['relative text-xs font-black uppercase tracking-[0.2em]', isDark ? 'text-cyan-400' : 'text-blue-600']">
+              Results : {{ filteredResults.length }} Xtall
+            </span>
+          </div>
+          <div class="flex gap-2">
+            <div v-for="i in 3" :key="i" class="w-8 h-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-20"></div>
+          </div>
+        </div>
+      </header>
+
+      <section :class="['grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 p-6 md:p-8 rounded-[3rem] border-2 backdrop-blur-3xl relative z-[100] transition-all duration-500 shadow-2xl', 
+        isDark ? 'bg-slate-950/60 border-white/10 shadow-black/40' : 'bg-white/80 border-slate-200 shadow-slate-300/50']">
+        
+        <div class="space-y-2 col-span-2 md:col-span-2 lg:col-span-2">
+          <label class="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-500 ml-4 flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping"></span>
+            Search Name
+          </label>
+          <div class="relative group">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500"></div>
+            <input v-model="searchQuery" type="text" placeholder="Search xtall name..." 
+              :class="['relative w-full pl-12 pr-4 py-4 rounded-2xl border-2 outline-none transition-all font-bold text-sm', 
+              isDark ? 'bg-slate-900/50 border-white/5 focus:border-cyan-500 text-white placeholder-slate-600' : 'bg-white border-slate-200 focus:border-cyan-500 text-slate-800 placeholder-slate-400']">
+            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-cyan-500 transition-transform group-focus-within:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="3"/></svg>
+          </div>
+        </div>
+
+        <div class="space-y-2 col-span-1">
+  <label class="text-[10px] font-black uppercase tracking-[0.2em] text-orange-500 ml-4">Type Xtall</label>
+  <div class="relative" ref="typeRef">
+    <button @click.stop="isTypeOpen = !isTypeOpen" 
+      :class="['w-full px-5 py-4 rounded-2xl border-2 text-left font-bold text-sm flex justify-between items-center transition-all duration-300',
+      isTypeOpen ? 'border-orange-500 ring-4 ring-orange-500/10 scale-[0.98]' : '',
+      isDark ? (isTypeOpen ? 'bg-orange-500/10' : 'bg-slate-900/50 border-white/5') : (isTypeOpen ? 'bg-orange-50 text-orange-700' : 'bg-white border-slate-200 shadow-sm')]">
+      
+      <span class="truncate">
+        {{ selectedTypes.length === 0 ? 'All Type' : (selectedTypes.length === 1 ? selectedTypes[0] : selectedTypes.length + ' Terpilih') }}
+      </span>
+      
+      <svg :class="['w-4 h-4 transition-transform duration-500', isTypeOpen ? 'rotate-180 text-orange-500' : 'text-slate-500']" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
+    </button>
+
+    <transition name="dropdown-slide">
+      <div v-if="isTypeOpen" :class="['absolute left-0 top-full mt-3 w-64 z-[9999] p-4 rounded-[2rem] border-2 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-3xl', isDark ? 'bg-slate-950/95 border-white/10' : 'bg-white border-slate-100']">
+        <div class="space-y-1.5 max-h-[300px] overflow-y-auto custom-scroll pr-1">
+          
+          <div @click="selectedTypes = []" 
+            :class="['group flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all', 
+            selectedTypes.length === 0 ? 'bg-orange-500 text-white' : (isDark ? 'hover:bg-white/5 text-slate-400' : 'hover:bg-slate-50 text-slate-600')]">
+            <span class="text-[10px] font-black uppercase tracking-widest">All Type</span>
+            <div v-if="selectedTypes.length === 0" class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></div>
+          </div>
+
+          <div :class="['h-[1px] my-2', isDark ? 'bg-white/5' : 'bg-slate-100']"></div>
+
+          <div v-for="type in CrystalType" :key="type" @click="toggleType(type)" 
+            :class="['group flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all border border-transparent', 
+            selectedTypes.includes(type) ? 'bg-orange-500/10 border-orange-500/20' : (isDark ? 'hover:bg-white/5' : 'hover:bg-slate-50')]">
             
-            <div v-for="(options, group) in statusGroups" :key="group" class="mb-8 last:mb-0 relative">
-              <h5 :class="['text-[11px] font-black uppercase tracking-[0.2em] mb-4 pl-4', groupColors[group].text]">
-                {{ group }}
-              </h5>
+            <div :class="['w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all duration-300', 
+              selectedTypes.includes(type) ? 'border-orange-500 bg-orange-500' : 'border-slate-500 group-hover:border-orange-400']">
+              <svg v-if="selectedTypes.includes(type)" class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path>
+              </svg>
+            </div>
+
+            <span :class="['text-xs font-bold', selectedTypes.includes(type) ? 'text-orange-500' : (isDark ? 'text-slate-400' : 'text-slate-600')]">
+              {{ type }}
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </transition>
+  </div>
+</div>
+
+        <div class="space-y-2 col-span-1">
+          <label class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500 ml-4">Attributes</label>
+          <div class="relative" ref="statusRef">
+            <button @click.stop="isStatusOpen = !isStatusOpen" 
+  :class="['w-full px-5 py-4 rounded-2xl border-2 text-left font-bold text-sm flex justify-between items-center transition-all duration-300',
+  isStatusOpen ? 'border-teal-500 ring-4 ring-teal-500/10 scale-[0.98]' : '',
+  isDark ? (isStatusOpen ? 'bg-teal-500/10' : 'bg-slate-900/50 border-white/5') : (isStatusOpen ? 'bg-teal-50 text-teal-700' : 'bg-white border-slate-200 shadow-sm')]">
+  
+  <span class="truncate">
+    {{ selectedStats.length > 0 ? selectedStats.length + ' Filters Selected' : 'Attribute Status' }}
+  </span>
+  
+  <svg :class="['w-4 h-4 transition-transform duration-500', isStatusOpen ? 'rotate-180 text-teal-500' : 'text-slate-500']" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
+</button>
+            <transition name="dropdown-slide">
+              <div v-if="isStatusOpen" :class="['absolute right-0 md:left-[-100%] lg:left-[-200%] top-full mt-3 w-[90vw] md:w-[700px] lg:w-[900px] z-[9999] p-8 rounded-[3rem] border-2 shadow-[0_30px_80px_rgba(0,0,0,0.6)] backdrop-blur-3xl', isDark ? 'bg-slate-950/98 border-white/10' : 'bg-white/98 border-slate-200']">
+                <div class="flex justify-between items-center mb-8 pb-4 border-b border-white/5">
+                  <div>
+                    <h4 class="text-xl font-black uppercase italic tracking-tighter">Attribute Status</h4>
+                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Select multiple stats to narrow results</p>
+                  </div>
+                  <button @click="selectedStats = []" class="px-4 py-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-xl text-[10px] font-black uppercase transition-all duration-300">Reset Status</button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[60vh] overflow-y-auto custom-scroll pr-4">
+                  <div v-for="(options, group) in statusGroups" :key="group" 
+                    :class="['group p-5 rounded-[2rem] border-2 transition-all duration-500', isDark ? 'bg-white/[0.02] hover:bg-white/[0.04]' : 'bg-slate-50', groupColors[group]?.border || 'border-transparent']">
+                    <div class="flex items-center gap-3 mb-4">
+                      <div :class="['w-2 h-4 rounded-full', groupColors[group]?.bg || 'bg-slate-500']"></div>
+                      <h5 :class="['text-[10px] font-black uppercase tracking-widest', groupColors[group]?.text || 'text-slate-400']">{{ group }}</h5>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                      <div v-for="opt in options" :key="opt.value" 
+  @click.stop="toggleStat(opt.value)" 
+  :class="['group/stat px-3 py-2 rounded-xl text-[10px] font-black transition-all duration-300 border-2 flex items-center gap-2 cursor-pointer', 
+  selectedStats.includes(opt.value) 
+    ? (groupColors[group]?.text + ' border-current bg-current/10 shadow-lg scale-105') 
+    : (isDark ? 'text-slate-500 border-white/5 hover:border-white/20' : 'text-slate-500 border-slate-200 bg-white hover:border-slate-400')]">
+  
+  <div :class="['w-3 h-3 rounded border flex items-center justify-center transition-all', 
+    selectedStats.includes(opt.value) ? 'bg-current border-transparent' : 'border-current/30']">
+    <svg v-if="selectedStats.includes(opt.value)" class="w-2 h-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path>
+    </svg>
+  </div>
+  
+  {{ opt.label }}
+</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </transition>
+          </div>
+        </div>
+
+        <div class="space-y-2 col-span-1">
+          <label class="text-[10px] font-black uppercase tracking-[0.2em] text-purple-500 ml-4">Scale</label>
+          <div class="relative group">
+            <select v-model="itemsPerPage" :class="['w-full px-4 py-4 rounded-2xl border-2 outline-none font-bold text-sm appearance-none cursor-pointer transition-all pr-10',
+              isDark ? 'bg-slate-900/50 border-white/5 focus:border-purple-500 text-slate-200' : 'bg-white border-slate-200 focus:border-purple-500 shadow-sm']">
+              <option :value="10">10 Units</option>
+              <option :value="25">25 Units</option>
+              <option :value="50">50 Units</option>
+              <option :value="9999">Show All</option>
+            </select>
+            <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
+          </div>
+        </div>
+
+        <div class="space-y-2 col-span-1">
+          <label class="text-[10px] font-black uppercase tracking-[0.2em] text-pink-500 ml-4">Sequence</label>
+          <div class="relative group">
+            <select v-model="sortOrder" :class="['w-full px-4 py-4 rounded-2xl border-2 outline-none font-bold text-sm appearance-none cursor-pointer transition-all pr-10',
+              isDark ? 'bg-slate-900/50 border-white/5 focus:border-pink-500 text-slate-200' : 'bg-white border-slate-200 focus:border-pink-500 shadow-sm']">
+              <option value="asc">A to Z [ASC]</option>
+              <option value="desc">Z to A [DESC]</option>
+            </select>
+            <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none group-hover:scale-y-[-1] transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke-width="2"/></svg>
+          </div>
+        </div>
+      </section>
+
+      <div class="relative py-4 flex items-center justify-center">
+        <div :class="['absolute inset-0 h-[1px] my-auto', isDark ? 'bg-white/5' : 'bg-slate-200']"></div>
+        <div class="absolute h-[2px] w-[30%] bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-shimmer"></div>
+        <div :class="['relative px-6 py-1 rounded-full border-2 text-[8px] font-black uppercase tracking-[0.4em] transition-all', isDark ? 'bg-[#020617] border-white/10 text-slate-500' : 'bg-transparent-50 border-slate-200 text-slate-400']">
+          Xtall Versi Indonesia
+        </div>
+      </div>
+
+      <main class="space-y-10 relative z-10 pb-32">
+        <div v-for="(xtall, idx) in paginatedResults" :key="xtall.code" 
+          class="flex flex-col lg:grid lg:grid-cols-12 gap-6 items-stretch animate-entry"
+          :style="{ animationDelay: (idx * 70) + 'ms' }">
+          
+          <div class="lg:col-span-3 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 scroll-hide">
+            <div v-if="getBaseFor(xtall)" @click="setSearch(getBaseFor(xtall).name)"
+              :class="['flex-shrink-0 w-[200px] lg:w-full p-5 rounded-[1.5rem] border-2 cursor-pointer transition-all duration-500 relative overflow-hidden group shadow-xl',
+              isDark ? 'bg-slate-900/30 border-white/5 hover:border-cyan-500/50 hover:bg-slate-900/60' : 'bg-white border-slate-200 hover:border-cyan-400']">
+              <div class="absolute left-0 top-0 h-full w-2 bg-gradient-to-b from-cyan-500 to-blue-600 opacity-40 group-hover:opacity-100 transition-opacity"></div>
+              <div class="flex items-center gap-2 mb-2">
+                <svg class="w-3 h-3 text-cyan-500" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9l1.42 1.42L8.83 14H18V4h2v12H8.83l3.59 3.58L11 21l-6-6 6-6z"/></svg>
+                <span class="text-[9px] font-black uppercase text-cyan-500 tracking-widest">Previous</span>
+              </div>
+              <p :class="['text-xs font-bold truncate group-hover:translate-x-1 transition-transform duration-300', isDark ? 'text-slate-300' : 'text-slate-700']">
+                {{ getBaseFor(xtall).name }}
+              </p>
+              <div class="absolute bottom-[-10px] right-[-10px] text-4xl opacity-[0.03] group-hover:scale-125 transition-transform">🧬</div>
+            </div>
+            <div v-else class="hidden lg:flex flex-1 items-center justify-center opacity-10">
+               <div class="w-[2px] h-full bg-gradient-to-b from-transparent via-slate-500 to-transparent"></div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 relative group">
+            <div :class="['absolute -inset-1 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-700', 
+              xtall.type === 'UPGRADE' ? 'bg-purple-600' : 'bg-blue-600']"></div>
+
+            <div :class="['h-full relative rounded-[2.5rem] border-2 overflow-hidden transition-all duration-500 shadow-2xl',
+              isDark ? 'bg-[#0b1226]/90 border-white/10 group-hover:border-white/20' : 'bg-white border-slate-200 group-hover:border-blue-400']">
               
-              <div :class="['grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-2 pl-4 border-l-2 ml-1 transition-colors duration-300', groupColors[group].border]">
-                <label v-for="opt in options" :key="opt.value" 
-                  class="flex items-center gap-3 px-2 py-1.5 rounded-xl cursor-pointer hover:bg-white/5 transition-all group">
-                  <input type="checkbox" v-model="selectedStats" :value="opt.value" 
-                    :class="['w-4 h-4 rounded border-slate-500 bg-transparent focus:ring-offset-0', groupColors[group].accent]">
-                  <span :class="['text-[11px] font-bold transition-colors duration-200', 
-                    selectedStats.includes(opt.value) ? groupColors[group].text : (isDark ? 'text-slate-400' : 'text-slate-700'),
-                    'group-hover:' + groupColors[group].text]">
-                    {{ opt.label }}
-                  </span>
-                </label>
+              <div class="relative p-6 md:p-10">
+                 <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="relative shrink-0 mx-auto md:mx-0">
+                      <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-40 animate-pulse"></div>
+                      <div :class="['relative w-24 h-24 md:w-32 md:h-32 rounded-[2.5rem] border-2 flex items-center justify-center shadow-inner transition-all duration-700 group-hover:rotate-[10deg] group-hover:scale-110',
+                        isDark ? 'bg-slate-950 border-white/10' : 'bg-slate-50 border-slate-200']">
+                        <img :src="getIconPath(xtall.type)" class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_15px_15px_rgba(0,0,0,0.4)]" :alt="xtall.type" />
+                      </div>
+                      <div :class="['absolute -bottom-2 -right-2 w-10 h-10 rounded-2xl border-2 flex items-center justify-center text-[10px] font-black', getBadgeColor(xtall.type)]">
+                         {{ xtall.type.charAt(0) }}
+                      </div>
+                    </div>
+
+                    <div class="flex-1 space-y-6 w-full">
+                       <div class="space-y-2">
+                          <div class="flex flex-wrap items-center gap-3">
+                        </div>
+                          <h3 :class="['text-2xl md:text-4xl font-[1000] tracking-tighter leading-none transition-all duration-500 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400', 
+                            isDark ? 'text-white' : 'text-slate-900']">
+                            {{ xtall.name }}
+                          </h3>
+                       </div>
+
+                       <div :class="['p-6 rounded-3xl border-2 transition-all duration-500 group-hover:scale-[1.02]', isDark ? 'bg-white/[0.02] border-white/5 group-hover:bg-white/[0.04]' : 'bg-slate-50 border-slate-100']">
+                         <div class="grid grid-cols-1 gap-4">
+                            <div v-for="(stat, sIdx) in parseStats(xtall.view)" :key="sIdx" 
+                              class="flex items-center gap-4 group/item">
+                              <div class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 group-hover/item:scale-150 transition-transform"></div>
+                              <p :class="['text-xs md:text-sm font-bold tracking-tight transition-all duration-300', 
+                                stat.includes('-') ? 'text-red-500' : (isDark ? 'text-slate-300 group-hover/item:text-white' : 'text-slate-600 group-hover/item:text-slate-900')]">
+                                {{ stat }}
+                              </p>
+                            </div>
+                         </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div :class="['px-8 py-5 border-t-2 flex flex-col sm:flex-row justify-between items-center gap-4', isDark ? 'bg-white/[0.02] border-white/5' : 'bg-slate-50 border-slate-100']">
+                <div class="flex items-center gap-4">
+                  <div class="flex flex-col">
+                   <span :class="['text-[10px] font-black tracking-widest transition-colors', isDark ? 'text-slate-400' : 'text-slate-500']">
+    TYPE XTALL
+  </span>
+  
+  <span :class="[
+    'text-[9px] font-black px-2.5 py-0.5 rounded-full border transition-all uppercase tracking-tighter', 
+    getBadgeColor(xtall.type)
+  ]">
+    {{ xtall.type }}
+  </span>
+                  </div>
+                  <div class="h-8 w-[1px] bg-white/10 hidden sm:block"></div>
+                </div>
+                <router-link 
+  :to="'/xtall/' + xtall.code"
+  class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40 hover:-translate-y-0.5 transition-all duration-300 text-center"
+>
+  Details
+</router-link>
               </div>
             </div>
           </div>
-          <div class="absolute left-5 top-1/2 -translate-y-1/2 p-2 rounded-xl bg-emerald-500/10 pointer-events-none">
-            <svg class="w-5 h-5 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round"/></svg>
+
+          <div class="lg:col-span-3 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 scroll-hide">
+            <template v-if="getEvoFor(xtall).length">
+              <div v-for="evo in getEvoFor(xtall)" :key="evo.code" @click="setSearch(evo.name)"
+                :class="['flex-shrink-0 w-[200px] lg:w-full p-5 rounded-[1.5rem] border-2 cursor-pointer transition-all duration-500 relative overflow-hidden group shadow-xl',
+                isDark ? 'bg-slate-900/30 border-white/5 hover:border-purple-500/50 hover:bg-slate-900/60' : 'bg-white border-slate-200 hover:border-purple-400']">
+                <div class="absolute right-0 top-0 h-full w-2 bg-gradient-to-b from-purple-500 to-pink-600 opacity-40 group-hover:opacity-100 transition-opacity"></div>
+                <div class="flex items-center justify-end gap-2 mb-2 text-right">
+                  <span class="text-[9px] font-black uppercase text-purple-500 tracking-widest">Next Upgrade</span>
+                  <svg class="w-3 h-3 text-purple-500 rotate-180" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9l1.42 1.42L8.83 14H18V4h2v12H8.83l3.59 3.58L11 21l-6-6 6-6z"/></svg>
+                </div>
+                <p :class="['text-xs font-bold truncate text-right group-hover:-translate-x-1 transition-transform duration-300', isDark ? 'text-slate-300' : 'text-slate-700']">
+                  {{ evo.name }}
+                </p>
+                <div class="absolute bottom-[-10px] left-[-10px] text-4xl opacity-[0.03] group-hover:scale-125 transition-transform">🚀</div>
+              </div>
+            </template>
+            <div v-else class="hidden lg:flex flex-1 items-center justify-center opacity-10">
+               <div class="w-[2px] h-full bg-gradient-to-b from-transparent via-slate-500 to-transparent"></div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="space-y-2 relative">
-        <label :class="['block text-[10px] font-black uppercase tracking-widest ml-4', isDark ? 'text-purple-400' : 'text-purple-600']">Display</label>
-        <div class="relative">
-          <select v-model="itemsPerPage" 
-            :class="['w-full pl-6 pr-12 py-5 rounded-[2rem] border outline-none cursor-pointer font-bold appearance-none transition-all shadow-inner relative', 
-            isDark ? 'bg-slate-800/50 border-white/10 text-white' : 'bg-white/80 border-slate-100 text-slate-900 shadow-purple-50/50']">
-            <option :value="10">Show 10</option>
-            <option :value="20">Show 20</option>
-            <option :value="crystalData.length">Show All</option>
-          </select>
-          <div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
-            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div v-if="filteredResults.length === 0" class="py-40 text-center animate-pulse">
+          <div class="inline-flex relative mb-8">
+            <div class="absolute inset-0 bg-blue-500 blur-3xl opacity-20 animate-ping"></div>
+            <div class="text-8xl relative">📡</div>
           </div>
+          <h2 class="text-3xl font-[1000] uppercase italic tracking-tighter">Signal Lost</h2>
+          <p class="text-slate-500 font-bold uppercase tracking-[0.3em] text-xs mt-4">Frequency mismatch - redefine search parameters</p>
+          <button @click="resetFilters" class="mt-8 px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all">Emergency Reset</button>
         </div>
-      </div>
-    </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-0" @click="isStatusOpen = false">
-      
-      <div v-if="searchQuery.trim() !== ''" class="lg:col-span-3 space-y-4">
-        <h4 v-if="downgradeChain.length" class="text-[10px] font-black uppercase ml-6 mb-4 tracking-[0.2em] text-slate-400">Evolution Chain</h4>
-        <XtallCard v-for="xtall in downgradeChain" :key="'down-'+xtall.code" :data="xtall" :icons="crystalIcons" :is-dark="isDark" :is-main="false" @search="setSearch" />
-      </div>
-
-      <div :class="[searchQuery.trim() !== '' ? 'lg:col-span-6' : 'lg:col-span-12 max-w-5xl mx-auto w-full', 'space-y-6']">
-        
-        <template v-if="paginatedResults.length > 0">
-          <XtallCard v-for="xtall in paginatedResults" :key="xtall.code" :data="xtall" :is-main="true" :icons="crystalIcons" :is-dark="isDark" @search="setSearch" />
-          
-          <div v-if="totalPages > 1" class="flex justify-center items-center gap-2 py-10 flex-wrap">
-            <button @click="currentPage--" :disabled="currentPage === 1" class="p-4 rounded-2xl bg-white border border-slate-100 text-slate-400 disabled:opacity-20 shadow-sm transition-all hover:bg-slate-50">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="3" stroke-linecap="round"/></svg>
-            </button>
+        <div class="flex flex-col items-center gap-10 py-20">
+          <nav v-if="totalPages > 1 && itemsPerPage < 1000" class="flex flex-wrap justify-center items-center gap-3">
+            <button @click="currentPage = 1" :disabled="currentPage === 1" 
+              class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 border-white/5 font-black disabled:opacity-5 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-500">«</button>
+            
             <div class="flex gap-2">
-              <button v-for="p in displayedPages" :key="p" @click="p !== '...' && (currentPage = p)"
-                :class="['w-12 h-12 rounded-2xl font-black transition-all shadow-sm', currentPage === p ? 'bg-cyan-500 text-white' : 'bg-white text-slate-400 hover:bg-slate-50']">
-                {{ p }}
+              <button v-for="page in visiblePages" :key="page" @click="currentPage = page"
+                :class="['w-14 h-14 rounded-2xl font-black text-sm transition-all duration-500 border-2', 
+                currentPage === page ? 'bg-blue-600 border-blue-500 text-white shadow-[0_0_30px_rgba(37,99,235,0.4)] scale-110 z-10' : 'bg-white/5 border-white/5 text-slate-500 hover:border-white/20']">
+                {{ page }}
               </button>
             </div>
-            <button @click="currentPage++" :disabled="currentPage === totalPages" class="p-4 rounded-2xl bg-white border border-slate-100 text-slate-400 disabled:opacity-20 shadow-sm transition-all hover:bg-slate-50">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-width="3" stroke-linecap="round"/></svg>
-            </button>
+
+            <button @click="currentPage = totalPages" :disabled="currentPage === totalPages" 
+              class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 border-white/5 font-black disabled:opacity-5 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-500">»</button>
+          </nav>
+          
+          <div class="flex items-center gap-4">
+             <div class="h-[1px] w-12 bg-white/10"></div>
+             <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">Page {{ currentPage }} of {{ totalPages }}</p>
+             <div class="h-[1px] w-12 bg-white/10"></div>
           </div>
-        </template>
-
-        <div v-else class="text-center py-20 rounded-[3rem] border border-dashed border-slate-200">
-           <p class="text-slate-400 font-black uppercase tracking-widest">No Crystals Found</p>
         </div>
-      </div>
+      </main>
+    </div>
 
-      <div v-if="searchQuery.trim() !== ''" class="lg:col-span-3 space-y-4">
-        <h4 v-if="upgradeChain.length" class="text-[10px] font-black uppercase ml-6 mb-4 tracking-[0.2em] text-slate-400">Next Upgrade</h4>
-        <XtallCard v-for="xtall in upgradeChain" :key="'up-'+xtall.code" :data="xtall" :icons="crystalIcons" :is-dark="isDark" :is-main="false" @search="setSearch" />
+    <div class="fixed bottom-8 left-8 z-[200] hidden lg:block">
+      <div :class="['px-6 py-3 rounded-2xl border-2 backdrop-blur-xl transition-all duration-500', isDark ? 'bg-slate-900/80 border-white/10' : 'bg-white/80 border-slate-200 shadow-2xl']">
+        <div class="flex items-center gap-4">
+          <div class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+          <span class="text-[9px] font-black uppercase tracking-widest opacity-60">Versi Nama Indonesia</span>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
-import XtallCard from '../components/XtallCard.vue';
-import { crystalData, crystalIcons, CrystalType } from '../data/store.js';
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
+import { crystalData, CrystalType } from '../data/store.js';
 
-const props = defineProps({ isDark: { type: Boolean, default: true } });
+/**
+ * COMPONENT PROPS
+ */
+const props = defineProps({
+  isDark: { type: Boolean, default: true }
+});
 
+/**
+ * VISUAL COLOR ENGINE
+ */
+const groupColors = { 
+  "Base Stats": { text: "text-orange-400", border: "border-orange-500/30", bg: "bg-orange-500" }, 
+  "ATK & DEF": { text: "text-cyan-400", border: "border-cyan-500/30", bg: "bg-cyan-500" }, 
+  "Stability, Accuracy, Dodge": { text: "text-blue-400", border: "border-blue-500/30", bg: "bg-blue-500" }, 
+  "Critical": { text: "text-red-400", border: "border-red-500/30", bg: "bg-red-500" }, 
+  "Speed": { text: "text-pink-400", border: "border-pink-500/30", bg: "bg-pink-500" }, 
+  "HP & MP": { text: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-500" }, 
+  "Weapon ATK & Element": { text: "text-yellow-400", border: "border-yellow-500/30", bg: "bg-yellow-500" }, 
+  "Element Resistance": { text: "text-amber-500", border: "border-amber-500/30", bg: "bg-amber-500" }, 
+  "Barrier & Defense Effect": { text: "text-green-500", border: "border-green-500/30", bg: "bg-green-500" }, 
+  "Offensive Effect": { text: "text-indigo-400", border: "border-indigo-500/30", bg: "bg-indigo-400" }, 
+  "Reduce DMG": { text: "text-teal-400", border: "border-teal-500/30", bg: "bg-teal-400" }, 
+  "Other Stat": { text: "text-purple-400", border: "border-purple-500/30", bg: "bg-purple-500" } 
+};
+
+/**
+ * ATTRIBUTE DATA CLASSIFICATION
+ */
+const statusGroups = { 
+  "Base Stats": [ { label: "STR", value: "STR" }, { label: "INT", value: "INT" }, { label: "DEX", value: "DEX" }, { label: "AGI", value: "AGI" }, { label: "VIT", value: "VIT" } ], 
+  "ATK & DEF": [ { label: "ATK", value: ".ATK" }, { label: "MATK", value: "MATK" }, { label: "DEF", value: ".DEF" }, { label: "MDEF", value: "MDEF" } ], 
+  "Stability, Accuracy, Dodge": [ { label: "Stability", value: "Stability" }, { label: "Accuracy", value: "Akurasi" }, { label: "Dodge", value: "Dodge" } ], 
+  "Critical": [ { label: "Crit Rate", value: "Critical Rate" }, { label: "Crit Damage", value: "Critical Damage" } ], 
+  "Speed": [ { label: "ASPD", value: "ASPD" }, { label: "CSPD", value: "CSPD" }, { label: "Motion", value: "Motion Speed" } ], 
+  "HP & MP": [ { label: "MaxHP", value: "MaxHP" }, { label: "MaxMP", value: "MaxMP" }, { label: "AMPR", value: "Attack MP Recovery" } ], 
+  "Weapon ATK & Element": [ { label: "W.ATK", value: "Weapon ATK" }, { label: "DTE", value: "stronger against" } ], 
+  "Element Resistance": [ { label: "Phys Res", value: "Kekebalan Fisik" }, { label: "Magic Res", value: "Kekebalan Sihir" }, { label: "Fire Res", value: "kebal Api" } ], 
+  "Barrier & Defense Effect": [ { label: "Barrier", value: "Pelindung" }, { label: "Ailment", value: "Resistansi Status" }, { label: "Aggro", value: "Aggro" } ], 
+  "Offensive Effect": [ { label: "Pierce", value: "Pierce" }, { label: "Short Dmg", value: "Jarak Dekat" }, { label: "Long Dmg", value: "Jarak Jauh" }, { label: "Unsheathe", value: "Menghunus" } ], 
+  "Reduce DMG": [ { label: "Dmg Area", value: "Sekitar Pemain" }, { label: "Dmg Floor", value: "Lantai" }, { label: "Dmg Bullet", value: "Peluru" } ], 
+  "Other Stat": [ { label: "Drop Rate", value: "Drop Rate" }, { label: "EXP", value: "EXP" }, { label: "Revive", value: "Revive Time" } ] 
+};
+
+/**
+ * RECTIVE STATE
+ */
 const searchQuery = ref('');
-const selectedType = ref('');
+const selectedTypes = ref([]);
 const selectedStats = ref([]);
 const isStatusOpen = ref(false);
+const isTypeOpen = ref(false);
 const currentPage = ref(1);
 const itemsPerPage = ref(10);
+const sortOrder = ref('asc');
+const statusRef = ref(null);
+const typeRef = ref(null);
 
-const groupColors = {
-  "ATTACK": { text: "text-cyan-400", border: "border-cyan-500/30", accent: "text-cyan-500 focus:ring-cyan-500" },
-  "DEFENSE": { text: "text-emerald-400", border: "border-emerald-500/30", accent: "text-emerald-500 focus:ring-emerald-500" },
-  "BASE STATS": { text: "text-orange-400", border: "border-orange-500/30", accent: "text-orange-500 focus:ring-orange-500" },
-  "OTHER": { text: "text-purple-400", border: "border-purple-500/30", accent: "text-purple-500 focus:ring-purple-500" }
+/**
+ * LOGIC METHODS
+ */
+const toggleType = (type) => {
+  const index = selectedTypes.value.indexOf(type);
+  if (index === -1) {
+    selectedTypes.value.push(type); // Masukkan jika belum ada
+  } else {
+    selectedTypes.value.splice(index, 1); // Hapus jika sudah ada
+  }
 };
 
-const statusGroups = {
-  "ATTACK": [
-    { label: "ATK / ATK%", value: ".ATK" },
-    { label: "MATK / MATK%", value: "MATK" },
-    { label: "Weapon ATK", value: "Weapon ATK" },
-    { label: "DTE (Elements)", value: "stronger against" },
-    { label: "Critical Rate / CR%", value: "Critical Rate" },
-    { label: "Critical Damage / CD%", value: "Critical Damage" },
-    { label: "Short Range Dmg%", value: "Daya Jarak Dekat" },
-    { label: "Long Range Dmg%", value: "Daya Jarak Jauh" },
-    { label: "Physical Pierce%", value: "Physical Pierce" },
-    { label: "Magic Pierce%", value: "Peneterasi Sihir" },
-    { label: "Additional Melee", value: "Tambahan Fisik" },
-    { label: "Additional Magic", value: "Tambahan Sihir" },
-    { label: "Dodge", value: "Dodge" },
-    { label: "Evasion Recharge", value: "Evasion Recharge" },
-    { label: "Unsheathe Attack%", value: "Serangan Menghunus" },
-    { label: "Stability", value: "Stability" },
-    { label: "Antisipasi", value: "Antisipasi" },
-    { label: "Guard Break", value: "Guard Break" }
-  ],
-  "DEFENSE": [
-    { label: "DEF", value: ".DEF" },
-    { label: "MDEF", value: "MDEF" },
-    { label: "Aggro%", value: "Aggro" },
-    { label: "Phys Resistance%", value: "Kekebalan Fisik" },
-    { label: "Magic Resistance%", value: "Kekebalan Sihir" },
-    { label: "Light Resistance%", value: "kebal Cahaya" },
-    { label: "Dark Resistance%", value: "kebal Gelap" },
-    { label: "Earth Resistance%", value: "kebal Bumi" },
-    { label: "Fire Resistance%", value: "kebal Api" },
-    { label: "Water Resistance%", value: "kebal Air" },
-    { label: "Wind Resistance%", value: "kebal Angin" },
-    { label: "Ailment Resistance%", value: "Resistansi Status Buruk" },
-    { label: "Fractional Barrier%", value: "Pelindung Fraksional" },
-    { label: "Reduksi DMG (Sekitar Pemain)", value: "Reduksi DMG (Sekitar Pemain)" },
-    { label: "Reduksi DMG (Sekitar Musuh)", value: "Reduksi DMG (Sekitar Musuh)" },
-    { label: "Reduksi DMG (Lantai)", value: "Reduksi DMG (Lantai)" },
-    { label: "Reduksi DMG (Linear)", value: "Reduksi DMG (Linear)" },
-    { label: "Reduksi DMG (Bowling)", value: "Reduksi DMG (Bowling)" },
-    { label: "Reduksi DMG (Terjang)", value: "Reduksi DMG (Terjang)" },
-    { label: "Reduksi DMG (Peluru)", value: "Reduksi DMG (Peluru)" },
-    { label: "Akurasi", value: "Akurasi" },
-    { label: "Guard Break", value: "Guard Break" },
-    { label: "Guard Break", value: "Guard Break" },
-    { label: "MaxHP / MaxHP%", value: "MaxHP" },
-    { label: "MaxMP / MaxMP%", value: "MaxMP" }
-  ],
-  "BASE STATS": [
-    { label: "STR / STR%", value: "STR" },
-    { label: "INT / INT%", value: "INT" },
-    { label: "DEX / DEX%", value: "DEX" },
-    { label: "AGI / AGI%", value: "AGI" },
-    { label: "VIT / VIT%", value: "VIT" }
-  ],
-  "OTHER": [
-    { label: "ASPD", value: "ASPD" },
-    { label: "CSPD", value: "CSPD" },
-    { label: "Motion Speed%", value: "Motion Speed" },
-    { label: "AMPR", value: "Attack MP Recovery" },
-    { label: "Natural MP Regen", value: "Natural MP Regen" },
-    { label: "Natural HP Regen", value: "Natural HP Regen" },
-    { label: "Drop Rate%", value: "Drop Rate" },
-    { label: "EXP%", value: "EXP" },
-    { label: "Revive Time%", value: "Revive Time" }
-  ]
+// Fungsi Toggle Stat
+const toggleStat = (stat) => {
+  const index = selectedStats.value.indexOf(stat);
+  if (index === -1) {
+    selectedStats.value.push(stat);
+  } else {
+    selectedStats.value.splice(index, 1);
+  }
 };
 
-const hasFilter = computed(() => searchQuery.value.trim() !== '' || selectedType.value !== '' || selectedStats.value.length > 0);
-
-watch([searchQuery, selectedType, selectedStats, itemsPerPage], () => { currentPage.value = 1; });
-
-const setSearch = (name) => {
-  searchQuery.value = name;
+const resetFilters = () => {
+  searchQuery.value = '';
+  selectedTypes.value = [];
   selectedStats.value = [];
-  isStatusOpen.value = false;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  currentPage.value = 1;
 };
 
-// BAGIAN UTAMA: Sekarang mengembalikan semua data jika filter kosong
-const filteredAndSortedResults = computed(() => {
-  const query = searchQuery.value.toLowerCase().trim();
-  const typeF = selectedType.value;
-  const statsF = selectedStats.value;
+const getIconPath = (type) => {
+  const map = { 
+    'NORMAL': 'crysta_normal.jpg', 
+    'WEAPON': 'crysta_senjata.jpg', 
+    'ARMOR': 'crysta_zirah.jpg', 
+    'ADDITIONAL': 'crysta_pelengkap.jpg', 
+    'SPECIAL': 'crysta_tambahan.jpg', 
+    'UPGRADE': 'crysta_up.jpg' 
+  };
+  const file = map[type?.toUpperCase()] || 'crysta_normal.jpg';
+  return new URL(`../assets/icons/${file}`, import.meta.url).href;
+};
 
-  // Jika tidak ada filter, kembalikan semua data urut abjad
-  if (!hasFilter.value) {
-    return [...crystalData].sort((a, b) => a.name.localeCompare(b.name));
+const getBadgeColor = (type) => {
+  const map = { 
+    'NORMAL': 'bg-blue-500/10 text-blue-500 border-blue-500/40', 
+    'UPGRADE': 'bg-purple-500/10 text-purple-500 border-purple-500/40', 
+    'ADDITIONAL': 'bg-yellow-500/10 text-yellow-500 border-yellow-500/40', 
+    'WEAPON': 'bg-red-500/10 text-red-500 border-red-500/40', 
+    'ARMOR': 'bg-green-500/10 text-green-500 border-green-500/40', 
+    'SPECIAL': 'bg-pink-500/10 text-pink-500 border-pink-500/40' 
+  };
+  return map[type?.toUpperCase()] || 'bg-slate-500/10 text-slate-500 border-slate-500/40';
+};
+
+const getBaseFor = (xtall) => {
+  if (!xtall.link) return null;
+  return crystalData.find(c => String(c.code) === String(xtall.link));
+};
+
+const getEvoFor = (xtall) => {
+  return crystalData.filter(c => String(c.link) === String(xtall.code));
+};
+
+const parseStats = (view) => {
+  if (!view) return [];
+  return Array.isArray(view) ? view : view.split(/,|\n/).map(s => s.trim()).filter(s => s);
+};
+
+const setSearch = (name) => { 
+  searchQuery.value = name; 
+  window.scrollTo({ top: 0, behavior: 'smooth' }); 
+};
+
+/**
+ * COMPUTED ENGINE
+ */
+const filteredResults = computed(() => {
+  let res = crystalData.filter(c => c.name?.trim());
+  
+  if (searchQuery.value) {
+    const q = searchQuery.value.toLowerCase();
+    res = res.filter(c => c.name.toLowerCase().includes(q));
   }
-
-  // Jika ada filter, lakukan penyaringan
-  return crystalData.filter(c => {
-    const nameMatch = !query || c.name.toLowerCase().includes(query);
-    const typeMatch = !typeF || c.type === typeF;
-    let statMatch = true;
-    if (statsF.length > 0) {
-      if (!c.view) return false;
-      const vt = c.view.toUpperCase();
-      statMatch = statsF.every(tag => {
-        if (tag === 'REG_ATK') return /\bATK\b/.test(vt) && !vt.includes('MATK') && !vt.includes('WEAPON ATK');
-        return vt.includes(tag.toUpperCase());
-      });
-    }
-    return nameMatch && typeMatch && statMatch;
-  }).sort((a, b) => a.name.localeCompare(b.name));
-});
-
-const totalPages = computed(() => Math.ceil(filteredAndSortedResults.value.length / itemsPerPage.value));
-const paginatedResults = computed(() => filteredAndSortedResults.value.slice((currentPage.value - 1) * itemsPerPage.value, currentPage.value * itemsPerPage.value));
-
-const displayedPages = computed(() => {
-  const t = totalPages.value; const c = currentPage.value;
-  if (t <= 7) return Array.from({ length: t }, (_, i) => i + 1);
-  if (c <= 4) return [1, 2, 3, 4, 5, '...', t];
-  if (c >= t - 3) return [1, '...', t - 4, t - 3, t - 2, t - 1, t];
-  return [1, '...', c - 1, c, c + 1, '...', t];
-});
-
-const downgradeChain = computed(() => {
-  if (searchQuery.value === '' || !filteredAndSortedResults.value.length) return [];
-  const chain = []; let current = filteredAndSortedResults.value[0];
-  while (current?.link) {
-    const parent = crystalData.find(p => p.code === current.link);
-    if (parent) { chain.unshift(parent); current = parent; } else break;
+  
+  if (selectedTypes.value.length > 0) {
+    res = res.filter(c => selectedTypes.value.includes(c.type));
   }
-  return chain;
+  
+  if (selectedStats.value.length > 0) {
+    res = res.filter(c => {
+      const vText = (c.view || "").toUpperCase();
+      return selectedStats.value.every(s => vText.includes(s.toUpperCase()));
+    });
+  }
+  
+  return res.sort((a, b) => {
+    return sortOrder.value === 'asc' 
+      ? a.name.localeCompare(b.name) 
+      : b.name.localeCompare(a.name);
+  });
 });
 
-const upgradeChain = computed(() => (searchQuery.value !== '' && filteredAndSortedResults.value.length) ? crystalData.filter(c => c.link === filteredAndSortedResults.value[0].code) : []);
+const paginatedResults = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage.value;
+  return filteredResults.value.slice(start, start + itemsPerPage.value);
+});
+
+const totalPages = computed(() => Math.ceil(filteredResults.value.length / itemsPerPage.value) || 1);
+
+const visiblePages = computed(() => {
+  let start = Math.max(1, currentPage.value - 2);
+  let end = Math.min(totalPages.value, start + 4);
+  if (end - start < 4) start = Math.max(1, end - 4);
+  const pages = [];
+  for (let i = start; i <= end; i++) pages.push(i);
+  return pages;
+});
+
+/**
+ * LIFECYCLE & UTILITIES
+ */
+const closeOnOutside = (e) => {
+  if (statusRef.value && !statusRef.value.contains(e.target)) isStatusOpen.value = false;
+  if (typeRef.value && !typeRef.value.contains(e.target)) isTypeOpen.value = false;
+};
+
+onMounted(() => {
+  window.addEventListener('click', closeOnOutside);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('click', closeOnOutside);
+});
+
+watch([searchQuery, selectedTypes, selectedStats, itemsPerPage, sortOrder], () => {
+  currentPage.value = 1;
+});
 </script>
 
 <style scoped>
-@keyframes slow-float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(20px, -20px); } }
-.animate-slow-float { animation: slow-float 15s ease-in-out infinite; }
-.scale-in-center { animation: scale-in-center 0.2s ease-out both; }
-@keyframes scale-in-center { 0% { opacity: 0; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
-select { appearance: none; }
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-thumb { background: #475569; border-radius: 10px; }
+/* CUSTOM SCROLLBAR REFINEMENT */
+.custom-scroll::-webkit-scrollbar { width: 6px; }
+.custom-scroll::-webkit-scrollbar-track { background: transparent; }
+.custom-scroll::-webkit-scrollbar-thumb { 
+  background: rgba(59, 130, 246, 0.2); 
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(59, 130, 246, 0.5); }
+
+.scroll-hide::-webkit-scrollbar { display: none; }
+
+/* ANIMATION KEYFRAMES */
+.animate-entry { 
+  animation: slide-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+  opacity: 0; 
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(10px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+.animate-shimmer {
+  animation: shimmer-effect 4s infinite linear;
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer-effect {
+  0% { transform: translateX(-150%); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateX(150%); opacity: 0; }
+}
+
+/* TRANSITIONS */
+.dropdown-slide-enter-active { animation: ds-in 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.dropdown-slide-leave-active { animation: ds-out 0.3s cubic-bezier(0.7, 0, 0.84, 0); }
+
+@keyframes ds-in {
+  from { opacity: 0; transform: translateY(-12px) scale(0.95); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes ds-out {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(-8px) scale(0.98); filter: blur(4px); }
+}
+
+/* INTERACTIVE HUD */
+input:focus::placeholder {
+  transform: translateX(10px);
+  opacity: 0;
+  transition: all 0.4s;
+}
 </style>

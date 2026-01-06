@@ -41,12 +41,13 @@ const updateIndicator = async () => {
       width: `${activeLink.offsetWidth}px`,
       opacity: 1,
       boxShadow: route.path === '/bs-calc' 
-        ? '0 4px 15px -3px rgba(245, 158, 11, 0.6)' 
-        : '0 8px 20px -5px rgba(139, 92, 246, 0.6)',
+        ? '0 6px 20px -3px rgba(245, 158, 11, 0.7)' 
+        : '0 10px 25px -5px rgba(139, 92, 246, 0.7)',
       background: route.path === '/bs-calc' 
         ? 'linear-gradient(to right, #f59e0b, #ef4444)' 
         : 'linear-gradient(to right, #ef4444, #a855f7)',
     };
+    // Scroll dinonaktifkan jika muat semua, tapi tetap dijaga untuk antisipasi layar sangat kecil
     activeLink.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
   }
 };
@@ -66,12 +67,12 @@ watch(() => route.path, updateIndicator);
       <div v-for="star in stars" :key="'star-'+star.id" class="absolute animate-twinkle star-flare shadow-glow" :class="isDark ? 'bg-white' : 'bg-indigo-600'" :style="{ width: star.size, height: star.size, top: star.top, left: star.left, animationDelay: star.delay }"></div>
     </div>
 
-    <nav class="fixed top-3 md:top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-6xl">
-      <div :class="['backdrop-blur-3xl border grid grid-cols-[auto_1fr_auto] items-center rounded-full transition-all duration-700 shadow-2xl p-1.5 md:p-2',
-           isDark ? 'bg-black/40 border-white/10 shadow-indigo-500/10' : 'bg-white/70 border-white/50 shadow-blue-500/5']">
+    <nav class="fixed top-4 md:top-8 left-1/2 -translate-x-1/2 z-[100] w-[98%] max-w-5xl">
+      <div :class="['backdrop-blur-3xl border flex items-center justify-between rounded-full transition-all duration-700 shadow-2xl p-2 md:p-3',
+           isDark ? 'bg-black/50 border-white/10 shadow-indigo-500/10' : 'bg-white/80 border-white/50 shadow-blue-500/5']">
         
-        <div @click="goHome" class="flex items-center cursor-pointer group select-none z-10 pl-2 pr-1 active:scale-95 transition-transform min-w-fit">
-          <div :class="['w-8 h-8 md:w-10 md:h-10 overflow-hidden rounded-full border-2 transition-all duration-300 shadow-lg shrink-0', isDark ? 'border-white/20' : 'border-slate-300']">
+        <div @click="goHome" class="flex items-center cursor-pointer group select-none z-10 pl-2 pr-1 active:scale-95 transition-transform flex-shrink-0">
+          <div :class="['w-8 h-8 md:w-11 md:h-11 overflow-hidden rounded-full border-2 transition-all duration-300 shadow-lg shrink-0', isDark ? 'border-white/20' : 'border-slate-300']">
             <img src="/images/logo.png" alt="Logo" class="w-full h-full object-cover scale-110 group-hover:rotate-[360deg] transition-transform duration-[1.5s]" />
           </div>
           <div class="hidden sm:flex flex-col ml-2 leading-tight overflow-hidden">
@@ -79,14 +80,14 @@ watch(() => route.path, updateIndicator);
               <span :class="isDark ? 'text-white' : 'text-black'">TIMI</span> 
               <span class="ml-0.5 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500">DB</span>
             </span>
-            <span class="text-[6px] md:text-[7px] font-bold uppercase opacity-50 tracking-widest truncate">Toram Online Tools</span>
+            <span class="text-[6px] md:text-[7px] font-bold uppercase opacity-50 tracking-widest truncate">Toram Tools</span>
           </div>
         </div>
 
-        <div class="flex justify-center px-1 md:px-4 overflow-hidden">
-          <div class="relative flex bg-black/10 dark:bg-white/5 p-1 rounded-full border border-black/5 dark:border-white/5 shadow-inner w-full max-w-fit overflow-hidden">
-            <div ref="navContainer" class="flex items-center overflow-x-auto no-scrollbar scroll-smooth relative gap-0">
-              <div class="absolute h-[calc(100%-4px)] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] rounded-full z-0" :style="indicatorStyle"></div>
+        <div class="flex-1 flex justify-center px-1 overflow-hidden">
+          <div class="relative flex bg-black/10 dark:bg-white/5 p-1 rounded-full border border-black/5 dark:border-white/5 shadow-inner overflow-hidden w-fit">
+            <div ref="navContainer" class="flex items-center relative gap-0">
+              <div class="absolute h-full transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] rounded-full z-0" :style="indicatorStyle"></div>
               
               <router-link :ref="el => setItemRef(el, '/')" to="/" class="nav-link" active-class="active-link">LIST BAG</router-link>
               <router-link :ref="el => setItemRef(el, '/mq')" to="/mq" class="nav-link" active-class="active-link">LIST MQ</router-link>
@@ -97,9 +98,9 @@ watch(() => route.path, updateIndicator);
           </div>
         </div>
 
-        <div class="flex justify-end z-10 pr-1 min-w-fit">
+        <div class="flex justify-end z-10 pr-2 flex-shrink-0">
           <button @click="$emit('toggleDark')" 
-                  class="w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center border transition-all duration-500 active:scale-75 shadow-lg shrink-0"
+                  class="w-8 h-8 md:w-11 md:h-11 rounded-full flex items-center justify-center border transition-all duration-500 active:scale-75 shadow-lg shrink-0"
                   :class="isDark ? 'bg-slate-900 border-white/10 text-orange-400' : 'bg-white border-slate-200 text-indigo-600'">
             <span class="text-xs md:text-lg">{{ isDark ? '🌙' : '☀️' }}</span>
           </button>
@@ -107,26 +108,33 @@ watch(() => route.path, updateIndicator);
       </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto pt-24 md:pt-44 px-4 md:px-8 pb-20 relative z-10 animate-page-in">
+    <main class="max-w-7xl mx-auto pt-32 md:pt-48 px-4 md:px-8 pb-20 relative z-10 animate-page-in">
       <slot />
     </main>
   </div>
 </template>
 
 <style scoped>
-@reference "tailwindcss";
+@reference "../assets/main.css";
 
 .nav-link { 
-  @apply px-3 md:px-5 py-1.5 md:py-2 rounded-full text-[8px] md:text-[10px] font-black uppercase tracking-widest transition-all duration-300
+  /* py tetap tebal (3/4), px diperkecil (1.5/4) agar muat satu baris */
+  @apply px-1.5 md:px-4 py-3 md:py-4 rounded-full text-[7.5px] md:text-[11px] font-black uppercase tracking-tighter md:tracking-widest transition-all duration-300
          text-slate-500 dark:text-slate-400 relative z-10 whitespace-nowrap flex-shrink-0; 
 }
+
+/* Khusus layar sangat kecil (iPhone 5/SE), font dikecilkan lagi sedikit */
+@media (max-width: 380px) {
+  .nav-link {
+    @apply px-1 text-[7px];
+  }
+}
+
 .active-link { @apply !text-white; }
 
-/* Menghilangkan scrollbar tapi tetap bisa di-swipe di HP */
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Animasi & Mesh tetap sama */
 .shadow-glow { filter: drop-shadow(0 0 8px currentColor); }
 .star-flare { clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%); }
 
@@ -139,18 +147,10 @@ watch(() => route.path, updateIndicator);
 
 .bg-mesh-dark {
   background-color: #020617;
-  background-image: 
-    radial-gradient(at 0% 0%, #1e1b4b 0, transparent 50%), 
-    radial-gradient(at 100% 0%, #450a0a 0, transparent 50%),
-    radial-gradient(at 100% 100%, #3b0764 0, transparent 50%),
-    radial-gradient(at 0% 100%, #0c4a6e 0, transparent 50%);
+  background-image: radial-gradient(at 0% 0%, #1e1b4b 0, transparent 50%), radial-gradient(at 100% 0%, #450a0a 0, transparent 50%), radial-gradient(at 100% 100%, #3b0764 0, transparent 50%);
 }
 .bg-mesh-light {
   background-color: #ffffff;
-  background-image: 
-    radial-gradient(at 0% 0%, #e0f2fe 0, transparent 50%), 
-    radial-gradient(at 100% 0%, #fee2e2 0, transparent 50%),
-    radial-gradient(at 100% 100%, #f3e8ff 0, transparent 50%),
-    radial-gradient(at 0% 100%, #e0e7ff 0, transparent 50%);
+  background-image: radial-gradient(at 0% 0%, #e0f2fe 0, transparent 50%), radial-gradient(at 100% 0%, #fee2e2 0, transparent 50%), radial-gradient(at 100% 100%, #f3e8ff 0, transparent 50%);
 }
 </style>
