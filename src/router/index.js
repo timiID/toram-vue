@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-// Import semua view Anda
 import ListBag from '../views/ListBag.vue' 
 import MainQuest from '../views/MainQuest.vue'
 import XtallView from '../views/XtallView.vue'
 import CalculatorMQ from '../views/CalculatorMQ.vue'
 import BSCalculator from '../views/BSCalculator.vue'
+import XtallDetail from '../views/XtallDetail.vue'
 
 const routes = [
   {
@@ -24,7 +24,7 @@ const routes = [
     component: CalculatorMQ 
   },
   {
-    path: '/bs-calc', // <--- Pastikan penulisan ini sama dengan di Navigation.vue
+    path: '/bs-calc',
     name: 'bs-calc',
     component: BSCalculator
   },
@@ -32,11 +32,16 @@ const routes = [
     path: '/xtall',
     name: 'xtall',
     component: XtallView
+  },
+  {
+    path: '/xtall/:id',
+    name: 'XtallDetail',
+    component: XtallDetail,
+    props: true
   }
 ]
 
 const router = createRouter({
-  // Gunakan Hash History untuk kompatibilitas hosting
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes
 })
