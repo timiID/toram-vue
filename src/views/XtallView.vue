@@ -319,11 +319,11 @@
         <div v-if="filteredResults.length === 0" class="py-40 text-center animate-pulse">
           <div class="inline-flex relative mb-8">
             <div class="absolute inset-0 bg-blue-500 blur-3xl opacity-20 animate-ping"></div>
-            <div class="text-8xl relative">📡</div>
+            <div class="text-8xl relative">🔎</div>
           </div>
-          <h2 class="text-3xl font-[1000] uppercase italic tracking-tighter">Signal Lost</h2>
-          <p class="text-slate-500 font-bold uppercase tracking-[0.3em] text-xs mt-4">Frequency mismatch - redefine search parameters</p>
-          <button @click="resetFilters" class="mt-8 px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all">Emergency Reset</button>
+          <h2 class="text-3xl font-[1000] uppercase italic tracking-tighter">Xtall not found</h2>
+          <p class="text-slate-500 font-bold uppercase tracking-[0.3em] text-xs mt-4">Search xtall name with correct Indonesian name.</p>
+          <button @click="resetFilters" class="mt-8 px-8 py-3 bg-white/5 hover:bg-white/10 border border-blue/10 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all">Reset</button>
         </div>
 
         <div class="flex flex-col items-center gap-10 py-20">

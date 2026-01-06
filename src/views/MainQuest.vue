@@ -104,7 +104,8 @@ const stats = computed(() => [
                     <div class="mt-4 flex items-center justify-center md:justify-start gap-3">
                         <div class="h-1.5 w-16 bg-indigo-600 rounded-full"></div>
                         <img src="/images/logo.png" class="h-8 md:h-12 w-auto object-contain" />
-                        <span class="text-xl md:text-4xl font-black italic text-blue-500 uppercase tracking-tighter">TIMI DB</span>
+                        <span :class="isDark ? 'text-white' : 'text-slate-900'">TIMI</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">DB</span>
                     </div>
                 </div>
             </div>
