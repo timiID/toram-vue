@@ -101,12 +101,26 @@ const stats = computed(() => [
                     <h2 :class="['text-4xl md:text-8xl font-black italic uppercase leading-none tracking-tighter', props.isDark ? 'text-white' : 'text-slate-900']">
                         MAIN QUEST<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">LIST DB</span>
                     </h2>
-                    <div class="mt-4 flex items-center justify-center md:justify-start gap-3">
-                        <div class="h-1.5 w-16 bg-indigo-600 rounded-full"></div>
-                        <img src="/images/logo.png" class="h-8 md:h-12 w-auto object-contain" />
-                        <span :class="isDark ? 'text-white' : 'text-slate-900'">TIMI</span>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">DB</span>
-                    </div>
+
+                    <div class="mt-8 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4">
+            <div class="flex items-center gap-3">
+              <div class="h-1.5 w-16 bg-blue-600 rounded-full"></div>
+              <img src="/images/logo.png" class="h-8 md:h-12 w-auto object-contain" />
+            </div>
+
+                    <div class="flex items-center gap-2 select-none whitespace-nowrap">
+              <span :class="[
+                'font-[1000] tracking-tighter italic uppercase leading-none transition-all duration-700 text-4xl md:text-4xl', 
+                isDark ? 'text-white' : 'text-slate-900'
+              ]">
+                TIMI
+              </span>
+              <span class="text-3xl md:text-4xl font-[1000] tracking-tighter italic uppercase leading-none text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">
+                DB
+              </span>
+            </div>
+            </div>
+            
                 </div>
             </div>
 

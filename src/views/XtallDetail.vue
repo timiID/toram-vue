@@ -25,7 +25,7 @@
             
             <img :src="getIconPath(xtall.type)" class="relative w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] transition-transform duration-700 group-hover:scale-110" />
             
-            <div :class="['absolute bottom-8 px-6 py-2 rounded-2xl border-2 font-black text-[10px] tracking-widest uppercase shadow-xl', getBadgeColor(xtall.type)]">
+            <div :class="['absolute bottom-8 px-6 py-2 rounded-5xl border-2 font-black text-[10px] tracking-widest uppercase shadow-xl', getBadgeColor(xtall.type)]">
               {{ xtall.type }}
             </div>
           </div>
@@ -38,18 +38,18 @@
             </h1>
             <div class="flex items-center gap-4">
               <div class="h-[2px] w-12 bg-cyan-500"></div>
-              <p class="text-[10px] font-black text-cyan-500 uppercase tracking-[0.5em]">Identity Code: #{{ xtall.code }}</p>
+              <p class="text-[10px] font-black text-cyan-500 uppercase tracking-[0.5em]">ID Code: #{{ xtall.code }}</p>
             </div>
           </div>
 
           <div :class="['p-8 md:p-12 rounded-[3rem] border-2 backdrop-blur-3xl shadow-2xl relative overflow-hidden',
-            isDark ? 'bg-slate-950/50 border-white/5 shadow-black/50' : 'bg-white/80 border-slate-200 shadow-slate-200/50']">
+            isDark ? 'bg-slate-950/50 border-white/70 shadow-black/50' : 'bg-white/80 border-slate-200 shadow-slate-200/50']">
             
             <div class="absolute top-0 right-0 p-8 text-8xl opacity-[0.03] grayscale pointer-events-none">🧬</div>
             
             <h3 class="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-8 flex items-center gap-3">
               <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
-              Attribute Details
+              Status/Effect
             </h3>
 
             <div class="space-y-6">
@@ -74,9 +74,9 @@
                 {{ previousEvo.name }}
               </p>
             </div>
-            <div v-else :class="['p-6 rounded-[2.5rem] border-2 border-dashed opacity-40', isDark ? 'border-white/10' : 'border-slate-300']">
+            <div v-else :class="['p-6 rounded-[2.5rem] border-2 border-dashed opacity-50', isDark ? 'border-white/100' : 'border-slate-300']">
               <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Previous Evolution</p>
-              <p class="text-xs font-bold opacity-50 italic">None (Base Form)</p>
+              <p class="text-xs font-bold opacity-70 italic">None (Base Xtall)</p>
             </div>
 
             <div v-if="nextEvo" @click="goToXtall(nextEvo.code)"
@@ -88,9 +88,9 @@
                 <span class="text-purple-500 group-hover:translate-x-1 transition-transform">→</span>
               </p>
             </div>
-            <div v-else :class="['p-6 rounded-[2.5rem] border-2 border-dashed opacity-40', isDark ? 'border-white/10' : 'border-slate-300']">
+            <div v-else :class="['p-6 rounded-[2.5rem] border-2 border-dashed opacity-50', isDark ? 'border-white/100' : 'border-slate-300']">
               <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Next Upgrade</p>
-              <p class="text-xs font-bold opacity-50 italic">Max Upgrade</p>
+              <p class="text-xs font-bold opacity-70 italic">Max Upgrade</p>
             </div>
           </div>
 

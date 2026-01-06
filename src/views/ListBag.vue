@@ -113,24 +113,40 @@ const getBadgeClass = (kelas) => {
 </script>
 
 <template>
-    <div class="bg-transparent py-4 md:py-10 px-2 md:px-4 font-sans relative z-10">
-        <div class="max-w-7xl mx-auto space-y-6 md:space-y-10">
-            
-            <div :class="['relative p-8 md:p-16 rounded-[2.5rem] md:rounded-[4rem] border-[4px] overflow-hidden backdrop-blur-2xl transition-all duration-700 shadow-2xl',
-                isDark ? 'border-blue-500 bg-black/40' : 'border-blue-600 bg-white/60 shadow-blue-200']">
-                <div class="absolute top-0 right-0 h-full w-1/3 hidden lg:block pointer-events-none">
-                    <img src="/images/Bag-Toram.png" class="w-full h-full object-contain object-right opacity-30 scale-110" />
-                </div>
-                <div class="relative z-10 text-center md:text-left">
-                    <h2 :class="['text-4xl md:text-8xl font-black italic uppercase leading-none tracking-tighter', isDark ? 'text-white' : 'text-slate-900']">
-                        LIST BAG<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600">EXPANSION</span>
-                    </h2>
-                    <div class="mt-4 flex items-center justify-center md:justify-start gap-3">
-                        <div class="h-1.5 w-16 bg-blue-600 rounded-full"></div>
-                        <img src="/images/logo.png" class="h-8 md:h-12 w-auto object-contain" />
-                        <span :class="isDark ? 'text-white' : 'text-slate-900'">TIMI</span>
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">DB</span>
-                    </div>
+  <div :class="['bg-transparent py-4 md:py-10 px-2 md:px-4 font-sans relative z-10', isDark ? 'text-white' : 'text-slate-900']">
+    <div class="max-w-7xl mx-auto space-y-6 md:space-y-10">
+      
+      <div :class="['relative p-8 md:p-16 rounded-[2.5rem] md:rounded-[4rem] border-[4px] overflow-hidden backdrop-blur-2xl transition-all duration-700 shadow-2xl',
+          isDark ? 'border-blue-500 bg-black/40' : 'border-blue-600 bg-white/60 shadow-blue-200']">
+        
+        <div class="absolute top-0 right-0 h-full w-1/3 hidden lg:block pointer-events-none">
+          <img src="/images/Bag-Toram.png" class="w-full h-full object-contain object-right opacity-30 scale-110" />
+        </div>
+
+        <div class="relative z-10 text-center md:text-left">
+          <h2 :class="['text-4xl md:text-8xl font-black italic uppercase leading-none tracking-tighter', isDark ? 'text-white' : 'text-slate-900']">
+            LIST BAG<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600">EXPANSION</span>
+          </h2>
+
+          <div class="mt-8 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4">
+            <div class="flex items-center gap-3">
+              <div class="h-1.5 w-16 bg-blue-600 rounded-full"></div>
+              <img src="/images/logo.png" class="h-8 md:h-12 w-auto object-contain" />
+            </div>
+
+            <div class="flex items-center gap-2 select-none whitespace-nowrap">
+              <span :class="[
+                'font-[1000] tracking-tighter italic uppercase leading-none transition-all duration-700 text-4xl md:text-4xl', 
+                isDark ? 'text-white' : 'text-slate-900'
+              ]">
+                TIMI
+              </span>
+              <span class="text-3xl md:text-4xl font-[1000] tracking-tighter italic uppercase leading-none text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">
+                DB
+              </span>
+            </div>
+            </div> 
                 </div>
             </div>
 
