@@ -11,16 +11,17 @@ const routes = [
   {
     path: '/',
     name: 'bag',
-    component: ListBag 
+    component: ListBag,
+    
   },
   {
     path: '/mq',
-    name: 'mainquest',
+    name: 'main-quest',
     component: MainQuest 
   },
   {
     path: '/mq-calc', 
-    name: 'mqcalc', 
+    name: 'mq-calc', 
     component: CalculatorMQ 
   },
   {
@@ -35,7 +36,7 @@ const routes = [
   },
   {
     path: '/xtall/:id',
-    name: 'XtallDetail',
+    name: 'Xtall-Detail',
     component: XtallDetail,
     props: true
   }
