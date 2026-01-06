@@ -80,7 +80,7 @@ watch(() => route.path, updateIndicator);
               <span :class="isDark ? 'text-white' : 'text-black'">TIMI</span> 
               <span class="ml-0.5 text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-500">DB</span>
             </span>
-            <span class="text-[6px] md:text-[7px] font-bold uppercase opacity-50 tracking-widest truncate">Toram Tools</span>
+            <span class="text-[6px] md:text-[7px] font-bold uppercase opacity-50 tracking-widest truncate">Toram Online Tools</span>
           </div>
         </div>
 
