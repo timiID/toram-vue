@@ -1,4 +1,2 @@
 User-agent: *
 Allow: /
-
-Sitemap: https://timiID.github.io/toram-vue/sitemap.xml
