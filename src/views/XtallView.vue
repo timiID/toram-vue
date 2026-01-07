@@ -399,38 +399,33 @@ const props = defineProps({
 /**
  * VISUAL COLOR ENGINE
  */
-const groupColors = { 
-  "Base Stats": { text: "text-orange-400", border: "border-orange-500/30", bg: "bg-orange-500" }, 
-  "ATK & DEF": { text: "text-cyan-400", border: "border-cyan-500/30", bg: "bg-cyan-500" }, 
-  "Stability, Accuracy, Dodge": { text: "text-blue-400", border: "border-blue-500/30", bg: "bg-blue-500" }, 
-  "Critical": { text: "text-red-400", border: "border-red-500/30", bg: "bg-red-500" }, 
-  "Speed": { text: "text-pink-400", border: "border-pink-500/30", bg: "bg-pink-500" }, 
-  "HP & MP": { text: "text-emerald-400", border: "border-emerald-500/30", bg: "bg-emerald-500" }, 
-  "Weapon ATK & Element": { text: "text-yellow-400", border: "border-yellow-500/30", bg: "bg-yellow-500" }, 
-  "Element Resistance": { text: "text-amber-500", border: "border-amber-500/30", bg: "bg-amber-500" }, 
-  "Barrier & Defense Effect": { text: "text-green-500", border: "border-green-500/30", bg: "bg-green-500" }, 
-  "Offensive Effect": { text: "text-indigo-400", border: "border-indigo-500/30", bg: "bg-indigo-400" }, 
-  "Reduce DMG": { text: "text-teal-400", border: "border-teal-500/30", bg: "bg-teal-400" }, 
-  "Other Stat": { text: "text-purple-400", border: "border-purple-500/30", bg: "bg-purple-500" } 
+const groupColors = {
+  "Base Stats": { text: "text-orange-400", border: "border-orange-500/30", accent: "text-orange-500 focus:ring-orange-500" },
+  "ATK & DEF": { text: "text-cyan-400", border: "border-cyan-500/30", accent: "text-cyan-500 focus:ring-cyan-500" },
+  "Stability, Accuracy, Dodge": { text: "text-blue-400", border: "border-blue-500/30", accent: "text-blue-500 focus:ring-blue-500" },
+  "Critical": { text: "text-red-400", border: "border-red-500/30", accent: "text-red-500 focus:ring-red-500" },
+  "Speed": { text: "text-pink-400", border: "border-pink-500/30", accent: "text-pink-500 focus:ring-pink-500" },
+  "HP & MP": { text: "text-emerald-400", border: "border-emerald-500/30", accent: "text-emerald-500 focus:ring-emerald-500" },
+  "Weapon ATK & Element": { text: "text-yellow-400", border: "border-yellow-500/30", accent: "text-yellow-500 focus:ring-yellow-500" },
+  "Element Resistance": { text: "text-amber-500", border: "border-amber-500/30", accent: "text-amber-500 focus:ring-amber-500" },
+  "Barrier & Defense Effect": { text: "text-green-500", border: "border-green-500/30", accent: "text-green-500 focus:ring-green-500" },
+  "Offensive Effect": { text: "text-indigo-400", border: "border-indigo-500/30", accent: "text-indigo-500 focus:ring-indigo-500" },
+  "Reduce DMG": { text: "text-teal-400", border: "border-teal-500/30", accent: "text-teal-500 focus:ring-teal-500" },
+  "Other Stat": { text: "text-purple-400", border: "border-purple-500/30", accent: "text-purple-500 focus:ring-purple-500" }
 };
 
-/**
- * ATTRIBUTE DATA CLASSIFICATION
- */
-const statusGroups = { 
-  "Base Stats": [ { label: "STR", value: "STR" }, { label: "INT", value: "INT" }, { label: "DEX", value: "DEX" }, { label: "AGI", value: "AGI" }, { label: "VIT", value: "VIT" } ], 
-  "ATK & DEF": [ { label: "ATK", value: ".ATK" }, { label: "MATK", value: "MATK" }, { label: "DEF", value: ".DEF" }, { label: "MDEF", value: "MDEF" } ], 
-  "Stability, Accuracy, Dodge": [ { label: "Stability", value: "Stability" }, { label: "Accuracy", value: "Akurasi" }, { label: "Dodge", value: "Dodge" } ], 
-  "Critical": [ { label: "Crit Rate", value: "Critical Rate" }, { label: "Crit Damage", value: "Critical Damage" } ], 
-  "Speed": [ { label: "ASPD", value: "ASPD" }, { label: "CSPD", value: "CSPD" }, { label: "Motion", value: "Motion Speed" } ], 
-  "HP & MP": [ { label: "MaxHP", value: "MaxHP" }, { label: "MaxMP", value: "MaxMP" }, { label: "AMPR", value: "Attack MP Recovery" } ], 
-  "Weapon ATK & Element": [ { label: "W.ATK", value: "Weapon ATK" }, { label: "DTE", value: "stronger against" } ], 
-  "Element Resistance": [ { label: "Phys Res", value: "Kekebalan Fisik" }, { label: "Magic Res", value: "Kekebalan Sihir" }, { label: "Fire Res", value: "kebal Api" } ], 
-  "Barrier & Defense Effect": [ { label: "Barrier", value: "Pelindung" }, { label: "Ailment", value: "Resistansi Status" }, { label: "Aggro", value: "Aggro" } ], 
-  "Offensive Effect": [ { label: "Pierce", value: "Pierce" }, { label: "Short Dmg", value: "Jarak Dekat" }, { label: "Long Dmg", value: "Jarak Jauh" }, { label: "Unsheathe", value: "Menghunus" } ], 
-  "Reduce DMG": [ { label: "Dmg Area", value: "Sekitar Pemain" }, { label: "Dmg Floor", value: "Lantai" }, { label: "Dmg Bullet", value: "Peluru" } ], 
-  "Other Stat": [ { label: "Drop Rate", value: "Drop Rate" }, { label: "EXP", value: "EXP" }, { label: "Revive", value: "Revive Time" } ] 
-};
+const statusGroups = { "Base Stats": [ { label: "STR / STR%", value: "STR" }, { label: "INT / INT%", value: "INT" }, { label: "DEX / DEX%", value: "DEX" }, { label: "AGI / AGI%", value: "AGI" }, { label: "VIT / VIT%", value: "VIT" } ], 
+"ATK & DEF": [ { label: "ATK / ATK%", value: ".ATK" }, { label: "MATK / MATK%", value: "MATK" }, { label: "DEF", value: ".DEF" }, { label: "MDEF", value: "MDEF" } ], 
+"Stability, Accuracy, Dodge": [ { label: "Stability", value: "Stability" }, { label: "Akurasi", value: "Akurasi" }, { label: "Dodge", value: "Dodge" } ], 
+"Critical": [ { label: "Critical Rate / CR%", value: "Critical Rate" }, { label: "Critical Damage / CD%", value: "Critical Damage" } ], 
+"Speed": [ { label: "ASPD", value: "ASPD" }, { label: "CSPD", value: "CSPD" }, { label: "Motion Speed%", value: "Motion Speed" } ], 
+"HP & MP": [ { label: "MaxHP / MaxHP%", value: "MaxHP" }, { label: "MaxMP / MaxMP%", value: "MaxMP" }, { label: "Natural MP Regen", value: "Natural MP Regen" }, { label: "Natural HP Regen", value: "Natural HP Regen" }, { label: "Attack MP Recovery", value: "Attack MP Recovery" } ],
+ "Weapon ATK & Element": [ { label: "Weapon ATK", value: "Weapon ATK" }, { label: "DTE (Elements)", value: "stronger against" } ], 
+ "Element Resistance": [ { label: "Phys Resistance%", value: "Kekebalan Fisik" }, { label: "Magic Resistance%", value: "Kekebalan Sihir" }, { label: "Light Resistance%", value: "kebal Cahaya" }, { label: "Dark Resistance%", value: "kebal Gelap" }, { label: "Earth Resistance%", value: "kebal Bumi" }, { label: "Fire Resistance%", value: "kebal Api" }, { label: "Water Resistance%", value: "kebal Air" }, { label: "Wind Resistance%", value: "kebal Angin" } ],
+  "Barrier & Defense Effect": [ { label: "Fractional Barrier%", value: "Pelindung Fraksional" }, { label: "Ailment Resistance%", value: "Resistansi Status Buruk" }, { label: "Aggro%", value: "Aggro" } ], 
+  "Offensive Effect": [ { label: "Physical Pierce%", value: "Physical Pierce" }, { label: "Magic Pierce%", value: "Peneterasi Sihir" }, { label: "Short Range Dmg%", value: "Daya Jarak Dekat" }, { label: "Long Range Dmg%", value: "Daya Jarak Jauh" }, { label: "Unsheathe Attack%", value: "Serangan Menghunus" }, { label: "Additional Melee", value: "Tambahan Fisik" }, { label: "Additional Magic", value: "Tambahan Sihir" }, { label: "Antisipasi", value: "Antisipasi" }, { label: "Guard Break", value: "Guard Break" } ], 
+  "Reduce DMG": [ { label: "Reduksi DMG (Sekitar Pemain)", value: "Reduksi DMG (Sekitar Pemain)" }, { label: "Reduksi DMG (Sekitar Musuh)", value: "Reduksi DMG (Sekitar Musuh)" }, { label: "Reduksi DMG (Lantai)", value: "Reduksi DMG (Lantai)" }, { label: "Reduksi DMG (Linear)", value: "Reduksi DMG (Linear)" }, { label: "Reduksi DMG (Bowling)", value: "Reduksi DMG (Bowling)" }, { label: "Reduksi DMG (Terjang)", value: "Reduksi DMG (Terjang)" }, { label: "Reduksi DMG (Peluru)", value: "Reduksi DMG (Peluru)" } ], 
+  "Other Stat": [ { label: "Drop Rate%", value: "Drop Rate" }, { label: "EXP%", value: "EXP" }, { label: "Revive Time%", value: "Revive Time" }, { label: "Tumble Unavailable", value: "Tumble Unavailable" }, { label: "Evasion Recharge", value: "Evasion Recharge" }, { label: "Refleks", value: "Refleks" }, { label: "Recoil", value: "Recoil" } ] };
 
 /**
  * RECTIVE STATE

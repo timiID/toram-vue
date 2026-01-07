@@ -45,7 +45,7 @@
           <div :class="['p-8 md:p-12 rounded-[3rem] border-2 backdrop-blur-3xl shadow-2xl relative overflow-hidden',
             isDark ? 'bg-slate-950/50 border-white/70 shadow-black/50' : 'bg-white/80 border-slate-200 shadow-slate-200/50']">
             
-            <div class="absolute top-0 right-0 p-8 text-8xl opacity-[0.03] grayscale pointer-events-none">🧬</div>
+            <div class="absolute top-0 right-0 p-8 text-8xl opacity-[0.03] grayscale pointer-events-none">✨</div>
             
             <h3 class="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-8 flex items-center gap-3">
               <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
