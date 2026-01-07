@@ -257,16 +257,28 @@
                        </div>
 
                        <div :class="['p-6 rounded-3xl border-2 transition-all duration-500 group-hover:scale-[1.02]', isDark ? 'bg-white/[0.02] border-white/5 group-hover:bg-white/[0.04]' : 'bg-slate-50 border-slate-100']">
-                         <div class="grid grid-cols-1 gap-4">
-                            <div v-for="(stat, sIdx) in parseStats(xtall.view)" :key="sIdx" 
-                              class="flex items-center gap-4 group/item">
-                              <div class="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 group-hover/item:scale-150 transition-transform"></div>
-                              <p :class="['text-xs md:text-sm font-bold tracking-tight transition-all duration-300', 
-                                stat.includes('-') ? 'text-red-500' : (isDark ? 'text-slate-300 group-hover/item:text-white' : 'text-slate-600 group-hover/item:text-slate-900')]">
-                                {{ stat }}
-                              </p>
-                            </div>
-                         </div>
+  <div class="grid grid-cols-1 gap-4">
+    <div v-for="(stat, sIdx) in parseStats(xtall.view)" :key="sIdx" 
+      class="flex items-center gap-4 group/item">
+      
+      <div v-if="!stat.includes('Dengan')" 
+        class="w-2 h-2 rounded-full bg-gradient-to-r from-green-500 to-cyan-400 group-hover/item:scale-150 transition-transform flex-shrink-0">
+      </div>
+      
+      <p :class="[
+        'text-xs md:text-sm font-bold tracking-tight transition-all duration-300', 
+        stat.includes('Dengan') 
+          ? 'text-green-500 italic' 
+          : (stat.includes('-') 
+              ? 'text-red-500' 
+              : (isDark ? 'text-slate-300 group-hover/item:text-white' : 'text-slate-600 group-hover/item:text-slate-900')
+            )
+      ]">
+        {{ stat }}
+      </p>
+    </div>
+  </div>
+
                        </div>
                     </div>
                  </div>

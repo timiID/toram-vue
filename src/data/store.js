@@ -2061,10 +2061,10 @@ export const crystalData = [
         },
         {
           code: 296,
-          link: null,
+          link: 215,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Ratu Rosemee",
+          view: `\nPeneterasi Sihir +5%\nCritical Rate +5%\nAttack MP Recovery +5\nDaya Jarak Jauh +5%`,
         },
         {
           code: 297,
