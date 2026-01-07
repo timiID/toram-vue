@@ -61,7 +61,7 @@
         <div class="space-y-2 col-span-1">
   <label class="text-[10px] font-black uppercase tracking-[0.2em] text-orange-500 ml-4">Type Xtall</label>
   <div class="relative" ref="typeRef">
-    <button @click.stop="isTypeOpen = !isTypeOpen" 
+    <button @click.stop="toggleTypeDropdown" 
       :class="['w-full px-5 py-4 rounded-2xl border-2 text-left font-bold text-sm flex justify-between items-center transition-all duration-300',
       isTypeOpen ? 'border-orange-500 ring-4 ring-orange-500/10 scale-[0.98]' : '',
       isDark ? (isTypeOpen ? 'bg-orange-500/10' : 'bg-slate-900/50 border-white/5') : (isTypeOpen ? 'bg-orange-50 text-orange-700' : 'bg-white border-slate-200 shadow-sm')]">
@@ -101,67 +101,71 @@
               {{ type }}
             </span>
           </div>
-
         </div>
       </div>
     </transition>
   </div>
 </div>
 
-        <div class="space-y-2 col-span-1">
-          <label class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500 ml-4">Attributes</label>
-          <div class="relative" ref="statusRef">
-            <button @click.stop="isStatusOpen = !isStatusOpen" 
-  :class="['w-full px-5 py-4 rounded-2xl border-2 text-left font-bold text-sm flex justify-between items-center transition-all duration-300',
-  isStatusOpen ? 'border-teal-500 ring-4 ring-teal-500/10 scale-[0.98]' : '',
-  isDark ? (isStatusOpen ? 'bg-teal-500/10' : 'bg-slate-900/50 border-white/5') : (isStatusOpen ? 'bg-teal-50 text-teal-700' : 'bg-white border-slate-200 shadow-sm')]">
+<div class="space-y-2 col-span-1">
+  <label class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500 ml-4">Attributes</label>
+  <div class="relative" ref="statusRef">
+    <button @click.stop="toggleStatusDropdown"
+      :class="['w-full px-5 py-4 rounded-2xl border-2 text-left font-bold text-sm flex justify-between items-center transition-all duration-300',
+      isStatusOpen ? 'border-teal-500 ring-4 ring-teal-500/10 scale-[0.98]' : '',
+      isDark ? (isStatusOpen ? 'bg-teal-500/10' : 'bg-slate-900/50 border-white/5') : (isStatusOpen ? 'bg-teal-50 text-teal-700' : 'bg-white border-slate-200 shadow-sm')]">
   
-  <span class="truncate">
-    {{ selectedStats.length > 0 ? selectedStats.length + ' Filters Selected' : 'Attribute Status' }}
-  </span>
+      <span class="truncate">
+        {{ selectedStats.length > 0 ? selectedStats.length + ' Filters Selected' : 'Attribute Status' }}
+      </span>
   
-  <svg :class="['w-4 h-4 transition-transform duration-500', isStatusOpen ? 'rotate-180 text-teal-500' : 'text-slate-500']" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
-</button>
-            <transition name="dropdown-slide">
-              <div v-if="isStatusOpen" :class="['absolute right-0 md:left-[-100%] lg:left-[-200%] top-full mt-3 w-[90vw] md:w-[700px] lg:w-[900px] z-[9999] p-8 rounded-[3rem] border-2 shadow-[0_30px_80px_rgba(0,0,0,0.6)] backdrop-blur-3xl', isDark ? 'bg-slate-950/98 border-white/10' : 'bg-white/98 border-slate-200']">
-                <div class="flex justify-between items-center mb-8 pb-4 border-b border-white/5">
-                  <div>
-                    <h4 class="text-xl font-black uppercase italic tracking-tighter">Attribute Status</h4>
-                    <p class="text-[10px] text-slate-500 font-bold uppercase tracking-widest mt-1">Select multiple stats to narrow results</p>
-                  </div>
-                  <button @click="selectedStats = []" class="px-4 py-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-xl text-[10px] font-black uppercase transition-all duration-300">Reset Status</button>
+      <svg :class="['w-4 h-4 transition-transform duration-500', isStatusOpen ? 'rotate-180 text-teal-500' : 'text-slate-500']" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
+    </button>
+
+    <transition name="dropdown-slide">
+      <div v-if="isStatusOpen" :class="['absolute right-0 md:left-0 top-full mt-3 w-[280px] z-[9999] p-4 rounded-[2rem] border-2 shadow-[0_30px_80px_rgba(0,0,0,0.6)] backdrop-blur-3xl', isDark ? 'bg-slate-950/98 border-white/10' : 'bg-white/98 border-slate-200']">
+    
+        <div class="flex justify-between items-center mb-4 pb-2 border-b border-white/5">
+          <div>
+            <h4 class="text-xs font-black uppercase italic tracking-tighter">Attribute Status</h4>
+            <p class="text-[8px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">Narrow your results</p>
+          </div>
+          <button @click="selectedStats = []" class="px-2 py-1 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-lg text-[8px] font-black uppercase transition-all duration-300">Reset</button>
+        </div>
+
+        <div class="grid grid-cols-1 gap-2.5 max-h-[55vh] overflow-y-auto custom-scroll pr-1">
+          <div v-for="(options, group) in statusGroups" :key="group" 
+            :class="['group p-3 rounded-[1.5rem] border-2 transition-all duration-500', isDark ? 'bg-white/[0.02] hover:bg-white/[0.04]' : 'bg-slate-50', groupColors[group]?.border || 'border-transparent']">
+        
+            <div class="flex items-center gap-2 mb-2">
+              <div :class="['w-1 h-3 rounded-full', groupColors[group]?.bg || 'bg-slate-500']"></div>
+              <h5 :class="['text-[9px] font-black uppercase tracking-widest', groupColors[group]?.text || 'text-slate-400']">{{ group }}</h5>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5">
+              <div v-for="opt in options" :key="opt.value" 
+                @click.stop="toggleStat(opt.value)" 
+                :class="['group/stat px-2 py-1 rounded-lg text-[9px] font-black transition-all duration-300 border flex items-center gap-1.5 cursor-pointer', 
+                selectedStats.includes(opt.value) 
+                  ? (groupColors[group]?.text + ' border-current bg-current/10 shadow-sm') 
+                  : (isDark ? 'text-slate-500 border-white/5 hover:border-white/20' : 'text-slate-500 border-slate-200 bg-white hover:border-slate-400')]">
+            
+                <div :class="['w-2.5 h-2.5 rounded-sm border flex items-center justify-center transition-all', 
+                  selectedStats.includes(opt.value) ? 'bg-current border-transparent' : 'border-current/30']">
+                  <svg v-if="selectedStats.includes(opt.value)" class="w-2 h-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path>
+                  </svg>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-h-[60vh] overflow-y-auto custom-scroll pr-4">
-                  <div v-for="(options, group) in statusGroups" :key="group" 
-                    :class="['group p-5 rounded-[2rem] border-2 transition-all duration-500', isDark ? 'bg-white/[0.02] hover:bg-white/[0.04]' : 'bg-slate-50', groupColors[group]?.border || 'border-transparent']">
-                    <div class="flex items-center gap-3 mb-4">
-                      <div :class="['w-2 h-4 rounded-full', groupColors[group]?.bg || 'bg-slate-500']"></div>
-                      <h5 :class="['text-[10px] font-black uppercase tracking-widest', groupColors[group]?.text || 'text-slate-400']">{{ group }}</h5>
-                    </div>
-                    <div class="flex flex-wrap gap-2">
-                      <div v-for="opt in options" :key="opt.value" 
-  @click.stop="toggleStat(opt.value)" 
-  :class="['group/stat px-3 py-2 rounded-xl text-[10px] font-black transition-all duration-300 border-2 flex items-center gap-2 cursor-pointer', 
-  selectedStats.includes(opt.value) 
-    ? (groupColors[group]?.text + ' border-current bg-current/10 shadow-lg scale-105') 
-    : (isDark ? 'text-slate-500 border-white/5 hover:border-white/20' : 'text-slate-500 border-slate-200 bg-white hover:border-slate-400')]">
-  
-  <div :class="['w-3 h-3 rounded border flex items-center justify-center transition-all', 
-    selectedStats.includes(opt.value) ? 'bg-current border-transparent' : 'border-current/30']">
-    <svg v-if="selectedStats.includes(opt.value)" class="w-2 h-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path>
-    </svg>
-  </div>
-  
-  {{ opt.label }}
-</div>
-                    </div>
-                  </div>
-                </div>
+            
+                {{ opt.label }}
               </div>
-            </transition>
+            </div>
           </div>
         </div>
+      </div>
+    </transition>
+  </div>
+</div>
 
         <div class="space-y-2 col-span-1">
           <label class="text-[10px] font-black uppercase tracking-[0.2em] text-purple-500 ml-4">Scale</label>
@@ -327,28 +331,46 @@
         </div>
 
         <div class="flex flex-col items-center gap-10 py-20">
-          <nav v-if="totalPages > 1 && itemsPerPage < 1000" class="flex flex-wrap justify-center items-center gap-3">
-            <button @click="currentPage = 1" :disabled="currentPage === 1" 
-              class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 border-white/5 font-black disabled:opacity-5 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-500">«</button>
-            
-            <div class="flex gap-2">
-              <button v-for="page in visiblePages" :key="page" @click="currentPage = page"
-                :class="['w-14 h-14 rounded-2xl font-black text-sm transition-all duration-500 border-2', 
-                currentPage === page ? 'bg-blue-600 border-blue-500 text-white shadow-[0_0_30px_rgba(37,99,235,0.4)] scale-110 z-10' : 'bg-white/5 border-white/5 text-slate-500 hover:border-white/20']">
-                {{ page }}
-              </button>
-            </div>
+  <nav v-if="totalPages > 1 && itemsPerPage < 1000" class="flex flex-wrap justify-center items-center gap-3">
+    <button @click="currentPage--" :disabled="currentPage === 1" 
+      class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 font-black disabled:opacity-30 transition-all duration-300 shadow-sm
+      isDark ? 'bg-slate-900 border-white/10 text-slate-400 hover:border-blue-500 hover:text-blue-500' : 'bg-white border-slate-200 text-slate-400 hover:border-blue-500 hover:text-blue-500'">
+      «
+    </button>
+    
+    <div class="flex gap-2.5 items-center">
+      <template v-for="page in visiblePages" :key="page">
+        <button v-if="page !== '...'" @click="currentPage = page"
+          :class="['w-14 h-14 rounded-2xl font-black text-lg transition-all duration-300 border-2 flex items-center justify-center', 
+          currentPage === page 
+            ? 'bg-blue-600 border-blue-600 text-white shadow-[0_10px_25px_rgba(37,99,235,0.4)] scale-110 -translate-y-1' 
+            : (isDark ? 'bg-slate-900 border-white/5 text-blue-500 hover:border-blue-500' : 'bg-white border-slate-100 text-blue-600 hover:border-blue-200 shadow-sm')]">
+          {{ page }}
+        </button>
+        
+        <span v-else class="px-2 font-black text-blue-500">...</span>
+      </template>
+    </div>
 
-            <button @click="currentPage = totalPages" :disabled="currentPage === totalPages" 
-              class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 border-white/5 font-black disabled:opacity-5 hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all duration-500">»</button>
-          </nav>
-          
-          <div class="flex items-center gap-4">
-             <div class="h-[1px] w-12 bg-white/10"></div>
-             <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">Page {{ currentPage }} of {{ totalPages }}</p>
-             <div class="h-[1px] w-12 bg-white/10"></div>
-          </div>
-        </div>
+    <button @click="currentPage++" :disabled="currentPage === totalPages" 
+      class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 font-black disabled:opacity-30 transition-all duration-300 shadow-sm
+      isDark ? 'bg-slate-900 border-white/10 text-slate-400 hover:border-blue-500 hover:text-blue-500' : 'bg-white border-slate-200 text-slate-400 hover:border-blue-500 hover:text-blue-500'">
+      »
+    </button>
+  </nav>
+
+  <button @click="itemsPerPage = 9999" v-if="itemsPerPage < 100"
+    class="group relative px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-[0_15px_40px_rgba(37,99,235,0.4)] shadow-xl">
+    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+    <span class="relative text-xs font-[1000] text-white uppercase tracking-[0.3em] italic">Explore All</span>
+  </button>
+  
+  <div class="flex items-center gap-4 opacity-50">
+     <div class="h-[1px] w-12 bg-blue-500/30"></div>
+     <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">Page {{ currentPage }} of {{ totalPages }}</p>
+     <div class="h-[1px] w-12 bg-blue-500/30"></div>
+  </div>
+</div>
       </main>
     </div>
 
@@ -427,6 +449,16 @@ const typeRef = ref(null);
 /**
  * LOGIC METHODS
  */
+ const toggleTypeDropdown = () => {
+  isTypeOpen.value = !isTypeOpen.value;
+  if (isTypeOpen.value) isStatusOpen.value = false; // Tutup Status jika Type dibuka
+};
+
+const toggleStatusDropdown = () => {
+  isStatusOpen.value = !isStatusOpen.value;
+  if (isStatusOpen.value) isTypeOpen.value = false; // Tutup Type jika Status dibuka
+};
+
 const toggleType = (type) => {
   const index = selectedTypes.value.indexOf(type);
   if (index === -1) {

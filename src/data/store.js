@@ -628,7 +628,7 @@ export const crystalData = [
           link: null,
           type: "NORMAL",
           name: "Gespenst",
-          view: `\nMaxMP +150\nATK -1%\nMATK -1%`,
+          view: `\nMaxMP +150\n.ATK -1%\nMATK -1%`,
         },
         {
           code: 92,
@@ -1095,10 +1095,10 @@ export const crystalData = [
         },
         {
           code: 158,
-          link: null,
+          link: 112,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Colon Boss",
+          view: `\nMATK +10%\nAkurasi -40\nCritical Rate +20%`,
         },
         {
           code: 159,
@@ -1137,10 +1137,10 @@ export const crystalData = [
         },
         {
           code: 164,
-          link: null,
+          link: 170,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Zega IX",
+          view: `\nMaxHP +1200\nAttack MP Recovery +11\nMagical Resistance +10%\nWater resistance +9%`,
         },
         {
           code: 165,
@@ -1179,10 +1179,10 @@ export const crystalData = [
         },
         {
           code: 170,
-          link: null,
+          link: 166,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Zega VIII",
+          view: `\nMaxHP +1100\nAttack MP Recovery +10\nMagical Resistance +9%\nWater resistance +8%`,
         },
         {
           code: 171,
@@ -1221,10 +1221,10 @@ export const crystalData = [
         },
         {
           code: 176,
-          link: null,
+          link: 164,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Zega X",
+          view: `\nMaxHP +1300\nAttack MP Recovery +12\nMagical Resistance +11%\nWater resistance +10%`,
         },
         {
           code: 177,
@@ -1263,10 +1263,10 @@ export const crystalData = [
         },
         {
           code: 182,
-          link: null,
+          link: 177,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Glocke",
+          view: `\nMaxHP +4500\nMaxMP +500\nMATK +12%\nEvasion Recharge -30%`,
         },
         {
           code: 183,
@@ -1347,10 +1347,10 @@ export const crystalData = [
         },
         {
           code: 194,
-          link: null,
+          link: 196,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Bakuzan",
+          view: `\n.ATK +11%\nDEX +9%\nASPD +7%`,
         },
         {
           code: 195,
@@ -1389,10 +1389,10 @@ export const crystalData = [
         },
         {
           code: 200,
-          link: null,
+          link: 202,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Chiromina",
+          view: `\nStability +6%\nAkurasi +6%\nCritical Rate +6%`,
         },
         {
           code: 201,
@@ -1431,10 +1431,10 @@ export const crystalData = [
         },
         {
           code: 206,
-          link: null,
+          link: 203,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Shawle Terlarang",
+          view: `\nDaya Jarak Dekat +10%\nDaya Jarak Jauh +10%\nSerangan Menghunus +10%\nMaxMP -200`,
         },
         {
           code: 207,
@@ -1473,10 +1473,10 @@ export const crystalData = [
         },
         {
           code: 212,
-          link: null,
+          link: 181,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Pomie Chan III",
+          view: `\n.ATK +12%\nAGI +10%\nAggro -20%\nDengan Sarung Tinju:\nDodge Absolut +10%\n`,
         },
         {
           code: 213,
@@ -1515,10 +1515,10 @@ export const crystalData = [
         },
         {
           code: 218,
-          link: null,
+          link: 217,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Lixi Monster Buas",
+          view: `\nMaxHP +15%\nASPD +20%\n.ATK +10%\nMaxMP -100`,
         },
         {
           code: 219,
@@ -1557,10 +1557,10 @@ export const crystalData = [
         },
         {
           code: 224,
-          link: null,
+          link: 223,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Zuccoto Goblin",
+          view: `\n.ATK 10%\nPhysical Pierce +10%\nMaxHP +24%\nAggro -15%\nDengan Perisai:\nMotion speed +1%`,
         },
         {
           code: 225,
@@ -1599,10 +1599,10 @@ export const crystalData = [
         },
         {
           code: 230,
-          link: null,
+          link: 444,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Gula",
+          view: `\n.ATK +10%\nCritical Rate +15\nMaxMP +200\nGuard Break 10%`,
         },
         {
           code: 231,
@@ -1641,10 +1641,10 @@ export const crystalData = [
         },
         {
           code: 236,
-          link: null,
+          link: 197,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Erkuch",
+          view: `\nMaxHP +24%\nMATK +10%\nPeneterasi Sihir +10%\nAggro -15%\nDengan Perisai:\nMotion Speed 1%`,
         },
         {
           code: 237,
@@ -1851,10 +1851,10 @@ export const crystalData = [
         },
         {
           code: 266,
-          link: null,
-          type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          link: 341,
+          type: "WEAPON",
+          name: "Ultra Potum",
+          view: `\nEvasion Recharge +15%\nDaya Jarak Jauh 10%\nTambahan Fisik +20%`,
         },
         {
           code: 267,
@@ -1893,10 +1893,10 @@ export const crystalData = [
         },
         {
           code: 272,
-          link: null,
+          link: 275,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Potum Kue",
+          view: `\nMaxHP +30%\nKekebalan Fisik -15%\nKekebalan Sihir -15%`,
         },
         {
           code: 273,
@@ -1935,10 +1935,10 @@ export const crystalData = [
         },
         {
           code: 278,
-          link: null,
+          link: 193,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Menti",
+          view: `\nMaxMP +300\nMATK +11%\nGuard Break +14\nDengan Perisai:\nAttack speed +250`,
         },
         {
           code: 279,
@@ -1977,10 +1977,10 @@ export const crystalData = [
         },
         {
           code: 284,
-          link: null,
+          link: 317,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Fubbit",
+          view: `\n.ATK +6%\nPhysical Pierce +20%\nAggro -15%\nResistansi Status Buruk -15%\nMaxMP -200`,
         },
         {
           code: 285,
@@ -2019,10 +2019,10 @@ export const crystalData = [
         },
         {
           code: 290,
-          link: null,
+          link: 466,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Potum Bintang Top",
+          view: `\nASPD +900\nCSPD +900\nMaxHP -10%\nMaxMP -150`,
         },
         {
           code: 291,
@@ -2103,10 +2103,10 @@ export const crystalData = [
         },
         {
           code: 302,
-          link: null,
+          link: 312,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Gusti Ilusi Melodi",
+          view: `\n.ATK +12%\nMATK +12%\nSTR +4%\nINT +4%\nDaya Jarak Jauh -6%\nTumble Unavailable\nDengan Perisai:\nAggro -50%`,
         },
         {
           code: 303,
@@ -2120,7 +2120,7 @@ export const crystalData = [
           link: 422,
           type: "UPGRADE",
           name: "Memecoleous",
-          view: `\nATK -4%\nGuard Recharge +5%\nAggro +12%`,
+          view: `\n.ATK -4%\nGuard Recharge +5%\nAggro +12%`,
         },
         {
           code: 305,
@@ -2145,10 +2145,10 @@ export const crystalData = [
         },
         {
           code: 308,
-          link: null,
+          link: 374,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Merzehal",
+          view: `\nMaxHP +25%\nKekebalan Fisik +15%\nMATK +13%\nPeneterasi Sihir +10%\nCSPD +25\nMaxMP -200`,
         },
         {
           code: 309,
@@ -2229,10 +2229,10 @@ export const crystalData = [
         },
         {
           code: 320,
-          link: null,
-          type: "WEAPON",
-          name: "",
-          view: `\n`,
+          link: 321,
+          type: "UPGRADE",
+          name: "Sakura Musim Semi",
+          view: `\nMATK +11%\nCritical Rate +13\nAggro -15%`,
         },
         {
           code: 321,
@@ -2505,7 +2505,7 @@ export const crystalData = [
           link: 357,
           type: "UPGRADE",
           name: "Bemoz",
-          view: `\nMaxMP -150\nATK 6%\nMATK +6%\nPhysical Pierce +8%\nPeneterasi Sihir +8%\nCritical Rate +17`,
+          view: `\nMaxMP -150\n.ATK 6%\nMATK +6%\nPhysical Pierce +8%\nPeneterasi Sihir +8%\nCritical Rate +17`,
         },
         {
           code: 360,
@@ -2750,7 +2750,7 @@ export const crystalData = [
           link: null,
           type: "SPECIAL",
           name: "Syaman Hitam Hutan Hantu",
-          view: `\nPeneterasi Sihir +5%\nCSPD +20%\nEvasion Recharge +10%\nMaxMP -300\nDengan Perisai:\nStability +5%\nATK -10%`,
+          view: `\nPeneterasi Sihir +5%\nCSPD +20%\nEvasion Recharge +10%\nMaxMP -300\nDengan Perisai:\nStability +5%\n.ATK -10%`,
         },
         {
           code: 395,
@@ -2889,8 +2889,8 @@ export const crystalData = [
           code: 414,
           link: null,
           type: "SPECIAL",
-          name: "",
-          view: `\n`,
+          name: "Lixi Hitam",
+          view: `\nASPD +300\nResistansi Status Buruk +10%\nAggro +40%\nAttack MP Recovery +20\nDengan Zirah Berat:\nPelindung Fraksional 10%\nDengan Zirah Ringan:\nKecepatan Pelindung +10%`,
         },
         {
           code: 415,
@@ -2946,7 +2946,7 @@ export const crystalData = [
           link: null,
           type: "SPECIAL",
           name: "Tentara Batu",
-          view: `\nATK -6%\nGuard Recharge +4%\nAggro +8%`,
+          view: `\n.ATK -6%\nGuard Recharge +4%\nAggro +8%`,
         },
         {
           code: 423,
@@ -3016,8 +3016,8 @@ export const crystalData = [
           code: 432,
           link: null,
           type: "SPECIAL",
-          name: "",
-          view: `\n`,
+          name: "Olobaid",
+          view: `\nKekebalan Fisik +10%\nMagical Resistance +10%\nKebal Gelap +20%\nAggro +20%`,
         },
         {
           code: 433,
@@ -3065,8 +3065,8 @@ export const crystalData = [
           code: 439,
           link: null,
           type: "ADDITIONAL",
-          name: "",
-          view: `\n`,
+          name: "Castilia",
+          view: `\nAkurasi +10%\nINT +3%\nASPD -900\nDaya Jarak Dekat +12%\nDaya Jarak Jauh +6%\nDengan Pesawat Sihir:\nMotion Speed +5%\nDengan Kitab Ninjutsu:\nPeneterasi Sihir +10%`,
         },
         {
           code: 440,
@@ -3522,6 +3522,13 @@ export const crystalData = [
           type: "UPGRADE",
           name: "Deformis",
           view: `\n.ATK +11%\nAttack MP Recovery +8\nAntisipasi 14%\nMaxMP -200`,
+        },
+        {
+          code: 505,
+          link: 191,
+          type: "UPGRADE",
+          name: "Piscruva",
+          view: `\n.ATK +11%\nMATK +11%\nASPD -300\nCSPD -300`,
         },
         {
           code: 505,
