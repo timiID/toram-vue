@@ -130,7 +130,7 @@
             <h4 class="text-xs font-black uppercase italic tracking-tighter">Attribute Status</h4>
             <p class="text-[8px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">Narrow your results</p>
           </div>
-          <button @click="selectedStats = []" class="px-2 py-1 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-lg text-[8px] font-black uppercase transition-all duration-300">Reset</button>
+          <button @click="selectedStats = []" class="px-4 py-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-lg text-[10px] font-black uppercase transition-all duration-300">Reset</button>
         </div>
 
         <div class="grid grid-cols-1 gap-2 max-h-[55vh] overflow-y-auto custom-scroll pr-1">
