@@ -133,7 +133,7 @@
           <button @click="selectedStats = []" class="px-2 py-1 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-lg text-[8px] font-black uppercase transition-all duration-300">Reset</button>
         </div>
 
-        <div class="grid grid-cols-1 gap-2.5 max-h-[55vh] overflow-y-auto custom-scroll pr-1">
+        <div class="grid grid-cols-1 gap-2 max-h-[55vh] overflow-y-auto custom-scroll pr-1">
           <div v-for="(options, group) in statusGroups" :key="group" 
             :class="['group p-3 rounded-[1.5rem] border-2 transition-all duration-500', isDark ? 'bg-white/[0.02] hover:bg-white/[0.04]' : 'bg-slate-50', groupColors[group]?.border || 'border-transparent']">
         
@@ -597,7 +597,7 @@ watch([searchQuery, selectedTypes, selectedStats, itemsPerPage, sortOrder], () =
 
 <style scoped>
 /* CUSTOM SCROLLBAR REFINEMENT */
-.custom-scroll::-webkit-scrollbar { width: 6px; }
+.custom-scroll::-webkit-scrollbar { width: 16px; }
 .custom-scroll::-webkit-scrollbar-track { background: transparent; }
 .custom-scroll::-webkit-scrollbar-thumb { 
   background: rgba(59, 130, 246, 0.2); 
