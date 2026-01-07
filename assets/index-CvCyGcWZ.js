@@ -243,8 +243,10 @@ Daya Jarak Dekat +9%
 Akurasi +5%
 MaxMP +200
 Critical Rate -7
-MaxHP -300`},{code:140,link:null,type:"UPGRADE",name:"",view:`
-`},{code:141,link:364,type:"UPGRADE",name:"Zapo",view:`
+MaxHP -300`},{code:140,link:184,type:"UPGRADE",name:"Rondine",view:`
+DEX +9%
+MATK +11%
+CSPD +7%`},{code:141,link:364,type:"UPGRADE",name:"Zapo",view:`
 .ATK +10%
 Critical Rate +10
 MaxHP -400
@@ -268,8 +270,11 @@ Resistansi Status Buruk +5%`},{code:145,link:360,type:"UPGRADE",name:"DX Fighter
 Daya Jarak Dekat +6%
 Akurasi +15%
 MaxHP +6000
-Pelindung Fraksional +5%`},{code:146,link:null,type:"UPGRADE",name:"",view:`
-`},{code:147,link:409,type:"UPGRADE",name:"Etoise",view:`
+Pelindung Fraksional +5%`},{code:146,link:416,type:"UPGRADE",name:"Poundie",view:`
+MaxHP +3000
+MaxHP +20%
+Pelindung Fraksional 15%
+.ATK UP (VIT25%)`},{code:147,link:409,type:"UPGRADE",name:"Etoise",view:`
 Critical Rate +40%
 ASPD +1100
 Motion Speed +5%
@@ -287,8 +292,12 @@ Daya Jarak Dekat +5%`},{code:151,link:93,type:"UPGRADE",name:"Charugon",view:`
 STR +6
 Daya Jarak Dekat +3%
 Daya Jarak Jauh +6%
-Kekebalan Sihir -12%`},{code:152,link:null,type:"UPGRADE",name:"",view:`
-`},{code:153,link:247,type:"UPGRADE",name:"Naga Trompet Reguita",view:`
+Kekebalan Sihir -12%`},{code:152,link:111,type:"UPGRADE",name:"Vevela",view:`
+Resistensi Status Buruk -15%
+Guard Power +5%
+Guard Recharge +5%
+Evasion Recharge +5%
+Motion Speed +3%`},{code:153,link:247,type:"UPGRADE",name:"Naga Trompet Reguita",view:`
 .ATK +10%
 MATK +10%
 Natural HP Regen -12%
@@ -454,8 +463,7 @@ Evasion Recharge +15%
 Kekebalan Sihir +6%
 MATK +6%
 Dengan Zirah Ringan:
-MATK UP (AGI25%
-)`},{code:196,link:243,type:"UPGRADE",name:"Naga Penyamar Mimyugon",view:`
+MATK UP (AGI25%)`},{code:196,link:243,type:"UPGRADE",name:"Naga Penyamar Mimyugon",view:`
 .ATK +9%
 DEX +7%
 ASPD +5%`},{code:197,link:443,type:"UPGRADE",name:"Garnache",view:`
@@ -631,8 +639,11 @@ Stability +3%`},{code:241,link:50,type:"UPGRADE",name:"Pret",view:`
 Serangan Menghunus +12%
 Dodge -5%
 Evasion Recharge -3%
-MaxMP -50`},{code:242,link:null,type:"UPGRADE",name:"",view:`
-`},{code:243,link:298,type:"UPGRADE",name:"Vulture",view:`
+MaxMP -50`},{code:242,link:369,type:"UPGRADE",name:"Tulangka",view:`
+Attack MP Recovery +15
+Kecepatan Pelindung +20%
+Kebal Air +10%
+Kebal Gelap +10%`},{code:243,link:298,type:"UPGRADE",name:"Vulture",view:`
 .ATK +7%
 DEX +5%
 ASPD +3%`},{code:244,link:421,type:"UPGRADE",name:"Ketua Bandit Gurun",view:`
@@ -646,8 +657,10 @@ Akurasi +25`},{code:247,link:335,type:"UPGRADE",name:"Repthon",view:`
 .ATK +6%
 MATK +6%
 Natural MP Regen -10%
-Natural HP Regen -10%`},{code:248,link:null,type:"UPGRADE",name:"",view:`
-`},{code:249,link:368,type:"UPGRADE",name:"Mata Jahanam",view:`
+Natural HP Regen -10%`},{code:248,link:281,type:"UPGRADE",name:"Potum Hiu",view:`
+Critical Damage +6
+ASPD +900
+MaxHP -30%`},{code:249,link:368,type:"UPGRADE",name:"Mata Jahanam",view:`
 MaxHP +1000
 ASPD +300
 Tumble Unavailable`},{code:250,link:299,type:"UPGRADE",name:"Amalgam",view:`
@@ -660,8 +673,10 @@ MaxHP +4000
 Weapon ATK +4%`},{code:253,link:474,type:"UPGRADE",name:"Mega Alpoca",view:`
 Daya Jarak Dekat +6%
 MaxHP +300
-MaxMP +300`},{code:254,link:null,type:"UPGRADE",name:"",view:`
-`},{code:255,link:336,type:"UPGRADE",name:"Zega II",view:`
+MaxMP +300`},{code:254,link:244,type:"UPGRADE",name:"Arpoon",view:`
+Evasion Recharge +12%
+Aggro +24%
+MATK -4%`},{code:255,link:336,type:"UPGRADE",name:"Zega II",view:`
 MaxHP +500
 Attack MP Recovery +4
 Kekebalan Sihir +3%
@@ -679,8 +694,12 @@ Physical Pierce +4%
 Critical Damage +4`},{code:259,link:276,type:"UPGRADE",name:"Zarth",view:`
 Attack MP Recovery +12
 Kebal Api +8%
-Critical Damage +4`},{code:260,link:null,type:"UPGRADE",name:"",view:`
-`},{code:261,link:330,type:"UPGRADE",name:"Mbah Dukun Usasama II",view:`
+Critical Damage +4`},{code:260,link:288,type:"UPGRADE",name:"Dandolion",view:`
+MaxMP +500
+CSPD +300
+Attack MP Recovery +4
+Dengan Zirah Ringan:
+STability +6%`},{code:261,link:330,type:"UPGRADE",name:"Mbah Dukun Usasama II",view:`
 MATK +7%
 CSPD +14%
 Motion Speed +3%
@@ -915,8 +934,16 @@ CSPD +200`},{code:325,link:null,type:"WEAPON",name:"Pedang Neo Maton",view:`
 MATK +7%
 Reduksi DMG (Bowling) +14%
 Reduksi DMG (Peluru) +14%
-Aggro -28%`},{code:326,link:null,type:"WEAPON",name:"",view:`
-`},{code:327,link:null,type:"WEAPON",name:"Grecia",view:`
+Aggro -28%`},{code:326,link:null,type:"WEAPON",name:"Stormun",view:`
+.ATK +5%
+MATK +5%
+Daya Jarak Dekat +5%
+ASPD +5%
+Dengan Pedang Ganda :
+Motion Speed +2%
+MaxHP -9%
+Dengan Pesawat Sihir:
+INT +5%`},{code:327,link:null,type:"WEAPON",name:"Grecia",view:`
 .ATK +6%
 MATK +6%
 Physical Pierce +3%
