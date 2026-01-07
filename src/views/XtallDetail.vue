@@ -51,7 +51,7 @@
             
             <div class="absolute top-0 right-0 p-8 text-8xl opacity-[0.05] grayscale pointer-events-none animate-spin-slow">✨</div>
             <h3 class="text-xs font-black uppercase tracking-[0.5em] text-slate-500 mb-8 flex items-center gap-3">
-              <span class="w-2 h-2 bg-cyan-500 rounded-full animate-ping"></span> Effect Modules
+              <span class="w-2 h-2 bg-cyan-500 rounded-full animate-ping"></span> Status/ Effect
             </h3>
 
             <div class="space-y-5">
