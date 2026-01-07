@@ -969,10 +969,10 @@ export const crystalData = [
         },
         {
           code: 140,
-          link: null,
+          link: 184,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Rondine",
+          view: `\nDEX +9%\nMATK +11%\nCSPD +7%`,
         },
         {
           code: 141,
@@ -1011,10 +1011,10 @@ export const crystalData = [
         },
         {
           code: 146,
-          link: null,
+          link: 416,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Poundie",
+          view: `\nMaxHP +3000\nMaxHP +20%\nPelindung Fraksional 15%\n.ATK UP (VIT25%)`,
         },
         {
           code: 147,
@@ -1053,10 +1053,10 @@ export const crystalData = [
         },
         {
           code: 152,
-          link: null,
+          link: 111,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Vevela",
+          view: `\nResistensi Status Buruk -15%\nGuard Power +5%\nGuard Recharge +5%\nEvasion Recharge +5%\nMotion Speed +3%`,
         },
         {
           code: 153,
@@ -1357,7 +1357,7 @@ export const crystalData = [
           link: 385,
           type: "UPGRADE",
           name: "Glaucius",
-          view: `\nEvasion Recharge +15%\nKekebalan Sihir +6%\nMATK +6%\nDengan Zirah Ringan:\nMATK UP (AGI25%\n)`,
+          view: `\nEvasion Recharge +15%\nKekebalan Sihir +6%\nMATK +6%\nDengan Zirah Ringan:\nMATK UP (AGI25%)`,
         },
         {
           code: 196,
@@ -1683,10 +1683,10 @@ export const crystalData = [
         },
         {
           code: 242,
-          link: null,
+          link: 369,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Tulangka",
+          view: `\nAttack MP Recovery +15\nKecepatan Pelindung +20%\nKebal Air +10%\nKebal Gelap +10%`,
         },
         {
           code: 243,
@@ -1725,10 +1725,10 @@ export const crystalData = [
         },
         {
           code: 248,
-          link: null,
+          link: 281,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Potum Hiu",
+          view: `\nCritical Damage +6\nASPD +900\nMaxHP -30%`,
         },
         {
           code: 249,
@@ -1767,10 +1767,10 @@ export const crystalData = [
         },
         {
           code: 254,
-          link: null,
+          link: 244,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Arpoon",
+          view: `\nEvasion Recharge +12%\nAggro +24%\nMATK -4%`,
         },
         {
           code: 255,
@@ -1809,10 +1809,10 @@ export const crystalData = [
         },
         {
           code: 260,
-          link: null,
+          link: 288,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Dandolion",
+          view: `\nMaxMP +500\nCSPD +300\nAttack MP Recovery +4\nDengan Zirah Ringan:\nSTability +6%`,
         },
         {
           code: 261,
@@ -2273,8 +2273,8 @@ export const crystalData = [
           code: 326,
           link: null,
           type: "WEAPON",
-          name: "",
-          view: `\n`,
+          name: "Stormun",
+          view: `\n.ATK +5%\nMATK +5%\nDaya Jarak Dekat +5%\nASPD +5%\nDengan Pedang Ganda :\nMotion Speed +2%\nMaxHP -9%\nDengan Pesawat Sihir:\nINT +5%`,
         },
         {
           code: 327,
