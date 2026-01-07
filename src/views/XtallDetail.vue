@@ -21,12 +21,12 @@
           <div :class="['relative aspect-square rounded-[3.5rem] border-2 flex items-center justify-center overflow-hidden shadow-2xl transition-all duration-700 group',
             isDark ? 'bg-slate-950/80 border-white/10' : 'bg-white border-slate-200']">
             
-            <div :class="['absolute inset-0 opacity-20 blur-3xl animate-pulse', getGlowColor(xtall.type)]"></div>
+            <div :class="['absolute inset-0 opacity-20 blur-3xl animate-pulse transition-colors duration-700', getGlowColor(xtall.type)]"></div>
             
             <img :src="getIconPath(xtall.type)" class="relative w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)] transition-transform duration-700 group-hover:scale-110" />
             
-            <div :class="['absolute bottom-8 px-6 py-2 rounded-5xl border-2 font-black text-[10px] tracking-widest uppercase shadow-xl', getBadgeColor(xtall.type)]">
-              {{ xtall.type }}
+            <div :class="['absolute bottom-8 px-6 py-2 rounded-5xl border-2 font-black text-[10px] tracking-widest uppercase shadow-xl whitespace-nowrap transition-all', getBadgeColor(xtall.type)]">
+              {{ formatBadgeText(xtall.type) }}
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
         <div class="lg:col-span-7 space-y-8">
           <div>
             <h1 class="text-5xl md:text-7xl font-[1000] tracking-tighter italic uppercase leading-none mb-4">
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-500">{{ xtall.name }}</span>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">{{ xtall.name }}</span>
             </h1>
             <div class="flex items-center gap-4">
               <div class="h-[2px] w-12 bg-cyan-500"></div>
@@ -46,18 +46,13 @@
             isDark ? 'bg-slate-950/50 border-white/70 shadow-black/50' : 'bg-white/80 border-slate-200 shadow-slate-200/50']">
             
             <div class="absolute top-0 right-0 p-8 text-8xl opacity-[0.03] grayscale pointer-events-none">✨</div>
-            
-            <h3 class="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-8 flex items-center gap-3">
-              <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
-              Status/Effect
-            </h3>
+            <h3 class="text-xs font-black uppercase tracking-[0.5em] text-slate-500 mb-8 flex items-center gap-3">Status/Effect</h3>
 
-            <div class="space-y-6">
-              <div v-for="(stat, idx) in parseStats(xtall.view)" :key="idx" 
-                class="flex items-start gap-4 group/stat">
-                <div class="mt-1.5 w-2 h-2 rounded-full bg-gradient-to-tr from-cyan-500 to-blue-600 group-hover/stat:scale-150 transition-transform"></div>
-                <p :class="['text-lg md:text-xl font-bold tracking-tight transition-colors', 
-                  stat.includes('-') ? 'text-red-500' : (isDark ? 'text-slate-200 group-hover/stat:text-cyan-400' : 'text-slate-700')]">
+            <div class="space-y-4">
+              <div v-for="(stat, idx) in parseStats(xtall.view)" :key="idx" class="flex items-start gap-4 group/stat">
+                <div v-if="!stat.includes('Dengan')" class="mt-2.5 w-1.5 h-1.5 rounded-full bg-cyan-500 group-hover/stat:scale-125 transition-transform flex-shrink-0"></div>
+                <p :class="['text-base md:text-lg font-semibold tracking-tight transition-colors', 
+                  stat.includes('Dengan') ? 'text-green-500' : (stat.includes('-') ? 'text-red-500' : (isDark ? 'text-slate-200 group-hover/stat:text-cyan-400' : 'text-slate-700'))]">
                   {{ stat }}
                 </p>
               </div>
@@ -74,7 +69,7 @@
                 {{ previousEvo.name }}
               </p>
             </div>
-            <div v-else :class="['p-6 rounded-[2.5rem] border-2 border-dashed opacity-50', isDark ? 'border-white/100' : 'border-slate-300']">
+            <div v-else :class="['p-6 rounded-[2.5rem] border-2 border-dashed opacity-50', isDark ? 'border-white/10' : 'border-slate-300']">
               <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Previous Evolution</p>
               <p class="text-xs font-bold opacity-70 italic">None (Base Xtall)</p>
             </div>
@@ -88,12 +83,11 @@
                 <span class="text-purple-500 group-hover:translate-x-1 transition-transform">→</span>
               </p>
             </div>
-            <div v-else :class="['p-6 rounded-[2.5rem] border-2 border-dashed opacity-50', isDark ? 'border-white/100' : 'border-slate-300']">
+            <div v-else :class="['p-6 rounded-[2.5rem] border-2 border-dashed opacity-50', isDark ? 'border-white/10' : 'border-slate-300']">
               <p class="text-[9px] font-black text-slate-500 uppercase tracking-widest mb-2">Next Upgrade</p>
               <p class="text-xs font-bold opacity-70 italic">Max Upgrade</p>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -116,7 +110,58 @@ const xtall = computed(() => {
   return crystalData.find(c => String(c.code) === String(props.id));
 });
 
-// Logika Evolusi
+// Mencari Tipe Akar (untuk teks nama)
+const findRootType = (item) => {
+  if (!item) return 'NORMAL';
+  let current = item;
+  let safety = 0;
+  while (current.link && safety < 10) {
+    const parent = crystalData.find(c => String(c.code) === String(current.link));
+    if (parent) { current = parent; safety++; } 
+    else break;
+  }
+  return current.type?.toUpperCase();
+};
+
+// GLOW: Selalu ikuti warna BASE (Armor = Hijau, Weapon = Merah)
+const getGlowColor = (type) => {
+  const rootType = findRootType(xtall.value);
+  const map = { 
+    'NORMAL': 'bg-blue-600', 
+    'WEAPON': 'bg-red-600', 
+    'ARMOR': 'bg-green-600', 
+    'ADDITIONAL': 'bg-yellow-600', 
+    'SPECIAL': 'bg-cyan-600' 
+  };
+  return map[rootType] || 'bg-cyan-600';
+};
+
+// BADGE BOX: Jika Upgrade, paksa jadi UNGU
+const getBadgeColor = (type) => {
+  const t = type?.toUpperCase();
+  if (t === 'UPGRADE' || t === 'ENHANCER') {
+    return 'bg-purple-600 text-white border-purple-400';
+  }
+  const map = { 
+    'NORMAL': 'bg-blue-500 text-white border-blue-400', 
+    'ADDITIONAL': 'bg-yellow-500 text-white border-yellow-400', 
+    'WEAPON': 'bg-red-500 text-white border-red-400',
+    'ARMOR': 'bg-green-500 text-white border-green-400',
+    'SPECIAL': 'bg-cyan-500 text-white border-cyan-400'
+  };
+  return map[t] || 'bg-slate-700 text-white border-slate-600';
+};
+
+// TEXT BADGE: Jika Upgrade, jadi [BASE] ENHANCER
+const formatBadgeText = (type) => {
+  const t = type?.toUpperCase();
+  if (t === 'UPGRADE' || t === 'ENHANCER') {
+    return `${findRootType(xtall.value)} ENHANCER`;
+  }
+  return t;
+};
+
+// Navigasi & Data Logic
 const previousEvo = computed(() => {
   if (!xtall.value || !xtall.value.link) return null;
   return crystalData.find(c => String(c.code) === String(xtall.value.link));
@@ -124,18 +169,11 @@ const previousEvo = computed(() => {
 
 const nextEvo = computed(() => {
   if (!xtall.value) return null;
-  // Mencari kristal yang memiliki 'link' mengarah ke kristal saat ini
   return crystalData.find(c => String(c.link) === String(xtall.value.code));
 });
 
-const goToXtall = (code) => {
-  router.push(`/xtall/${code}`);
-};
-
-// Reset scroll saat ganti ID kristal
-watch(() => props.id, () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+const goToXtall = (code) => { router.push(`/xtall/${code}`); };
+watch(() => props.id, () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
 const parseStats = (view) => {
   if (!view) return [];
@@ -143,25 +181,9 @@ const parseStats = (view) => {
 };
 
 const getIconPath = (type) => {
-  const map = { 'NORMAL': 'crysta_normal.jpg', 'WEAPON': 'crysta_senjata.jpg', 'ARMOR': 'crysta_zirah.jpg', 'ADDITIONAL': 'crysta_pelengkap.jpg', 'SPECIAL': 'crysta_tambahan.jpg', 'UPGRADE': 'crysta_up.jpg' };
+  const map = { 'NORMAL': 'crysta_normal.jpg', 'WEAPON': 'crysta_senjata.jpg', 'ARMOR': 'crysta_zirah.jpg', 'ADDITIONAL': 'crysta_pelengkap.jpg', 'SPECIAL': 'crysta_tambahan.jpg', 'UPGRADE': 'crysta_up.jpg', 'ENHANCER': 'crysta_up.jpg' };
   const file = map[type?.toUpperCase()] || 'crysta_normal.jpg';
   return new URL(`../assets/icons/${file}`, import.meta.url).href;
-};
-
-const getBadgeColor = (type) => {
-  const map = { 
-    'NORMAL': 'bg-blue-500 text-white border-blue-400', 
-    'ADDITIONAL': 'bg-yellow-500 text-white border-yellow-400', 
-    'UPGRADE': 'bg-purple-500 text-white border-purple-400',
-    'WEAPON': 'bg-red-500 text-white border-red-400',
-    'ARMOR': 'bg-green-500 text-white border-green-400'
-  };
-  return map[type?.toUpperCase()] || 'bg-slate-700 text-white border-slate-600';
-};
-
-const getGlowColor = (type) => {
-  const map = { 'NORMAL': 'bg-blue-600', 'UPGRADE': 'bg-purple-600', 'WEAPON': 'bg-red-600', 'ARMOR': 'bg-green-600' };
-  return map[type?.toUpperCase()] || 'bg-cyan-600';
 };
 </script>
 
