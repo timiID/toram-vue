@@ -3,47 +3,32 @@ export function parseXtallStats(viewText) {
   
     if (!viewText) return result
   
-    const aliasMap = {
-      // Offensive
-      'PENETERASI SIHIR': 'MAGIC PIERCE',
-      'PHYSICAL PIERCE': 'PHYSICAL PIERCE',
-      'DAYA JARAK DEKAT': 'SHORT RANGE DMG',
-      'DAYA JARAK JAUH': 'LONG RANGE DMG',
-      'SERANGAN MENGHUNUS': 'UNSHEATHE ATTACK',
+    viewText
+      .split('\n')
+      .map(l => l.trim())
+      .forEach(line => {
+        // skip non-stat
+        if (!line.match(/[+-]\s*\d/)) return
   
-      // Element
-      'KEBAL API': 'FIRE RESISTANCE',
-      'KEBAL AIR': 'WATER RESISTANCE',
-      'KEBAL ANGIN': 'WIND RESISTANCE',
-      'KEBAL BUMI': 'EARTH RESISTANCE',
-      'KEBAL CAHAYA': 'LIGHT RESISTANCE',
-      'KEBAL GELAP': 'DARK RESISTANCE',
+        /**
+         * CONTOH YANG DIDUKUNG:
+         * Magic Pierce +5%
+         * MaxMP -200
+         * Daya Jarak Dekat +4%
+         */
+        const match = line.match(
+          /^(.+?)\s*([+-])\s*(\d+)(%)?$/
+        )
   
-      // DTE
-      'STRONGER AGAINST': 'STRONGER AGAINST',
+        if (!match) return
   
-      // Indonesian → English fallback
-      'TAMBAHAN SIHIR': 'ADDITIONAL MAGIC',
-      'TAMBAHAN FISIK': 'ADDITIONAL MELEE'
-    }
+        const [, name, sign, value] = match
   
-    viewText.split('\n').forEach(line => {
-      const match = line.match(/(.+?)\s([+-])\s?(\d+)/)
-      if (!match) return
-  
-      let [, rawName, sign, value] = match
-      let key = rawName.trim().toUpperCase()
-  
-      // alias normalize
-      if (aliasMap[key]) {
-        key = aliasMap[key]
-      }
-  
-      result[key] = {
-        sign,
-        value: Number(value)
-      }
-    })
+        result[name.trim().toUpperCase()] = {
+          sign,
+          value: Number(value)
+        }
+      })
   
     return result
   }

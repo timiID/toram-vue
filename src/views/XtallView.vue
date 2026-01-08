@@ -797,22 +797,23 @@ const filteredResults = computed(() => {
     const parsed = getParsedStats(c)
 
     return Object.entries(advancedFilter.value.stats).every(
-      ([statName, rule]) => {
-        const stat = parsed[statName.toUpperCase()]
-        if (!stat) return false
+  ([statName, rule]) => {
+    const stat = parsed[statName.toUpperCase()]
+    if (!stat) return false
 
-        // cek + / -
-        if (stat.sign !== rule.sign) return false
+    // tanda + / -
+    if (stat.sign !== rule.sign) return false
 
-        // cek >= <=
-        if (rule.value != null) {
-          if (rule.op === '>=' && stat.value < rule.value) return false
-          if (rule.op === '<=' && stat.value > rule.value) return false
-        }
+    // nilai (0 AMAN)
+    if (rule.value !== null) {
+      if (rule.op === '>=' && stat.value < rule.value) return false
+      if (rule.op === '<=' && stat.value > rule.value) return false
+    }
 
-        return true
-      }
-    )
+    return true
+  }
+)
+
   })
 }
   
