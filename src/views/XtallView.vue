@@ -43,8 +43,8 @@
 
       <RouterLink
   to="/xtall/advanced"
-  class="mb-6 block w-full rounded-2xl border-2 border-orange-500
-         bg-gradient-to-r from-orange-500 to-red-500
+  class="mb-6 block w-full rounded-2xl border-2 border-indigo-500
+         bg-gradient-to-t from-indigo-400 to-purple-500
          px-6 py-5 text-center text-lg font-black text-white
          shadow-xl hover:scale-[1.02] transition"
 >
