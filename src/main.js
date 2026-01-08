@@ -5,7 +5,7 @@ import './assets/main.css'
 
 // fallback title (kalau belum ada)
 if (!document.title) {
-  document.title = 'Timi DB Vue | Toram Online Database'
+  document.title = 'Timi DB | Toram Online Database'
 }
 
 const app = createApp(App)
