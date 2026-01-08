@@ -245,30 +245,52 @@
           </div>
         </div>
 
-<div class="space-y-2 col-span-2 md:col-span-1 lg:col-span-2">
-  <label class="text-[10px] font-black uppercase tracking-[0.2em] text-pink-500 ml-4">Sequence Control</label>
-  <div class="flex items-center gap-2">
-    <div class="relative group flex-1">
-      <select v-model="sortOrder" :class="['w-full px-4 py-4 rounded-2xl border-2 outline-none font-bold text-sm appearance-none cursor-pointer transition-all pr-10',
-        isDark ? 'bg-slate-900/50 border-white/5 focus:border-pink-500 text-slate-200' : 'bg-white border-slate-200 focus:border-pink-500 shadow-sm']">
-        <option value="asc">A to Z [ASC]</option>
-        <option value="desc">Z to A [DESC]</option>
+<div class="space-y-4 w-full col-span-2 lg:col-span-3">
+  <div class="flex items-center gap-2 ml-4">
+    <div class="w-1.5 h-4 bg-red-600 rounded-full"></div>
+    <label class="text-[11px] font-[1000] uppercase tracking-[0.25em] text-red-600">
+      Sequence & Reset Control Center
+    </label>
+  </div>
+  
+  <div class="flex flex-col md:flex-row items-center gap-3 w-full">
+    
+    <div class="relative group flex-[2.5] w-full">
+      <select v-model="sortOrder" :class="['w-full h-[60px] px-6 rounded-2xl border-2 outline-none font-bold text-sm appearance-none cursor-pointer transition-all pr-12',
+        isDark ? 'bg-slate-900 border-white/10 focus:border-red-500 text-slate-200' : 'bg-white border-slate-200 focus:border-red-500 shadow-sm']">
+        <option value="asc">Sequence: A to Z</option>
+        <option value="desc">Sequence: Z to A</option>
       </select>
-      <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none group-hover:scale-y-[-1] transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke-width="2"/></svg>
+      <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-red-500">
+        <svg class="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
     </div>
 
     <button 
-      @click="searchQuery = ''; selectedTypes = []; selectedStats = []; sortOrder = 'asc'; itemsPerPage = 10"
-      class="h-[56px] px-5 rounded-2xl bg-red-500 hover:bg-red-600 text-white transition-all duration-300 flex items-center gap-2 shadow-lg shadow-red-500/20 active:scale-95 border-2 border-transparent"
-      title="Reset All Filters"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      @click="searchQuery = ''; selectedTypes = []; sortOrder = 'asc'"
+      class="h-[60px] flex-1 w-full px-4 rounded-2xl bg-red-600 hover:bg-red-700 text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-red-600/20 group font-black uppercase tracking-widest text-[10px]">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" />
       </svg>
-      <span class="text-[10px] font-black uppercase tracking-widest hidden sm:inline">Reset All</span>
+      <span class="whitespace-nowrap">Reset Filters</span>
     </button>
+
+    <button 
+      @click="handleResetAll"
+      class="h-[60px] flex-1 w-full px-4 rounded-2xl bg-red-600 hover:bg-red-700 text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-red-600/20 group font-black uppercase tracking-widest text-[10px]"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+      <span class="whitespace-nowrap">Reset All</span>
+    </button>
+
   </div>
 </div>
+
+
         
       </section>
 
@@ -480,6 +502,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router'
+import { useRouter } from 'vue-router' // TAMBAHKAN INI
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { crystalData, CrystalType } from '../data/store.js';
 // Crysta Biasa
@@ -507,7 +530,20 @@ function getParsedStats(xtall) {
   return parsedCache.get(xtall.code)
 }
 
+const router = useRouter()
 
+function handleResetAll() {
+  // 1. Reset State Lokal (seperti yang Anda miliki)
+  searchQuery.value = ''
+  selectedTypes.value = []
+  selectedStats.value = []
+  sortOrder.value = 'asc'
+  itemsPerPage.value = 10
+
+  // 2. Reset Parameter URL (Advanced Search)
+  // Ini akan menghapus ?filter=... sehingga Advanced Search kembali kosong
+  router.push({ query: {} })
+}
 /**
  * COMPONENT PROPS
  */

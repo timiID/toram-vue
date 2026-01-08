@@ -11,12 +11,12 @@ const props = defineProps({
 const router = useRouter()
 const route = useRoute()
 const filters = reactive({ stats: {} })
+
 onMounted(() => {
   if (!route.query.filter) return
 
   try {
     const saved = JSON.parse(route.query.filter)
-
     if (saved?.stats) {
       filters.stats = saved.stats
     }
@@ -24,6 +24,11 @@ onMounted(() => {
     console.warn('Invalid filter data')
   }
 })
+
+// Fungsi untuk kembali ke halaman sebelumnya
+function goBack() {
+  router.back()
+}
 
 function clearAll() {
   Object.keys(filters.stats).forEach(k => delete filters.stats[k])
@@ -46,8 +51,23 @@ function applyFilter() {
 </script>
 
 <template>
-  <div :class="['p-4 md:p-8 font-sans transition-all duration-700', isDark ? 'text-white' : 'text-slate-900']">
+  <div :class="['p-4 md:p-8 font-sans transition-all duration-700 min-h-screen', isDark ? 'bg-transparent text-white' : 'bg-slate-50 text-slate-900']">
     
+    <div class="max-w-[1600px] mx-auto mb-6 flex items-center justify-between">
+      <button 
+        @click="goBack" 
+        class="group flex items-center gap-3 px-4 py-2 rounded-xl transition-all hover:bg-white/5 active:scale-95"
+      >
+        <div :class="['w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all', 
+          isDark ? 'border-white/10 group-hover:border-orange-500/50 group-hover:bg-orange-500/10' : 'border-slate-200 group-hover:border-orange-500/50 group-hover:bg-orange-50']">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 19l-7-7 7-7" />
+          </svg>
+        </div>
+        <span class="text-[11px] font-[1000] uppercase tracking-[0.2em] opacity-50 group-hover:opacity-100">Back</span>
+      </button>
+    </div>
+
     <div class="max-w-[1600px] mx-auto mb-12 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
       <div>
         <h1 class="text-5xl md:text-7xl font-[1000] tracking-tighter uppercase italic leading-[0.8]">
@@ -73,8 +93,8 @@ function applyFilter() {
       <div v-for="(stats, group) in statusGroups" :key="group">
         
         <div class="flex items-center gap-3 mb-8 ml-2">
-          <div :class="['w-2 h-6 rounded-full', groupColors[group].bg]"></div>
-          <h2 :class="['text-lg font-[1000] uppercase tracking-[0.3em] italic', groupColors[group].text]">
+          <div :class="['w-2 h-6 rounded-full', groupColors[group]?.bg || 'bg-slate-500']"></div>
+          <h2 :class="['text-lg font-[1000] uppercase tracking-[0.3em] italic', groupColors[group]?.text || 'text-slate-500']">
             {{ group }}
           </h2>
         </div>
@@ -100,7 +120,7 @@ function applyFilter() {
                 <svg v-if="filters.stats[stat.value]" class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7" />
                 </svg>
-                <plus v-else :class="['w-4 h-4', isDark ? 'text-white/20' : 'text-slate-300']" />
+                <div v-else :class="['text-lg leading-none', isDark ? 'text-white/20' : 'text-slate-300']">+</div>
               </div>
             </div>
 
@@ -132,7 +152,6 @@ function applyFilter() {
 </template>
 
 <style scoped>
-/* Grid Layout Enhancer */
 @media (min-width: 1500px) {
   .grid-cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 }
