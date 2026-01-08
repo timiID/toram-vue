@@ -113,6 +113,20 @@
 import { computed, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { crystalData } from '../data/store.js';
+// Crysta Biasa
+import normalCrystas from "@/assets/icons/crysta_normal.jpg";
+import weaponCrystas from "@/assets/icons/crysta_senjata.jpg";
+import armorCrystas from "@/assets/icons/crysta_zirah.jpg";
+import additionalCrystas from "@/assets/icons/crysta_tambahan.jpg";
+import specialCrystas from "@/assets/icons/crysta_pelengkap.jpg";
+
+// Enhancer
+import normalEnhancerCrystas from "@/assets/icons/crysta_up.jpg";
+import weaponEnhancerCrystas from "@/assets/icons/enhance_weapon_crysta.png";
+import armorEnhancerCrystas from "@/assets/icons/enhance_armor_crysta.png";
+import additionalEnhancerCrystas from "@/assets/icons/enhance_additional_crysta.png";
+import specialEnhancerCrystas from "@/assets/icons/enhace_special_crysta.png";
+
 
 const props = defineProps(['id', 'isDark']);
 const router = useRouter();
@@ -172,9 +186,33 @@ watch(() => props.id, () => { window.scrollTo({ top: 0, behavior: 'smooth' }); }
 const parseStats = (view) => view ? (Array.isArray(view) ? view : view.split(/,|\n/).map(s => s.trim()).filter(s => s)) : [];
 
 const getIconPath = (type) => {
-  const map = { 'NORMAL': 'crysta_normal.jpg', 'WEAPON': 'crysta_senjata.jpg', 'ARMOR': 'crysta_zirah.jpg', 'ADDITIONAL': 'crysta_pelengkap.jpg', 'SPECIAL': 'crysta_tambahan.jpg', 'UPGRADE': 'crysta_up.jpg', 'ENHANCER': 'crysta_up.jpg' };
-  return new URL(`../assets/icons/${map[type?.toUpperCase()] || 'crysta_normal.jpg'}`, import.meta.url).href;
-};
+  const t = type?.toUpperCase()
+  const root = findRootType(xtall.value)
+
+  // ===== ENHANCER / UPGRADE =====
+  if (t === 'UPGRADE' || t === 'ENHANCER') {
+    const enhancerMap = {
+      'NORMAL': normalEnhancerCrystas,
+      'WEAPON': weaponEnhancerCrystas,
+      'ARMOR': armorEnhancerCrystas,
+      'ADDITIONAL': additionalEnhancerCrystas,
+      'SPECIAL': specialEnhancerCrystas
+    }
+    return enhancerMap[root] || normalEnhancerCrystas
+  }
+
+  // ===== CRYSTA BIASA =====
+  const normalMap = {
+    'NORMAL': normalCrystas,
+    'WEAPON': weaponCrystas,
+    'ARMOR': armorCrystas,
+    'ADDITIONAL': additionalCrystas,
+    'SPECIAL': specialCrystas
+  }
+
+  return normalMap[root] || normalCrystas
+}
+
 </script>
 
 <style scoped>

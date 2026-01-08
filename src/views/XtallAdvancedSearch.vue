@@ -1,6 +1,6 @@
 <script setup>
-import { reactive } from 'vue'
-import { useRouter } from 'vue-router'
+import { reactive, onMounted } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { statusGroups } from '@/constants/statusGroups'
 import { groupColors } from '@/constants/groupColors'
 
@@ -9,7 +9,25 @@ const props = defineProps({
 })
 
 const router = useRouter()
+const route = useRoute()
 const filters = reactive({ stats: {} })
+onMounted(() => {
+  if (!route.query.filter) return
+
+  try {
+    const saved = JSON.parse(route.query.filter)
+
+    if (saved?.stats) {
+      filters.stats = saved.stats
+    }
+  } catch (e) {
+    console.warn('Invalid filter data')
+  }
+})
+
+function clearAll() {
+  Object.keys(filters.stats).forEach(k => delete filters.stats[k])
+}
 
 function toggleStat(stat) {
   if (!filters.stats[stat]) {
@@ -41,7 +59,7 @@ function applyFilter() {
       </div>
 
       <div class="flex items-center gap-4">
-        <button @click="filters.stats = {}" class="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] border-2 border-red-500/20 hover:bg-red-500 hover:text-white transition-all">
+        <button @click="clearAll" class="px-8 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] border-2 border-red-500/20 hover:bg-red-500 hover:text-white transition-all">
           Clear All
         </button>
         <button @click="applyFilter" 
