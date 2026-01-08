@@ -1,41 +1,49 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import ListBag from '../views/ListBag.vue' 
+import ListBag from '../views/ListBag.vue'
 import MainQuest from '../views/MainQuest.vue'
 import XtallView from '../views/XtallView.vue'
 import CalculatorMQ from '../views/CalculatorMQ.vue'
 import BSCalculator from '../views/BSCalculator.vue'
 import XtallDetail from '../views/XtallDetail.vue'
+import XtallAdvancedSearch from '../views/XtallAdvancedSearch.vue'
 
 const routes = [
   {
     path: '/',
     name: 'bag',
-    component: ListBag 
+    component: ListBag
   },
   {
     path: '/mq',
     name: 'mainquest',
-    component: MainQuest 
+    component: MainQuest
   },
   {
-    path: '/mq-calc', 
-    name: 'mqcalc', 
-    component: CalculatorMQ 
+    path: '/mq-calc',
+    name: 'mqcalc',
+    component: CalculatorMQ
   },
   {
     path: '/bs-calc',
     name: 'bs-calc',
     component: BSCalculator
   },
+
+  // ================= XTALL =================
   {
     path: '/xtall',
     name: 'xtall',
     component: XtallView
   },
   {
-    path: '/xtall/:id',
-    name: 'XtallDetail',
+    path: '/xtall/advanced',
+    name: 'xtall-advanced',
+    component: XtallAdvancedSearch
+  },
+  {
+    path: '/xtall/:id(\\d+)',
+    name: 'xtall-detail',
     component: XtallDetail,
     props: true
   }

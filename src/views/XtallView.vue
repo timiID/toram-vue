@@ -4,6 +4,7 @@
       <div :class="['absolute inset-0 bg-[url(\'/images/logo.png\')] bg-center bg-no-repeat bg-[length:60%_auto] opacity-[0.03] transition-opacity duration-1000', isDark ? 'brightness-200' : 'invert opacity-[0.02]']"></div>
       <div class="absolute inset-0 bg-gradient-to-b from-transparent to-transparent"></div>
       <div v-if="isDark" class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full animate-pulse"></div>
+      
       <div v-if="isDark" class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
     </div>
 
@@ -27,7 +28,6 @@
             <p :class="['text-xs font-black uppercase tracking-[0.5em] opacity-60', isDark ? 'text-slate-400' : 'text-slate-500']">Toram Online Database</p>
           </div>
         </div>
-
         <div class="flex flex-col items-center md:items-end gap-3">
           <div :class="['group relative px-8 py-3 rounded-2xl border-2 overflow-hidden transition-all duration-500', isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white border-slate-200 shadow-xl shadow-slate-200/50']">
             <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
@@ -41,8 +41,18 @@
         </div>
       </header>
 
+      <RouterLink
+  to="/xtall/advanced"
+  class="mb-6 block w-full rounded-2xl border-2 border-orange-500
+         bg-gradient-to-r from-orange-500 to-red-500
+         px-6 py-5 text-center text-lg font-black text-white
+         shadow-xl hover:scale-[1.02] transition"
+>
+  🔎 Advanced Xtall Search
+</RouterLink>
+
       <section :class="['grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 p-6 md:p-8 rounded-[3rem] border-2 backdrop-blur-3xl relative z-[100] transition-all duration-500 shadow-2xl', 
-        isDark ? 'bg-slate-950/60 border-white/10 shadow-black/40' : 'bg-white/80 border-slate-200 shadow-slate-300/50']">
+        isDark ? 'bg-slate-950/60 border-red/100 shadow-black/40' : 'bg-red/80 border-slate-200 shadow-slate-300/50']">
         
         <div class="space-y-2 col-span-2 md:col-span-2 lg:col-span-2">
           <label class="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-500 ml-4 flex items-center gap-2">
@@ -74,36 +84,90 @@
     </button>
 
     <transition name="dropdown-slide">
-      <div v-if="isTypeOpen" :class="['absolute left-0 top-full mt-3 w-64 z-[9999] p-4 rounded-[2rem] border-2 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-3xl', isDark ? 'bg-slate-950/95 border-white/10' : 'bg-white border-slate-100']">
-        <div class="space-y-1.5 max-h-[300px] overflow-y-auto custom-scroll pr-1">
-          
-          <div @click="selectedTypes = []" 
-            :class="['group flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all', 
-            selectedTypes.length === 0 ? 'bg-orange-500 text-white' : (isDark ? 'hover:bg-white/5 text-slate-400' : 'hover:bg-slate-50 text-slate-600')]">
-            <span class="text-[10px] font-black uppercase tracking-widest">All Type</span>
-            <div v-if="selectedTypes.length === 0" class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></div>
-          </div>
+  <div
+    v-if="isTypeOpen"
+    :class="[
+      'absolute left-0 top-full mt-3 w-64 z-[9999] p-4 rounded-[2rem] border-2 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-3xl',
+      isDark ? 'bg-slate-950/95 border-white/10' : 'bg-white border-slate-100'
+    ]"
+  >
+    <div class="space-y-1.5 max-h-[300px] overflow-y-auto custom-scroll pr-1">
 
-          <div :class="['h-[1px] my-2', isDark ? 'bg-white/5' : 'bg-slate-100']"></div>
-
-          <div v-for="type in CrystalType" :key="type" @click="toggleType(type)" 
-            :class="['group flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all border border-transparent', 
-            selectedTypes.includes(type) ? 'bg-orange-500/10 border-orange-500/20' : (isDark ? 'hover:bg-white/5' : 'hover:bg-slate-50')]">
-            
-            <div :class="['w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all duration-300', 
-              selectedTypes.includes(type) ? 'border-orange-500 bg-orange-500' : 'border-slate-500 group-hover:border-orange-400']">
-              <svg v-if="selectedTypes.includes(type)" class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path>
-              </svg>
-            </div>
-
-            <span :class="['text-xs font-bold', selectedTypes.includes(type) ? 'text-orange-500' : (isDark ? 'text-slate-400' : 'text-slate-600')]">
-              {{ type }}
-            </span>
-          </div>
-        </div>
+      <!-- ALL TYPE -->
+      <div
+        @click="selectedTypes = []"
+        :class="[
+          'group flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all',
+          selectedTypes.length === 0
+            ? 'bg-orange-500 text-white'
+            : (isDark ? 'hover:bg-white/5 text-slate-400' : 'hover:bg-slate-50 text-slate-600')
+        ]"
+      >
+        <span class="text-[10px] font-black uppercase tracking-widest">
+          All Type
+        </span>
+        <div
+          v-if="selectedTypes.length === 0"
+          class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"
+        ></div>
       </div>
-    </transition>
+
+      <div :class="['h-[1px] my-2', isDark ? 'bg-white/5' : 'bg-slate-100']"></div>
+
+      <!-- TYPE LIST -->
+      <div
+        v-for="type in displayTypes"
+        :key="type.value"
+        @click="toggleType(type.value)"
+        :class="[
+          'group flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all border border-transparent',
+          selectedTypes.includes(type.value)
+            ? 'bg-orange-500/10 border-orange-500/20'
+            : (isDark ? 'hover:bg-white/5' : 'hover:bg-slate-50')
+        ]"
+      >
+        <!-- CHECKBOX -->
+        <div
+          :class="[
+            'w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all duration-300',
+            selectedTypes.includes(type.value)
+              ? 'border-orange-500 bg-orange-500'
+              : 'border-slate-500 group-hover:border-orange-400'
+          ]"
+        >
+          <svg
+            v-if="selectedTypes.includes(type.value)"
+            class="w-3.5 h-3.5 text-white"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="4"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+        </div>
+
+        <!-- LABEL -->
+        <span
+          :class="[
+            'text-xs font-bold',
+            selectedTypes.includes(type.value)
+              ? 'text-orange-500'
+              : (isDark ? 'text-slate-400' : 'text-slate-600')
+          ]"
+        >
+          {{ type.label }}
+        </span>
+      </div>
+
+    </div>
+  </div>
+</transition>
+
   </div>
 </div>
 
@@ -181,17 +245,31 @@
           </div>
         </div>
 
-        <div class="space-y-2 col-span-1">
-          <label class="text-[10px] font-black uppercase tracking-[0.2em] text-pink-500 ml-4">Sequence</label>
-          <div class="relative group">
-            <select v-model="sortOrder" :class="['w-full px-4 py-4 rounded-2xl border-2 outline-none font-bold text-sm appearance-none cursor-pointer transition-all pr-10',
-              isDark ? 'bg-slate-900/50 border-white/5 focus:border-pink-500 text-slate-200' : 'bg-white border-slate-200 focus:border-pink-500 shadow-sm']">
-              <option value="asc">A to Z [ASC]</option>
-              <option value="desc">Z to A [DESC]</option>
-            </select>
-            <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none group-hover:scale-y-[-1] transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke-width="2"/></svg>
-          </div>
-        </div>
+<div class="space-y-2 col-span-2 md:col-span-1 lg:col-span-2">
+  <label class="text-[10px] font-black uppercase tracking-[0.2em] text-pink-500 ml-4">Sequence Control</label>
+  <div class="flex items-center gap-2">
+    <div class="relative group flex-1">
+      <select v-model="sortOrder" :class="['w-full px-4 py-4 rounded-2xl border-2 outline-none font-bold text-sm appearance-none cursor-pointer transition-all pr-10',
+        isDark ? 'bg-slate-900/50 border-white/5 focus:border-pink-500 text-slate-200' : 'bg-white border-slate-200 focus:border-pink-500 shadow-sm']">
+        <option value="asc">A to Z [ASC]</option>
+        <option value="desc">Z to A [DESC]</option>
+      </select>
+      <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none group-hover:scale-y-[-1] transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke-width="2"/></svg>
+    </div>
+
+    <button 
+      @click="searchQuery = ''; selectedTypes = []; selectedStats = []; sortOrder = 'asc'; itemsPerPage = 10"
+      class="h-[56px] px-5 rounded-2xl bg-red-500 hover:bg-red-600 text-white transition-all duration-300 flex items-center gap-2 shadow-lg shadow-red-500/20 active:scale-95 border-2 border-transparent"
+      title="Reset All Filters"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+      </svg>
+      <span class="text-[10px] font-black uppercase tracking-widest hidden sm:inline">Reset All</span>
+    </button>
+  </div>
+</div>
+        
       </section>
 
       <div class="relative py-4 flex items-center justify-center">
@@ -210,8 +288,8 @@
           <div class="lg:col-span-3 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 scroll-hide">
             <div v-if="getBaseFor(xtall)" @click="setSearch(getBaseFor(xtall).name)"
               :class="['flex-shrink-0 w-[200px] lg:w-full p-5 rounded-[1.5rem] border-2 cursor-pointer transition-all duration-500 relative overflow-hidden group shadow-xl',
-              isDark ? 'bg-slate-900/30 border-white/5 hover:border-cyan-500/50 hover:bg-slate-900/60' : 'bg-white border-slate-200 hover:border-cyan-400']">
-              <div class="absolute left-0 top-0 h-full w-2 bg-gradient-to-b from-cyan-500 to-blue-600 opacity-40 group-hover:opacity-100 transition-opacity"></div>
+              isDark ? 'bg-slate-900/300 border-white/65 hover:border-cyan-500/50 hover:bg-slate-900/60' : 'bg-white border-slate-200 hover:border-cyan-400']">
+              <div class="absolute left-0 top-0 h-full w-2 bg-gradient-to-b from-sky-400 to cyan-500 to-blue-600 opacity-40 group-hover:opacity-100 transition-opacity"></div>
               <div class="flex items-center gap-2 mb-2">
                 <svg class="w-3 h-3 text-cyan-500" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9l1.42 1.42L8.83 14H18V4h2v12H8.83l3.59 3.58L11 21l-6-6 6-6z"/></svg>
                 <span class="text-[9px] font-black uppercase text-cyan-500 tracking-widest">Previous</span>
@@ -231,15 +309,15 @@
               xtall.type === 'UPGRADE' ? 'bg-purple-600' : 'bg-blue-600']"></div>
 
             <div :class="['h-full relative rounded-[2.5rem] border-2 overflow-hidden transition-all duration-500 shadow-2xl',
-              isDark ? 'bg-[#0b1226]/90 border-white/10 group-hover:border-white/20' : 'bg-white border-slate-200 group-hover:border-blue-400']">
+              isDark ? 'bg-[#0b1226]/90 border-white/80 group-hover:border-white/80' : 'bg-white border-slate-200 group-hover:border-blue-400']">
               
               <div class="relative p-6 md:p-10">
                  <div class="flex flex-col md:flex-row gap-8 items-start">
                     <div class="relative shrink-0 mx-auto md:mx-0">
-                      <div class="absolute inset-0 bg-gradient-to-tr from-blue-600 to-purple-600 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-40 animate-pulse"></div>
+                      <div class="absolute inset-0 bg-gradient-to-tr from-sky-600 to-purple-600 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-40 animate-pulse"></div>
                       <div :class="['relative w-24 h-24 md:w-32 md:h-32 rounded-[2.5rem] border-2 flex items-center justify-center shadow-inner transition-all duration-700 group-hover:rotate-[10deg] group-hover:scale-110',
-                        isDark ? 'bg-slate-950 border-white/10' : 'bg-slate-50 border-slate-200']">
-                        <img :src="getIconPath(xtall.type)" class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_15px_15px_rgba(0,0,0,0.4)]" :alt="xtall.type" />
+                        isDark ? 'bg-slate-950 border-white/70' : 'bg-slate-50 border-slate-200']">
+                        <img :src="getIconPath(xtall)" class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_15px_15px_rgba(0,0,0,0.4)]" :alt="xtall.type" />
                       </div>
                       <div :class="['absolute -bottom-2 -right-2 w-10 h-10 rounded-2xl border-2 flex items-center justify-center text-[10px] font-black', getBadgeColor(xtall.type)]">
                          {{ xtall.type.charAt(0) }}
@@ -250,8 +328,11 @@
                        <div class="space-y-2">
                           <div class="flex flex-wrap items-center gap-3">
                         </div>
-                          <h3 :class="['text-2xl md:text-4xl font-[1000] tracking-tighter leading-none transition-all duration-500 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400', 
-                            isDark ? 'text-white' : 'text-slate-900']">
+                          <h3 :class="[
+  'text-2xl md:text-4xl font-[1000] tracking-tighter leading-none transition-all duration-500 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400',
+  getLabelColor(xtall)
+]">
+
                             {{ xtall.name }}
                           </h3>
                        </div>
@@ -314,8 +395,8 @@
             <template v-if="getEvoFor(xtall).length">
               <div v-for="evo in getEvoFor(xtall)" :key="evo.code" @click="setSearch(evo.name)"
                 :class="['flex-shrink-0 w-[200px] lg:w-full p-5 rounded-[1.5rem] border-2 cursor-pointer transition-all duration-500 relative overflow-hidden group shadow-xl',
-                isDark ? 'bg-slate-900/30 border-white/5 hover:border-purple-500/50 hover:bg-slate-900/60' : 'bg-white border-slate-200 hover:border-purple-400']">
-                <div class="absolute right-0 top-0 h-full w-2 bg-gradient-to-b from-purple-500 to-pink-600 opacity-40 group-hover:opacity-100 transition-opacity"></div>
+                isDark ? 'bg-slate-900/30 border-white/65 hover:border-purple-500/50 hover:bg-slate-900/60' : 'bg-white border-slate-200 hover:border-purple-400']">
+                <div class="absolute right-0 top-0 h-full w-2 bg-gradient-to-b from-purple-400 to-pink-600 to-yellow-700 opacity-40 group-hover:opacity-100 transition-opacity"></div>
                 <div class="flex items-center justify-end gap-2 mb-2 text-right">
                   <span class="text-[9px] font-black uppercase text-purple-500 tracking-widest">Next Upgrade</span>
                   <svg class="w-3 h-3 text-purple-500 rotate-180" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9l1.42 1.42L8.83 14H18V4h2v12H8.83l3.59 3.58L11 21l-6-6 6-6z"/></svg>
@@ -398,8 +479,34 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router'
 import { ref, computed, onMounted, onUnmounted, watch } from 'vue';
 import { crystalData, CrystalType } from '../data/store.js';
+// Crysta Biasa
+import normalCrystas from "@/assets/icons/crysta_normal.jpg";
+import weaponCrystas from "@/assets/icons/crysta_senjata.jpg";
+import armorCrystas from "@/assets/icons/crysta_zirah.jpg";
+import additionalCrystas from "@/assets/icons/crysta_tambahan.jpg";
+import specialCrystas from "@/assets/icons/crysta_pelengkap.jpg";
+
+// Enhancer (Crysta Upgrade/Up)
+// Sesuai permintaanmu: crysta_up.jpg digunakan untuk normalEnhancerCrystas
+import normalEnhancerCrystas from "@/assets/icons/crysta_up.jpg"; 
+import weaponEnhancerCrystas from "@/assets/icons/enhance_weapon_crysta.png";
+import armorEnhancerCrystas from "@/assets/icons/enhance_armor_crysta.png";
+import additionalEnhancerCrystas from "@/assets/icons/enhance_additional_crysta.png";
+import specialEnhancerCrystas from "@/assets/icons/enhace_special_crysta.png";
+ import { parseXtallStats } from '@/utils/parseXtallStats'
+
+const parsedCache = new Map()
+
+function getParsedStats(xtall) {
+  if (!parsedCache.has(xtall.code)) {
+    parsedCache.set(xtall.code, parseXtallStats(xtall.view))
+  }
+  return parsedCache.get(xtall.code)
+}
+
 
 /**
  * COMPONENT PROPS
@@ -439,6 +546,7 @@ const statusGroups = { "Base Stats": [ { label: "STR / STR%", value: "STR" }, { 
   "Reduce DMG": [ { label: "Reduksi DMG (Sekitar Pemain)", value: "Reduksi DMG (Sekitar Pemain)" }, { label: "Reduksi DMG (Sekitar Musuh)", value: "Reduksi DMG (Sekitar Musuh)" }, { label: "Reduksi DMG (Lantai)", value: "Reduksi DMG (Lantai)" }, { label: "Reduksi DMG (Linear)", value: "Reduksi DMG (Linear)" }, { label: "Reduksi DMG (Bowling)", value: "Reduksi DMG (Bowling)" }, { label: "Reduksi DMG (Terjang)", value: "Reduksi DMG (Terjang)" }, { label: "Reduksi DMG (Peluru)", value: "Reduksi DMG (Peluru)" } ], 
   "Other Stat": [ { label: "Drop Rate%", value: "Drop Rate" }, { label: "EXP%", value: "EXP" }, { label: "Revive Time%", value: "Revive Time" }, { label: "Tumble Unavailable", value: "Tumble Unavailable" }, { label: "Evasion Recharge", value: "Evasion Recharge" }, { label: "Refleks", value: "Refleks" }, { label: "Recoil", value: "Recoil" } ] };
 
+
 /**
  * RECTIVE STATE
  */
@@ -453,8 +561,38 @@ const sortOrder = ref('asc');
 const statusRef = ref(null);
 const typeRef = ref(null);
 
-/**
- * LOGIC METHODS
+const route = useRoute()
+
+const advancedFilter = computed(() => {
+  try {
+    return route.query.filter
+      ? JSON.parse(route.query.filter)
+      : null
+  } catch {
+    return null
+  }
+})
+
+function parseStatsFromView(viewText) {
+  const result = {}
+  if (!viewText) return result
+
+  viewText.split('\n').forEach(line => {
+    const match = line.match(/(.+?)\s([+-])\s?(\d+)/)
+    if (match) {
+      const [, name, sign, value] = match
+      result[name.trim().toUpperCase()] = {
+        sign,
+        value: Number(value)
+      }
+    }
+  })
+
+  return result
+}
+
+
+ /** LOGIC METHODS
  */
  const toggleTypeDropdown = () => {
   isTypeOpen.value = !isTypeOpen.value;
@@ -492,18 +630,19 @@ const resetFilters = () => {
   currentPage.value = 1;
 };
 
-const getIconPath = (type) => {
-  const map = { 
-    'NORMAL': 'crysta_normal.jpg', 
-    'WEAPON': 'crysta_senjata.jpg', 
-    'ARMOR': 'crysta_zirah.jpg', 
-    'ADDITIONAL': 'crysta_pelengkap.jpg', 
-    'SPECIAL': 'crysta_tambahan.jpg', 
-    'UPGRADE': 'crysta_up.jpg' 
-  };
-  const file = map[type?.toUpperCase()] || 'crysta_normal.jpg';
-  return new URL(`../assets/icons/${file}`, import.meta.url).href;
+const getIconPath = (xtall) => {
+  const type = xtall.type?.toUpperCase();
+
+  // Kalau bukan upgrade
+  if (type !== 'UPGRADE') {
+    return iconMap[type] || normalCrystas;
+  }
+
+  // Kalau upgrade → cari root type
+  const rootType = findRootType(xtall);
+  return iconMap[`${rootType}_UPGRADE`] || normalEnhancerCrystas;
 };
+
 
 const getBadgeColor = (type) => {
   const map = { 
@@ -525,6 +664,118 @@ const getBaseFor = (xtall) => {
 const getEvoFor = (xtall) => {
   return crystalData.filter(c => String(c.link) === String(xtall.code));
 };
+const displayTypes = [
+  { label: 'Weapon Crystas', value: 'WEAPON' },
+  { label: 'Weapon Enhancer Crystas', value: 'WEAPON_UPGRADE' },
+
+  { label: 'Armor Crystas', value: 'ARMOR' },
+  { label: 'Armor Enhancer Crystas', value: 'ARMOR_UPGRADE' },
+
+  { label: 'Additional Crystas', value: 'ADDITIONAL' },
+  { label: 'Additional Enhancer Crystas', value: 'ADDITIONAL_UPGRADE' },
+
+  { label: 'Normal Crystas', value: 'NORMAL' },
+  { label: 'Normal Enhancer Crystas', value: 'NORMAL_UPGRADE' },
+
+  { label: 'Special Crystas', value: 'SPECIAL' },
+  { label: 'Special Enhancer Crystas', value: 'SPECIAL_UPGRADE' }
+];
+const iconMap = {
+  NORMAL: normalCrystas,
+  UPGRADE: normalEnhancerCrystas,
+
+  ADDITIONAL: additionalCrystas,
+  ADDITIONAL_UPGRADE: additionalEnhancerCrystas,
+
+  ARMOR: armorCrystas,
+  ARMOR_UPGRADE: armorEnhancerCrystas,
+
+  WEAPON: weaponCrystas,
+  WEAPON_UPGRADE: weaponEnhancerCrystas,
+
+  SPECIAL: specialCrystas,
+  SPECIAL_UPGRADE: specialEnhancerCrystas,
+};
+
+
+const getTypeLabel = (type) => {
+  const t = type.toUpperCase();
+
+  const isEnhancer = t === 'UPGRADE' || t === 'ENHANCER';
+
+  const rootMap = {
+    WEAPON: 'Weapon',
+    ARMOR: 'Armor',
+    ADDITIONAL: 'Additional',
+    NORMAL: 'Normal',
+    SPECIAL: 'Special'
+  };
+
+  // Kalau DB sudah kasih full info
+  if (rootMap[t]) {
+    return `${rootMap[t]} Crystas`;
+  }
+
+  // Untuk UPGRADE / ENHANCER
+  if (isEnhancer) {
+    return 'Enhancer Crystas';
+  }
+
+  return `${type} Crystas`;
+};
+
+/**
+ * ROOT XTALL RESOLVER (BASE XTALL)
+ */
+const findRootItem = (item) => {
+  if (!item) return null;
+
+  let current = item;
+  let safety = 0;
+
+  while (current.link && safety < 10) {
+    const parent = crystalData.find(
+      c => String(c.code) === String(current.link)
+    );
+    if (!parent) break;
+    current = parent;
+    safety++;
+  }
+
+  return current;
+};
+
+const findRootType = (item) => {
+  const root = findRootItem(item);
+  return root?.type?.toUpperCase() || 'NORMAL';
+};
+
+/**
+ * LABEL COLOR ENGINE (FOLLOW BASE XTALL)
+ */
+const getLabelColor = (xtall) => {
+  if (!xtall) return 'text-cyan-500';
+
+  const type = xtall.type?.toUpperCase();
+
+  // Upgrade / Enhancer selalu abu
+  if (type === 'UPGRADE' || type === 'ENHANCER') {
+    return 'text-gray-400';
+  }
+
+  const rootType = findRootType(xtall);
+
+  const map = { 
+    WEAPON: 'text-red-500',
+    ARMOR: 'text-green-500',
+    NORMAL: 'text-sky-500',
+    ADDITIONAL: 'text-yellow-500',
+    SPECIAL: 'text-purple-500'
+  };
+
+  return map[rootType] || 'text-cyan-500';
+};
+
 
 const parseStats = (view) => {
   if (!view) return [];
@@ -541,15 +792,57 @@ const setSearch = (name) => {
  */
 const filteredResults = computed(() => {
   let res = crystalData.filter(c => c.name?.trim());
+  if (advancedFilter.value?.stats) {
+  res = res.filter(c => {
+    const parsed = getParsedStats(c)
+
+    return Object.entries(advancedFilter.value.stats).every(
+      ([statName, rule]) => {
+        const stat = parsed[statName.toUpperCase()]
+        if (!stat) return false
+
+        // cek + / -
+        if (stat.sign !== rule.sign) return false
+
+        // cek >= <=
+        if (rule.value != null) {
+          if (rule.op === '>=' && stat.value < rule.value) return false
+          if (rule.op === '<=' && stat.value > rule.value) return false
+        }
+
+        return true
+      }
+    )
+  })
+}
   
   if (searchQuery.value) {
     const q = searchQuery.value.toLowerCase();
     res = res.filter(c => c.name.toLowerCase().includes(q));
   }
   
-  if (selectedTypes.value.length > 0) {
-    res = res.filter(c => selectedTypes.value.includes(c.type));
-  }
+if (selectedTypes.value.length > 0) {
+  res = res.filter(c => {
+    const rootType = findRootType(c); // WEAPON / ARMOR / etc
+    const isUpgrade = c.type === 'UPGRADE';
+
+    return selectedTypes.value.some(sel => {
+      // contoh: WEAPON
+      if (!sel.includes('_')) {
+        return !isUpgrade && rootType === sel;
+      }
+
+      // contoh: WEAPON_UPGRADE
+      const [base, kind] = sel.split('_');
+      return (
+        kind === 'UPGRADE' &&
+        isUpgrade &&
+        rootType === base
+      );
+    });
+  });
+}
+
   
   if (selectedStats.value.length > 0) {
     res = res.filter(c => {

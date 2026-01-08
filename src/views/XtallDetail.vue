@@ -34,10 +34,19 @@
 
         <div class="lg:col-span-7 space-y-8 animate-slide-left">
           <div>
-            <p :class="['text-xs font-black uppercase tracking-[0.4em] mb-2 drop-shadow-sm', getLabelColor(xtall.type)]">
+            <p :class="['text-xs font-black uppercase tracking-[0.4em] mb-2 drop-shadow-sm', getLabelColor(xtall.name)]">
               {{ formatBadgeText(xtall.type) }}
             </p>            
-<h1 :class="['text-5xl md:text-7xl font-[1000] tracking-tighter italic uppercase leading-none mb-4 drop-shadow-2xl transition-all duration-500 brightness-60 saturate-150', getLabelColor(findRootType(xtall))]">
+                <h1 :class="[
+  'text-5xl md:text-7xl font-[1000] tracking-tighter italic uppercase leading-none mb-4 drop-shadow-2xl transition-all duration-500 brightness-100 saturate-70',
+  getLabelColor(xtall.type),
+  isDark ? '[-webkit-text-stroke:1px_white]' : '[-webkit-text-stroke:1px_black]'
+]"
+:style="{
+  /* Membuat efek gradient menggelap ke bawah tanpa merusak stroke */
+  maskImage: 'linear-gradient(to bottom, black 10%, rgba(0,0,0,0.5) 100%)',
+  webkitMaskImage: 'linear-gradient(to bottom, black 10%, rgba(0,0,0,0.5) 100%)'
+}">
   {{ xtall.name }}
 </h1>
             <div class="flex items-center gap-4">
@@ -126,7 +135,7 @@ const findRootType = (item) => {
 const getLabelColor = (type) => {
   const rootType = findRootType(xtall.value);
   const isUp = (type?.toUpperCase() === 'UPGRADE' || type?.toUpperCase() === 'ENHANCER');
-  if (isUp) return 'text-indigo-400';
+  if (isUp) return 'text-gray-400';
   const map = { 
     'WEAPON': 'text-red-500', 
     'ARMOR': 'text-green-500', 

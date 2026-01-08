@@ -11,3 +11,7 @@ if (!document.title) {
 const app = createApp(App)
 app.use(router)
 app.mount('#app')
+
+window.addEventListener('unhandledrejection', e => {
+  console.warn('Ignored async listener error:', e.reason)
+})

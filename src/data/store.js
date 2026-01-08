@@ -242,8 +242,7 @@ export const crystalData = [
           link: null,
           name: "P. Avatar",
           type: "NORMAL",
-          view: `\nUntradable
-          EXP +1%\nKebal Api +1%\nKebal Angin +%\nKebal Air +1%\nKebal Bumi +1%\nKebal Cahaya +1%\nKebal Gelap -1%`,
+          view: `\nUntradable\nEXP +1%\nKebal Api +1%\nKebal Angin +%\nKebal Air +1%\nKebal Bumi +1%\nKebal Cahaya +1%\nKebal Gelap -1%`,
         },
         {
           code: 37,
@@ -535,9 +534,9 @@ export const crystalData = [
         {
           code: 78,
           link: null,
+          name: "INT+8",
           type: "NORMAL",
-          name: "",
-          view: `\n`,
+          view: `\nINT +8`,
         },
         {
           code: 79,
@@ -578,8 +577,8 @@ export const crystalData = [
           code: 84,
           link: null,
           type: "NORMAL",
-          name: "",
-          view: `\n`,
+          name: "AGI+8",
+          view: `\nAGI +8`,
         },
         {
           code: 85,
@@ -619,9 +618,9 @@ export const crystalData = [
         {
           code: 90,
           link: null,
+          name: "VIT+8",
           type: "NORMAL",
-          name: "",
-          view: `\n`,
+          view: `\nVIT +8`,
         },
         {
           code: 91,
@@ -661,9 +660,9 @@ export const crystalData = [
         {
           code: 96,
           link: null,
+          name: "AGI+8",
           type: "NORMAL",
-          name: "",
-          view: `\n`,
+          view: `\nAGI +8`,
         },
         {
           code: 97,
@@ -745,9 +744,9 @@ export const crystalData = [
         {
           code: 108,
           link: null,
+          name: "STR+8",
           type: "NORMAL",
-          name: "",
-          view: `\n`,
+          view: `\nSTR +8`,
         },
         {
           code: 109,
@@ -872,8 +871,8 @@ export const crystalData = [
           code: 126,
           link: null,
           type: "NORMAL",
-          name: "",
-          view: `\n`,
+          name: "Panchos Kita Makura",
+          view: `\nEXP +1%\nCritical Rate +5\nAkurasi +3`,
         },
         {
           code: 127,
@@ -913,9 +912,9 @@ export const crystalData = [
         {
           code: 132,
           link: null,
+          name: "DEX+8",
           type: "NORMAL",
-          name: "",
-          view: `\n`,
+          view: `\nDEX +8`,
         },
         {
           code: 133,
@@ -1305,10 +1304,10 @@ export const crystalData = [
         },
         {
           code: 188,
-          link: null,
+          link: 153,
           type: "UPGRADE",
-          name: "",
-          view: `\n`,
+          name: "Goudvis",
+          view: `\n.ATK +12%\nMATK +12%\nNatural HP Regen -14%\nNatural MP Regen -14%`,
         },
         {
           code: 189,
@@ -2763,8 +2762,8 @@ export const crystalData = [
           code: 396,
           link: null,
           type: "SPECIAL",
-          name: "",
-          view: `\n`,
+          name: "Zodiac's Blessing (EN)",
+          view: `\n.ATK +10\nMATK +10\nDEF +100\nMDEF +100\nAkurasi +10\nASPD +100\nCSPD +100\nCritical Rate +10\nEXP +10%`,
         },
         {
           code: 397,
@@ -2805,8 +2804,8 @@ export const crystalData = [
           code: 402,
           link: null,
           type: "SPECIAL",
-          name: "",
-          view: `\n`,
+          name: "Zeagrysta",
+          view: `\nStability +2%\nKekebalan Fisik +3%\nKekebalan Sihir +3%\nDaya Jarak Dekat +2%\nMaxMP -100\nDengan Perisai:\nResistansi Status Buruk +5%`,
         },
         {
           code: 403,
@@ -2847,8 +2846,8 @@ export const crystalData = [
           code: 408,
           link: null,
           type: "SPECIAL",
-          name: "",
-          view: `\n`,
+          name: "Dewa Mesin Maple",
+          view: `\nMaxMP +200\nKekebalan Fisik +10%\nKekebalan Sihir +10%\nDaya Jarak Dekat +10%\nResistansi Status Buruk +5%\nPelindung Fraksional +5%\nDengan Zirah Berat:\nKekebalan Fisik +5%\nKekebalan Sihir +5%\nResistansi Status Buruk +10%`,
         },
         {
           code: 409,
@@ -2988,8 +2987,7 @@ export const crystalData = [
           link: null,
           type: "SPECIAL",
           name: "Potum Emas",
-          view: `\nUntradable
-          Base Drop Rate +1%`,
+          view: `\nUntradable\nBase Drop Rate +1%`,
         },
         {
           code: 429,
@@ -3536,7 +3534,49 @@ export const crystalData = [
           type: "UPGRADE",
           name: "Wiltileaf",
           view: `\n.ATK +9%\nCritical Damage +12\nMotion Speed 0%\nKekebalan Sihir -15%`,
-         } 
+         },
+         {
+          code: 506,
+          link: 138,
+          type: "UPGRADE",
+          name: "Obsia",
+          view: `\nMaxHP +7000\nGuard Power +20%\n.DEF +15%\nKekebalan Fisik +10%`,
+        },
+         {
+          code: 507,
+          link: 199,
+          type: "UPGRADE",
+          name: "Brahma",
+          view: `\nMaxHP +800\nMaxMP +400\nAggro +3%\nDengan Zirah Berat:\nAggro +3%`,
+        },
+        {
+          code: 508,
+          link: 150,
+          type: "UPGRADE",
+          name: "Bajinja",
+          view: `\nMaxHP +10000\nCritical Damage +9\nDaya Jarak Dekat +6%\nDengan Kitab Ninjutsu:\nEvasion Recharge +25%`,
+        },
+        {
+          code: 509,
+          link: 150,
+          type: "UPGRADE",
+          name: "Ninja Persik Hitam",
+          view: `\nMaxHP +10000\nCritical Damage +9\nDaya Jarak Dekat +6%\nDengan Kitab Ninjutsu:\nAggro -25%`,
+        },
+        {
+          code: 510,
+          link: 141,
+          type: "UPGRADE",
+          name: "Puiet",
+          view: `\n.ATK +12%\nCritical Rate +12\nMaxHP -800\nMaxMP -400\nDengan Perisai:\nDaya Jarak Dekat +6%\nSTR +2%`,
+        },
+        {
+          code: 511,
+          link: 402,
+          type: "SPECIAL",
+          name: "Abyssal Crystal Monster (EN)",
+          view: `\nStability +4%\nKekebalan Fisik +6%\nKekebalan Sihir +6%\nDaya Jarak Dekat +4%\nMaxMP -200\nDengan Perisai:\nResistansi Status Buruk +5%`,
+        }
       ];
       
       import iconNormal from '@/assets/icons/crysta_normal.jpg'
