@@ -20,7 +20,7 @@
           <div class="text-center md:text-left space-y-1">
             <div class="flex items-center gap-3">
               <h1 class="text-4xl md:text-6xl font-[1000] italic uppercase tracking-tighter leading-none transition-all">
-                <span :class="isDark ? 'text-white' : 'text-slate-900'">TIMI</span>
+                <span :class="text-white">TIMI </span>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">DB</span>
               </h1>
               <div class="px-2 py-0.5 bg-blue-500/10 border border-blue-500/20 rounded text-[8px] font-black text-blue-500 tracking-widest uppercase">Bahasa Indonesia</div>
@@ -68,169 +68,7 @@
           </div>
         </div>
 
-        <div class="space-y-2 col-span-1">
-  <label class="text-[10px] font-black uppercase tracking-[0.2em] text-orange-500 ml-4">Type Xtall</label>
-  <div class="relative" ref="typeRef">
-    <button @click.stop="toggleTypeDropdown" 
-      :class="['w-full px-5 py-4 rounded-2xl border-2 text-left font-bold text-sm flex justify-between items-center transition-all duration-300',
-      isTypeOpen ? 'border-orange-500 ring-4 ring-orange-500/10 scale-[0.98]' : '',
-      isDark ? (isTypeOpen ? 'bg-orange-500/10' : 'bg-slate-900/50 border-white/5') : (isTypeOpen ? 'bg-orange-50 text-orange-700' : 'bg-white border-slate-200 shadow-sm')]">
-      
-      <span class="truncate">
-        {{ selectedTypes.length === 0 ? 'All Type' : (selectedTypes.length === 1 ? selectedTypes[0] : selectedTypes.length + ' Terpilih') }}
-      </span>
-      
-      <svg :class="['w-4 h-4 transition-transform duration-500', isTypeOpen ? 'rotate-180 text-orange-500' : 'text-slate-500']" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
-    </button>
-
-    <transition name="dropdown-slide">
-  <div
-    v-if="isTypeOpen"
-    :class="[
-      'absolute left-0 top-full mt-3 w-64 z-[9999] p-4 rounded-[2rem] border-2 shadow-[0_20px_60px_rgba(0,0,0,0.4)] backdrop-blur-3xl',
-      isDark ? 'bg-slate-950/95 border-white/10' : 'bg-white border-slate-100'
-    ]"
-  >
-    <div class="space-y-1.5 max-h-[300px] overflow-y-auto custom-scroll pr-1">
-
-      <!-- ALL TYPE -->
-      <div
-        @click="selectedTypes = []"
-        :class="[
-          'group flex items-center justify-between px-4 py-3 rounded-xl cursor-pointer transition-all',
-          selectedTypes.length === 0
-            ? 'bg-orange-500 text-white'
-            : (isDark ? 'hover:bg-white/5 text-slate-400' : 'hover:bg-slate-50 text-slate-600')
-        ]"
-      >
-        <span class="text-[10px] font-black uppercase tracking-widest">
-          All Type
-        </span>
-        <div
-          v-if="selectedTypes.length === 0"
-          class="w-1.5 h-1.5 rounded-full bg-white animate-pulse"
-        ></div>
-      </div>
-
-      <div :class="['h-[1px] my-2', isDark ? 'bg-white/5' : 'bg-slate-100']"></div>
-
-      <!-- TYPE LIST -->
-      <div
-        v-for="type in displayTypes"
-        :key="type.value"
-        @click="toggleType(type.value)"
-        :class="[
-          'group flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer transition-all border border-transparent',
-          selectedTypes.includes(type.value)
-            ? 'bg-orange-500/10 border-orange-500/20'
-            : (isDark ? 'hover:bg-white/5' : 'hover:bg-slate-50')
-        ]"
-      >
-        <!-- CHECKBOX -->
-        <div
-          :class="[
-            'w-5 h-5 rounded-lg border-2 flex items-center justify-center transition-all duration-300',
-            selectedTypes.includes(type.value)
-              ? 'border-orange-500 bg-orange-500'
-              : 'border-slate-500 group-hover:border-orange-400'
-          ]"
-        >
-          <svg
-            v-if="selectedTypes.includes(type.value)"
-            class="w-3.5 h-3.5 text-white"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="4"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-
-        <!-- LABEL -->
-        <span
-          :class="[
-            'text-xs font-bold',
-            selectedTypes.includes(type.value)
-              ? 'text-orange-500'
-              : (isDark ? 'text-slate-400' : 'text-slate-600')
-          ]"
-        >
-          {{ type.label }}
-        </span>
-      </div>
-
-    </div>
-  </div>
-</transition>
-
-  </div>
-</div>
-
-<div class="space-y-2 col-span-1">
-  <label class="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-500 ml-4">Attributes</label>
-  <div class="relative" ref="statusRef">
-    <button @click.stop="toggleStatusDropdown"
-      :class="['w-full px-5 py-4 rounded-2xl border-2 text-left font-bold text-sm flex justify-between items-center transition-all duration-300',
-      isStatusOpen ? 'border-teal-500 ring-4 ring-teal-500/10 scale-[0.98]' : '',
-      isDark ? (isStatusOpen ? 'bg-teal-500/10' : 'bg-slate-900/50 border-white/5') : (isStatusOpen ? 'bg-teal-50 text-teal-700' : 'bg-white border-slate-200 shadow-sm')]">
-  
-      <span class="truncate">
-        {{ selectedStats.length > 0 ? selectedStats.length + ' Filters Selected' : 'Attribute Status' }}
-      </span>
-  
-      <svg :class="['w-4 h-4 transition-transform duration-500', isStatusOpen ? 'rotate-180 text-teal-500' : 'text-slate-500']" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
-    </button>
-
-    <transition name="dropdown-slide">
-      <div v-if="isStatusOpen" :class="['absolute right-0 md:left-0 top-full mt-3 w-[280px] z-[9999] p-4 rounded-[2rem] border-2 shadow-[0_30px_80px_rgba(0,0,0,0.6)] backdrop-blur-3xl', isDark ? 'bg-slate-950/98 border-white/10' : 'bg-white/98 border-slate-200']">
-    
-        <div class="flex justify-between items-center mb-4 pb-2 border-b border-white/5">
-          <div>
-            <h4 class="text-xs font-black uppercase italic tracking-tighter">Attribute Status</h4>
-            <p class="text-[8px] text-slate-500 font-bold uppercase tracking-widest mt-0.5">Narrow your results</p>
-          </div>
-          <button @click="selectedStats = []" class="px-4 py-2 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white rounded-lg text-[10px] font-black uppercase transition-all duration-300">Reset</button>
-        </div>
-
-        <div class="grid grid-cols-1 gap-2 max-h-[55vh] overflow-y-auto custom-scroll pr-1">
-          <div v-for="(options, group) in statusGroups" :key="group" 
-            :class="['group p-3 rounded-[1.5rem] border-2 transition-all duration-500', isDark ? 'bg-white/[0.02] hover:bg-white/[0.04]' : 'bg-slate-50', groupColors[group]?.border || 'border-transparent']">
-        
-            <div class="flex items-center gap-2 mb-2">
-              <div :class="['w-1 h-3 rounded-full', groupColors[group]?.bg || 'bg-slate-500']"></div>
-              <h5 :class="['text-[9px] font-black uppercase tracking-widest', groupColors[group]?.text || 'text-slate-400']">{{ group }}</h5>
-            </div>
-
-            <div class="flex flex-wrap gap-1.5">
-              <div v-for="opt in options" :key="opt.value" 
-                @click.stop="toggleStat(opt.value)" 
-                :class="['group/stat px-2 py-1 rounded-lg text-[9px] font-black transition-all duration-300 border flex items-center gap-1.5 cursor-pointer', 
-                selectedStats.includes(opt.value) 
-                  ? (groupColors[group]?.text + ' border-current bg-current/10 shadow-sm') 
-                  : (isDark ? 'text-slate-500 border-white/5 hover:border-white/20' : 'text-slate-500 border-slate-200 bg-white hover:border-slate-400')]">
-            
-                <div :class="['w-2.5 h-2.5 rounded-sm border flex items-center justify-center transition-all', 
-                  selectedStats.includes(opt.value) ? 'bg-current border-transparent' : 'border-current/30']">
-                  <svg v-if="selectedStats.includes(opt.value)" class="w-2 h-2 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                </div>
-            
-                {{ opt.label }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </transition>
-  </div>
-</div>
-
+       
         <div class="space-y-2 col-span-1">
           <label class="text-[10px] font-black uppercase tracking-[0.2em] text-purple-500 ml-4">Scale</label>
           <div class="relative group">
@@ -245,7 +83,7 @@
           </div>
         </div>
 
-<div class="space-y-4 w-full col-span-2 lg:col-span-3">
+<div class="space-y-0 w-full col-span-2 lg:col-span-3">
   <div class="flex items-center gap-2 ml-4">
     <div class="w-1.5 h-4 bg-red-600 rounded-full"></div>
     <label class="text-[11px] font-[1000] uppercase tracking-[0.25em] text-red-600">
@@ -255,7 +93,7 @@
   
   <div class="flex flex-col md:flex-row items-center gap-3 w-full">
     
-    <div class="relative group flex-[2.5] w-full">
+    <div class="relative group  w-full">
       <select v-model="sortOrder" :class="['w-full h-[60px] px-6 rounded-2xl border-2 outline-none font-bold text-sm appearance-none cursor-pointer transition-all pr-12',
         isDark ? 'bg-slate-900 border-white/10 focus:border-red-500 text-slate-200' : 'bg-white border-slate-200 focus:border-red-500 shadow-sm']">
         <option value="asc">Sequence: A to Z</option>
@@ -268,23 +106,15 @@
       </div>
     </div>
 
-    <button 
-      @click="searchQuery = ''; selectedTypes = []; sortOrder = 'asc'"
-      class="h-[60px] flex-1 w-full px-4 rounded-2xl bg-red-600 hover:bg-red-700 text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-red-600/20 group font-black uppercase tracking-widest text-[10px]">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-      <span class="whitespace-nowrap">Reset Filters</span>
-    </button>
 
     <button 
       @click="handleResetAll"
-      class="h-[60px] flex-1 w-full px-4 rounded-2xl bg-red-600 hover:bg-red-700 text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-red-600/20 group font-black uppercase tracking-widest text-[10px]"
+      class="h-[60px] w-full px-1 rounded-2xl bg-red-600 hover:bg-red-700 text-white transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-red-600/20 group font-black uppercase tracking-widest text-[10px]"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
       </svg>
-      <span class="whitespace-nowrap">Reset All</span>
+      <span class="whitespace-nowrap">Reset</span>
     </button>
 
   </div>
@@ -509,8 +339,8 @@ import { crystalData, CrystalType } from '../data/store.js';
 import normalCrystas from "@/assets/icons/crysta_normal.jpg";
 import weaponCrystas from "@/assets/icons/crysta_senjata.jpg";
 import armorCrystas from "@/assets/icons/crysta_zirah.jpg";
-import additionalCrystas from "@/assets/icons/crysta_tambahan.jpg";
-import specialCrystas from "@/assets/icons/crysta_pelengkap.jpg";
+import additionalCrystas from "@/assets/icons/crysta_pelengkap.jpg";
+import specialCrystas from "@/assets/icons/crysta_tambahan.jpg";
 
 // Enhancer (Crysta Upgrade/Up)
 // Sesuai permintaanmu: crysta_up.jpg digunakan untuk normalEnhancerCrystas
@@ -828,59 +658,62 @@ const setSearch = (name) => {
  */
 const filteredResults = computed(() => {
   let res = crystalData.filter(c => c.name?.trim());
-  if (advancedFilter.value?.stats) {
-  res = res.filter(c => {
-    const parsed = getParsedStats(c)
+  
+  // 1. FILTER DARI URL (HASIL ADVANCED SEARCH)
+  if (advancedFilter.value) {
+    const { stats, types } = advancedFilter.value;
 
-    return Object.entries(advancedFilter.value.stats).every(
-  ([statName, rule]) => {
-    const stat = parsed[statName.toUpperCase()]
-    if (!stat) return false
-
-    // tanda + / -
-    if (stat.sign !== rule.sign) return false
-
-    // nilai (0 AMAN)
-    if (rule.value !== null) {
-      if (rule.op === '>=' && stat.value < rule.value) return false
-      if (rule.op === '<=' && stat.value > rule.value) return false
+    // Filter Stats dari URL
+    if (stats && Object.keys(stats).length > 0) {
+      res = res.filter(c => {
+        const parsed = getParsedStats(c);
+        return Object.entries(stats).every(([statName, rule]) => {
+          const stat = parsed[statName.toUpperCase()];
+          if (!stat) return false;
+          if (stat.sign !== rule.sign) return false;
+          if (rule.value !== null) {
+            if (rule.op === '>=' && stat.value < rule.value) return false;
+            if (rule.op === '<=' && stat.value > rule.value) return false;
+          }
+          return true;
+        });
+      });
     }
 
-    return true
+    // Filter Types dari URL
+    if (types && types.length > 0) {
+      res = res.filter(c => {
+        const rootType = findRootType(c);
+        const isUpgrade = c.type === 'UPGRADE';
+        return types.some(sel => {
+          if (!sel.includes('_')) return !isUpgrade && rootType === sel;
+          const [base, kind] = sel.split('_');
+          return kind === 'UPGRADE' && isUpgrade && rootType === base;
+        });
+      });
+    }
   }
-)
-
-  })
-}
   
+  // 2. SEARCH BAR LOKAL
   if (searchQuery.value) {
     const q = searchQuery.value.toLowerCase();
     res = res.filter(c => c.name.toLowerCase().includes(q));
   }
   
-if (selectedTypes.value.length > 0) {
-  res = res.filter(c => {
-    const rootType = findRootType(c); // WEAPON / ARMOR / etc
-    const isUpgrade = c.type === 'UPGRADE';
-
-    return selectedTypes.value.some(sel => {
-      // contoh: WEAPON
-      if (!sel.includes('_')) {
-        return !isUpgrade && rootType === sel;
-      }
-
-      // contoh: WEAPON_UPGRADE
-      const [base, kind] = sel.split('_');
-      return (
-        kind === 'UPGRADE' &&
-        isUpgrade &&
-        rootType === base
-      );
+  // 3. DROPDOWN TYPE LOKAL
+  if (selectedTypes.value.length > 0) {
+    res = res.filter(c => {
+      const rootType = findRootType(c);
+      const isUpgrade = c.type === 'UPGRADE';
+      return selectedTypes.value.some(sel => {
+        if (!sel.includes('_')) return !isUpgrade && rootType === sel;
+        const [base, kind] = sel.split('_');
+        return kind === 'UPGRADE' && isUpgrade && rootType === base;
+      });
     });
-  });
-}
+  }
 
-  
+  // 4. DROPDOWN STATS LOKAL
   if (selectedStats.value.length > 0) {
     res = res.filter(c => {
       const vText = (c.view || "").toUpperCase();

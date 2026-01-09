@@ -2147,7 +2147,7 @@ export const crystalData = [
           link: 374,
           type: "UPGRADE",
           name: "Merzehal",
-          view: `\nMaxHP +25%\nKekebalan Fisik +15%\nMATK +13%\nPeneterasi Sihir +10%\nCSPD +25\nMaxMP -200`,
+          view: `\nMaxHP +25%\nKekebalan Fisik +15%\nMATK +13%\nPeneterasi Sihir +10%\nCSPD +25%\nMaxMP -200`,
         },
         {
           code: 309,
@@ -3572,11 +3572,95 @@ export const crystalData = [
         },
         {
           code: 511,
+          link: 201,
+          type: "UPGRADE",
+          name: "Iblis Kristal Jahanam Sejati",
+          view: `\nMaxMP +400\nDaya Jarak Dekat +8%\nPhysical Pierce +10%`,
+        },
+        {
+          code: 512,
           link: 402,
-          type: "SPECIAL",
+          type: "UPGRADE",
           name: "Abyssal Crystal Monster (EN)",
           view: `\nStability +4%\nKekebalan Fisik +6%\nKekebalan Sihir +6%\nDaya Jarak Dekat +4%\nMaxMP -200\nDengan Perisai:\nResistansi Status Buruk +5%`,
-        }
+        },
+        {
+          code: 513,
+          link: 161,
+          type: "UPGRADE",
+          name: "Sang Juara Megiston VI",
+          view: `\nMaxHP +2200\nCritical Rate +26\nKebal Api +6%\nKebal Air +6%\nKebal Angin +6%\nKebal Bumi +3%\nKebal Cahaya +3%\nKebal Gelap +3%`,
+        },
+        {
+          code: 514,
+          link: 513,
+          type: "UPGRADE",
+          name: "Sang Juara Megiston VII",
+          view: `\nMaxHP +2400\nCritical Rate +29\nKebal Api +6%\nKebal Air +6%\nKebal Angin +6%\nKebal Bumi +6%\nKebal Cahaya +3%\nKebal Gelap +3%\nKebal Netral +3%`,
+        },
+        {
+          code: 515,
+          link: 514,
+          type: "UPGRADE",
+          name: "Sang Juara Megiston VIII",
+          view: `\nMaxHP +2600\nCritical Rate +32\nKebal Api +6%\nKebal Air +6%\nKebal Angin +6%\nKebal Bumi +6%\nKebal Cahaya +6%\nKebal Gelap +6%\nKebal Netral +3%`,
+        },
+        {
+          code: 516,
+          link: 306,
+          type: "UPGRADE",
+          name: "Meduso",
+          view: `\nGuard Power +10%\nGuard Recharge +10%\nDengan Zirah Berat:\nMotion Speed +1%\nDengan Zirah Ringan:\nAggro +20%`,
+        },
+        {
+          code: 517,
+          link: 219,
+          type: "UPGRADE",
+          name: "Paduka Raja Kerbau II",
+          view: `\nDaya Jarak Dekat +12%\nAkurasi +50\nMaxMP +200\nMaxHP -30%`,
+        },
+        {
+          code: 518,
+          link: 220,
+          type: "UPGRADE",
+          name: "Pillow Kitagawa II",
+          view: `\nSerangan Menghunus +12%\nCritical Rate +6\nMaxHP +3000\nRevive Time +30%`,
+        },
+        {
+          code: 519,
+          link: 446,
+          type: "UPGRADE",
+          name: "Pilorocas",
+          view: `\Critical Rate +50%\Kekebalan Fisik +5%\Kekebalan Sihir +5%\Critical Rate -5`,
+        },
+        {
+          code: 520,
+          link: 192,
+          type: "UPGRADE",
+          name: "Biskyva",
+          view: `\nMaxMP +900\nPelindung Fraksional +19%\nCritical Rate +7\nCritical Damage +2%`,
+        },
+        {
+          code: 521,
+          link: 370,
+          type: "UPGRADE",
+          name: "Velly Hitam",
+          view: `\nMaxHP +3000\nMaxMP +400\nMATK +9%\nEvasion Recharge -20%`,
+        },
+        {
+          code: 522,
+          link: 300,
+          type: "UPGRADE",
+          name: "Kristal Misterius",
+          view: `\nAttack MP Recovery +5\nDengan Zirah Berat:\nStability +5%\nDengan Zirah Ringan:\nSerangan Menghunus +5%\nDengan Pedang Ganda:\nAttack MP Recovery +5`,
+        },
+        {
+          code: 523,
+          link: 413,
+          type: "UPGRADE",
+          name: "Seele Zauga II",
+          view: `\nCritical Rate +20\nKekebalan Fisik +10%\nKekebalan Sihir +10%\nKecepatan Item -1.0s`,
+        }    
       ];
       
       import iconNormal from '@/assets/icons/crysta_normal.jpg'
