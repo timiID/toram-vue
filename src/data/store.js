@@ -1419,14 +1419,14 @@ export const crystalData = [
           link: 252,
           type: "UPGRADE",
           name: "Ferzen si Naga Batu",
-          view: `\nMaxHP +5000\nWeaponATK +5%`,
+          view: `\nMaxHP +5000\nWeapon ATK +5%`,
         },
         {
           code: 205,
           link: 271,
           type: "UPGRADE",
           name: "Naga Milisi Turba",
-          view: `\nCritical Rate +11\nWeapon Attack +14%\nAkurasi +17%\nMaxMP -200`,
+          view: `\nCritical Rate +11\nWeapon ATK +14%\nAkurasi +17%\nMaxMP -200`,
         },
         {
           code: 206,

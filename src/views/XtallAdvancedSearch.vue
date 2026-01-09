@@ -83,6 +83,9 @@ function applyFilter() {
           <span :class="isDark ? 'text-white' : 'text-black'">Advanced</span><br/>
           <span class="bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 bg-clip-text text-transparent animate-gradient-x">Search</span>
         </h1>
+        <h2 class="text-2xl md:text-2xl font-[100] tracking-tighter uppercase italic leading-[0.8]">
+          <br/><span :class="isDark ? 'text-white' : 'text-black'">All Flat and percent(%) stats are combined </span><br/>
+        </h2>
       </div>
 
       <div class="flex flex-row items-center gap-4 w-full lg:w-auto">

@@ -9,8 +9,8 @@ export const statusGroups = {
     "ATK & DEF": [
       { label: "ATK / ATK%", value: ".ATK" },
       { label: "MATK / MATK%", value: "MATK" },
-      { label: "DEF", value: ".DEF" },
-      { label: "MDEF", value: "MDEF" }
+      { label: "DEF / DEF%", value: ".DEF" },
+      { label: "MDEF / MDEF%", value: "MDEF" }
     ],
     "Stability, Accuracy, Dodge": [
       { label: "Stability", value: "Stability" },
@@ -22,20 +22,20 @@ export const statusGroups = {
       { label: "Critical Damage / CD%", value: "Critical Damage" }
     ],
     "Speed": [
-      { label: "ASPD", value: "ASPD" },
-      { label: "CSPD", value: "CSPD" },
+      { label: "ASPD / ASPD%", value: "ASPD" },
+      { label: "CSPD / CSPD%", value: "CSPD" },
       { label: "Motion Speed%", value: "Motion Speed" }
     ],
     "HP & MP": [
       { label: "MaxHP / MaxHP%", value: "MaxHP" },
       { label: "MaxMP / MaxMP%", value: "MaxMP" },
-      { label: "Natural MP Regen", value: "Natural MP Regen" },
-      { label: "Natural HP Regen", value: "Natural HP Regen" },
-      { label: "Attack MP Recovery", value: "Attack MP Recovery" }
+      { label: "Natural MP Regen%", value: "Natural MP Regen" },
+      { label: "Natural HP Regen%", value: "Natural HP Regen" },
+      { label: "Attack MP Recovery / AMPR%", value: "Attack MP Recovery" }
     ],
     "Weapon ATK & Element": [
-      { label: "Weapon ATK", value: "Weapon ATK" },
-      { label: "DTE (Elements)", value: "stronger against" }
+      { label: "Weapon ATK%", value: "Weapon ATK" },
+      { label: "DTE (Elements)%", value: "stronger against" }
     ],
     "Element Resistance": [
       { label: "Phys Resistance%", value: "Kekebalan Fisik" },
@@ -58,28 +58,28 @@ export const statusGroups = {
       { label: "Short Range Dmg%", value: "Daya Jarak Dekat" },
       { label: "Long Range Dmg%", value: "Daya Jarak Jauh" },
       { label: "Unsheathe Attack%", value: "Serangan Menghunus" },
-      { label: "Additional Melee", value: "Tambahan Fisik" },
-      { label: "Additional Magic", value: "Tambahan Sihir" },
-      { label: "Antisipasi", value: "Antisipasi" },
-      { label: "Guard Break", value: "Guard Break" }
+      { label: "Additional Melee%", value: "Tambahan Fisik" },
+      { label: "Additional Magic%", value: "Tambahan Sihir" },
+      { label: "Antisipasi%", value: "Antisipasi" },
+      { label: "Guard Break%", value: "Guard Break" }
     ],
     "Reduce DMG": [
-      { label: "Reduksi DMG (Sekitar Pemain)", value: "Reduksi DMG (Sekitar Pemain)" },
-      { label: "Reduksi DMG (Sekitar Musuh)", value: "Reduksi DMG (Sekitar Musuh)" },
-      { label: "Reduksi DMG (Lantai)", value: "Reduksi DMG (Lantai)" },
-      { label: "Reduksi DMG (Linear)", value: "Reduksi DMG (Linear)" },
-      { label: "Reduksi DMG (Bowling)", value: "Reduksi DMG (Bowling)" },
-      { label: "Reduksi DMG (Terjang)", value: "Reduksi DMG (Terjang)" },
-      { label: "Reduksi DMG (Peluru)", value: "Reduksi DMG (Peluru)" }
+      { label: "Reduksi DMG (Sekitar Pemain)%", value: "Reduksi DMG (Sekitar Pemain)" },
+      { label: "Reduksi DMG (Sekitar Musuh)%", value: "Reduksi DMG (Sekitar Musuh)" },
+      { label: "Reduksi DMG (Lantai)%", value: "Reduksi DMG (Lantai)" },
+      { label: "Reduksi DMG (Linear)%", value: "Reduksi DMG (Linear)" },
+      { label: "Reduksi DMG (Bowling)%", value: "Reduksi DMG (Bowling)" },
+      { label: "Reduksi DMG (Terjang)%", value: "Reduksi DMG (Terjang)" },
+      { label: "Reduksi DMG (Peluru)%", value: "Reduksi DMG (Peluru)" }
     ],
     "Other Stat": [
       { label: "Drop Rate%", value: "Drop Rate" },
       { label: "EXP%", value: "EXP" },
       { label: "Revive Time%", value: "Revive Time" },
-      { label: "Tumble Unavailable", value: "Tumble Unavailable" },
-      { label: "Evasion Recharge", value: "Evasion Recharge" },
-      { label: "Refleks", value: "Refleks" },
-      { label: "Recoil", value: "Recoil" }
+      { label: "Tumble Unavailable%", value: "Tumble Unavailable" },
+      { label: "Evasion Recharge%", value: "Evasion Recharge" },
+      { label: "Refleks%", value: "Refleks" },
+      { label: "Recoil%", value: "Recoil" }
     ]
   };
   
