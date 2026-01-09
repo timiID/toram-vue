@@ -88,17 +88,17 @@ const stats = computed(() => [
 </script>
 
 <template>
-    <div class="bg-transparent py-4 md:py-10 px-2 md:px-4 font-sans">
+    <div class="bg-transparent py-0 px-2 md:px-4 font-sans">
         
-        <div class="max-w-7xl mx-auto space-y-6 md:space-y-10">
+        <div class="max-w-9xl mx-auto space-y-6 md:space-y-10">
             
-            <div :class="['relative p-8 md:p-16 rounded-[2rem] md:rounded-[3.5rem] border-[4px] shadow-2xl overflow-hidden backdrop-blur-xl transition-all',
-                props.isDark ? 'border-indigo-500 bg-black/40' : 'border-indigo-600 bg-white/70 shadow-indigo-100']">
+            <div :class="['relative p-6 md:p-10 rounded-[2.5rem] md:rounded-[3.5rem] border-[4px] overflow-hidden backdrop-blur-2xl transition-all duration-700 shadow-2xl',
+          isDark ? 'border-blue-500 bg-black/40' : 'border-blue-600 bg-white/60 shadow-blue-200']">
                 <div class="absolute top-0 right-0 h-full w-1/3 hidden lg:block pointer-events-none">
                     <img src="/images/mq.png" class="w-full h-full object-contain object-right opacity-30 scale-110" />
                 </div>
                 <div class="relative z-10 text-center md:text-left">
-                    <h2 :class="['text-4xl md:text-8xl font-black italic uppercase leading-none tracking-tighter', props.isDark ? 'text-white' : 'text-slate-900']">
+                    <h2 :class="['text-3xl md:text-6xl font-black italic uppercase leading-none tracking-tighter', props.isDark ? 'text-white' : 'text-slate-900']">
                         MAIN QUEST<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">LIST DB</span>
                     </h2>
 
@@ -124,30 +124,42 @@ const stats = computed(() => [
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
                 <div v-for="stat in stats" :key="stat.label" 
-                     :class="['aspect-square flex flex-col items-center justify-center rounded-[1.5rem] md:rounded-[2.5rem] border-[3px] border-white/20 shadow-xl text-white bg-gradient-to-br transition-all hover:scale-105 active:scale-95', stat.grad]">
-                    <span class="text-[8px] md:text-[11px] font-black uppercase tracking-[0.2em] opacity-80 mb-1">{{ stat.label }}</span>
-                    <span class="text-3xl md:text-6xl font-black italic tracking-tighter leading-none">{{ stat.val }}</span>
+                     :class="['py-8 px-5 flex flex-col items-center justify-center rounded-[2rem] md:rounded-[2.5rem] border-[2px] border-white/20 shadow-lg text-white bg-gradient-to-br transition-all hover:scale-105 active:scale-95', stat.grad]">
+                    <span class="text-[8px] md:text-[10px] font-black uppercase tracking-[0.1em] opacity-80 mb-0.5">{{ stat.label }}</span>
+                    <span class="text-xl md:text-3xl font-black italic tracking-tighter leading-none">{{ stat.val }}</span>
                 </div>
             </div>
 
             <div :class="['grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-10 border-[4px] rounded-[2rem] md:rounded-[3.5rem] shadow-2xl backdrop-blur-md',
                 props.isDark ? 'border-fuchsia-500 bg-black/40' : 'border-fuchsia-600 bg-white/80']">
                 <div class="flex flex-col gap-2">
+            
                     <label class="text-[10px] font-black uppercase tracking-widest ml-4 text-fuchsia-500">Search Item</label>
-                    <input v-model="search" type="text" placeholder="Find MQ item..." 
+                    <div class="relative group">
+                    <input v-model="search" type="text" placeholder="       Find MQ item..." 
                         :class="['w-full border-[3px] rounded-xl md:rounded-2xl p-4 md:p-5 text-sm font-bold outline-none transition-all focus:border-indigo-500', 
                         props.isDark ? 'bg-white/5 border-white/10 text-white placeholder:text-white/20' : 'bg-slate-50 border-slate-200 text-slate-900']" />
+                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none group-focus-within:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 </div>
-                <div class="flex flex-col gap-2">
-                    <label class="text-[10px] font-black uppercase tracking-widest ml-4 text-fuchsia-500">Chapter Filter</label>
-                    <select v-model="selectedChapter" 
-                        :class="['w-full border-[3px] rounded-xl md:rounded-2xl p-4 md:p-5 text-sm font-black outline-none transition-all cursor-pointer focus:border-indigo-500', 
-                        props.isDark ? 'bg-white/5 border-white/10 text-white' : 'bg-slate-50 border-slate-200 text-slate-900']">
-                        <option value="Semua Chapter">All Chapter</option>
-                        <option v-for="chap in all_chapters" :key="chap" :value="chap">{{ chap }}</option>
-                    </select>
+                </div>
+                </div>
+                
+                <div class="flex flex-col gap-1.5 relative">
+                    <label class="text-[9px] font-black uppercase tracking-widest ml-4 text-fuchsia-500">Chapter Filter</label>
+                    <div class="relative group">
+                        <select v-model="selectedChapter" 
+                            :class="['w-full h-18 border-[3px] rounded-xl px-4 pr-10 text-sm font-black outline-none transition-all cursor-pointer focus:border-indigo-500 appearance-none', 
+                            props.isDark ? 'bg-white/5 border-white/10 text-white' : 'bg-slate-50 border-slate-200 text-slate-900']">
+                            <option value="Semua Chapter">All Chapter</option>
+                            <option v-for="chap in all_chapters" :key="chap" :value="chap">{{ chap }}</option>
+                        </select>
+                        <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-fuchsia-500 opacity-70">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        </div>
+                    </div>
                 </div>
             </div>
 

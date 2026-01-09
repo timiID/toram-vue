@@ -8,10 +8,10 @@
       <div v-if="isDark" class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
     </div>
 
-    <div class="relative z-10 max-w-[1700px] mx-auto p-4 md:p-10 space-y-8 md:space-y-14">
+    <div class="relative z-10 max-w-[1700px] mx-auto p-4 md:p-10 space-y-0">
       
       <header :class="['relative group flex flex-col md:flex-row justify-between items-center md:items-end gap-8 pb-10 border-b-2 transition-all duration-500', isDark ? 'border-white/5' : 'border-black/5']">
-        <div class="flex items-center gap-6">
+        <div class="flex items-center gap-1">
           <div class="relative group">
             <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
             <img src="/images/logo.png" class="relative h-16 w-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" alt="Logo" />

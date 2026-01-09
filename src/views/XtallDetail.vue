@@ -18,7 +18,7 @@
 
       <div class="grid lg:grid-cols-12 gap-12 items-start">
         
-        <div class="lg:col-span-5 space-y-6 animate-slide-right">
+        <div class="lg:col-span-5 space-y-2 animate-slide-right">
           <div :class="['relative aspect-square rounded-[3.5rem] border-4 flex items-center justify-center overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.4)] transition-all duration-700 group',
             isDark ? 'bg-slate-900 border-white/20' : 'bg-white border-slate-300']">
             
