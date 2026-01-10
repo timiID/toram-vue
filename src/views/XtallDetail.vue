@@ -117,8 +117,8 @@ import { crystalData } from '../data/store.js';
 import normalCrystas from "@/assets/icons/crysta_normal.jpg";
 import weaponCrystas from "@/assets/icons/crysta_senjata.jpg";
 import armorCrystas from "@/assets/icons/crysta_zirah.jpg";
-import additionalCrystas from "@/assets/icons/crysta_tambahan.jpg";
-import specialCrystas from "@/assets/icons/crysta_pelengkap.jpg";
+import additionalCrystas from "@/assets/icons/crysta_pelengkap.jpg";
+import specialCrystas from "@/assets/icons/crysta_tambahan.jpg";
 
 // Enhancer
 import normalEnhancerCrystas from "@/assets/icons/crysta_up.jpg";
