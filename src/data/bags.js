@@ -4,7 +4,7 @@ export const bags = [
   { id: 2, slot: '51 ➔ 52', nama_item_en: 'Gorgeous Fur', nama_item_id: 'Kulit Berkualitas', jumlah: 'x1', spina: 0, monster_en: 'Lavarca', monster_id: 'Lavarca', kelas_mob: 'Mob', kelas_bahan: 'Cloth', lokasi_en: 'Rakau Plains / Ruined Temple Town', lokasi_id: 'Dataran Rakau / Kota Kuil Runtuh' },
   { id: 3, slot: '52 ➔ 53', nama_item_en: 'Spina', nama_item_id: 'Spina', jumlah: '-', spina: 1000, monster_en: '-', monster_id: '-', kelas_mob: 'Spina', kelas_bahan: 'S', lokasi_en: 'General Store', lokasi_id: 'Toko Kelontong' },
   { id: 4, slot: '53 ➔ 54', nama_item_en: 'Minotaur Skin', nama_item_id: 'Kulit Minotaur', jumlah: 'x1', spina: 0, monster_en: 'Minotaur', monster_id: 'Minotaur', kelas_mob: 'Boss', kelas_bahan: 'Cloth', lokasi_en: 'Ruined Temple: Forbidden Hall', lokasi_id: 'Kuil Runtuh: Aula Terlarang' },
-  { id: 5, slot: '53 ➔ 54', nama_item_en: 'Orange Crystal Fragment', nama_item_id: 'Pecahan Kristal Jingga', jumlah: 'x1', spina: 0, monster_en: 'Cobre', monster_id: 'Cobre', kelas_mob: 'Mob', kelas_bahan: 'Metal', lokasi_en: 'Land Under Development', lokasi_id: 'Tanah Pembangunan' },
+  { id: 5, slot: '53 ➔ 54', nama_item_en: 'Orange Crystal Fragment', nama_item_id: 'Pecahan Kristal Jingga', jumlah: 'x1', spina: 0, monster_en: 'Cobre', monster_id: 'Cobre', kelas_mob: 'Mob', kelas_bahan: 'Metal', lokasi_en: 'Icule Lake', lokasi_id: 'Danau Icule' },
   { id: 6, slot: '54 ➔ 55', nama_item_en: 'Forest Wolf Skin', nama_item_id: 'Kulit Anjing Hutan', jumlah: 'x1', spina: 0, monster_en: 'Forest Wolf', monster_id: 'Serigala Hutan', kelas_mob: 'Boss', kelas_bahan: 'Cloth', lokasi_en: 'Marbaro Forest: Deepest Part', lokasi_id: 'Hutan Marbaro: Bagian Dalam' },
   { id: 7, slot: '54 ➔ 55', nama_item_en: 'Goblin Medal', nama_item_id: 'Lencana Goblin', jumlah: 'x1', spina: 0, monster_en: 'Boss Goblin', monster_id: 'Bos Goblin', kelas_mob: 'Boss', kelas_bahan: 'Metal', lokasi_en: 'Ribisco Cave: Deepest Part', lokasi_id: 'Gua Ribisco: Bagian Dalam' },
   { id: 8, slot: '55 ➔ 56', nama_item_en: 'Spina', nama_item_id: 'Spina', jumlah: '-', spina: 2000, monster_en: '-', monster_id: '-', kelas_mob: 'Spina', kelas_bahan: 'S', lokasi_en: 'General Store', lokasi_id: 'Toko Kelontong' },
@@ -18,7 +18,7 @@ export const bags = [
 
   // SLOT 60 - 75
   { id: 16, slot: '60 ➔ 61', nama_item_en: 'Sharp Bear Claw', nama_item_id: 'Cakar Beruang', jumlah: 'x2', spina: 0, monster_en: 'Violacoon', monster_id: 'Violacoon', kelas_mob: 'Miniboss', kelas_bahan: 'Beast', lokasi_en: 'Darkanon Plain', lokasi_id: 'Padang Darkanon' },
-  { id: 17, slot: '60 ➔ 61', nama_item_en: 'Sheeting Fabric', nama_item_id: 'Kain Alas', jumlah: 'x20', spina: 0, monster_en: 'Cassy', monster_id: 'Cassy', kelas_mob: 'Mob', kelas_bahan: 'Cloth', lokasi_en: 'Ancient Empress Tomb: Area 2/3', lokasi_id: 'Makam Ratu Kuno: Area 2/3' },
+  { id: 17, slot: '60 ➔ 61', nama_item_en: 'Sheeting Fabric', nama_item_id: 'Sheeting Fabric', jumlah: 'x20', spina: 0, monster_en: 'Cassy', monster_id: 'Cassy', kelas_mob: 'Mob', kelas_bahan: 'Cloth', lokasi_en: 'Ancient Empress Tomb: Area 2/3', lokasi_id: 'Makam Ratu Kuno: Area 2/3' },
   { id: 18, slot: '61 ➔ 62', nama_item_en: 'Heavy Tough Chain', nama_item_id: 'Rantai Kukuh', jumlah: 'x2', spina: 0, monster_en: 'Masked Warrior', monster_id: 'Pendekar Bertopeng', kelas_mob: 'Boss', kelas_bahan: 'Metal', lokasi_en: 'Fiery Volcano: Area 3', lokasi_id: 'Lereng Merapi: Area 3' },
   { id: 19, slot: '61 ➔ 62', nama_item_en: 'Polyester Cloth', nama_item_id: 'Kain Polister', jumlah: 'x20', spina: 0, monster_en: 'Shining Gentleman / Wandering Shadow', monster_id: 'Shining Gentleman / Wandering Shadow', kelas_mob: 'Miniboss/Mob', kelas_bahan: 'Cloth', lokasi_en: 'Lost Town', lokasi_id: 'Kota Hilang' },
   { id: 20, slot: '62 ➔ 63', nama_item_en: 'Grass Dragon Scale', nama_item_id: 'Sisik Naga Sabana', jumlah: 'x2', spina: 0, monster_en: 'Grass Dragon Yelb', monster_id: 'Naga Padang Rumput Yelb', kelas_mob: 'Boss', kelas_bahan: 'Beast', lokasi_en: 'Albatif Village', lokasi_id: 'Desa Albatif' },
@@ -120,7 +120,6 @@ export const bags = [
   { id: 112, slot: '99 ➔ 100', nama_item_en: 'Viscous Liquid', nama_item_id: 'Cairan Lekat', jumlah: 'x20', spina: 0, monster_en: 'Juvestida', monster_id: 'Juvestida', kelas_mob: 'Mob', kelas_bahan: 'Medic', lokasi_en: 'Nov Diela', lokasi_id: 'Nov Diela' },
   { id: 113, slot: '99 ➔ 100', nama_item_en: 'Bizarre Skin', nama_item_id: 'Kulit Pelik', jumlah: 'x30', spina: 0, monster_en: 'Evil Eye / Demonic Eye', monster_id: 'Mata Jahat / Mata Iblis', kelas_mob: 'Miniboss/Mob', kelas_bahan: 'Cloth', lokasi_en: 'Morga Wasteland', lokasi_id: 'Padang Morga' },
 ];
-
 export const TOTAL_SLOTS = bags.length;
 
 export function searchBag(keyword) {

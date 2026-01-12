@@ -91,61 +91,59 @@ const stats = computed(() => [
     <div class="bg-transparent py-0 px-2 md:px-4 font-sans">
         
         <div class="max-w-9xl mx-auto space-y-6 md:space-y-10">
+    <div :class="['relative p-6 md:p-10 rounded-[2.5rem] md:rounded-[3.5rem] border-[4px] overflow-hidden backdrop-blur-2xl transition-all duration-700 shadow-2xl',
+      isDark ? 'border-blue-500 bg-black/40' : 'border-blue-600 bg-white/60 shadow-blue-200']">
+        
+        <div class="absolute top-0 right-0 h-full w-1/3 hidden lg:block pointer-events-none">
+            <img src="/images/mq.png" class="w-full h-full object-contain object-right opacity-30 scale-110" />
+        </div>
+
+        <div class="relative z-10 text-center md:text-left">
+            <h2 :class="['text-3xl md:text-6xl font-black italic uppercase leading-none tracking-tighter', props.isDark ? 'text-white' : 'text-slate-900']">
+                MAIN QUEST<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">LIST DB</span>
+            </h2>
+
+            <div class="mt-8 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="h-1.5 w-16 bg-blue-600 rounded-full"></div>
+                    <img src="/images/logo.png" class="h-8 md:h-12 w-auto object-contain" />
+                </div>
+
+                <div class="flex items-center gap-2 select-none whitespace-nowrap">
+                    <span :class="['font-[1000] tracking-tighter italic uppercase leading-none transition-all duration-700 text-4xl md:text-4xl', isDark ? 'text-white' : 'text-slate-900']">
+                        TIMI
+                    </span>
+                    <span class="text-3xl md:text-4xl font-[1000] tracking-tighter italic uppercase leading-none text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">
+                        DB
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div :class="['grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-10 border-[4px] rounded-[2rem] md:rounded-[3.5rem] shadow-2xl backdrop-blur-md',
+        props.isDark ? 'border-fuchsia-500 bg-black/40' : 'border-fuchsia-600 bg-white/80']">
+        
+        <div class="flex flex-col gap-2">
+            <label class="text-[10px] font-black uppercase tracking-widest ml-4 text-fuchsia-500">Search Item</label>
             
-            <div :class="['relative p-6 md:p-10 rounded-[2.5rem] md:rounded-[3.5rem] border-[4px] overflow-hidden backdrop-blur-2xl transition-all duration-700 shadow-2xl',
-          isDark ? 'border-blue-500 bg-black/40' : 'border-blue-600 bg-white/60 shadow-blue-200']">
-                <div class="absolute top-0 right-0 h-full w-1/3 hidden lg:block pointer-events-none">
-                    <img src="/images/mq.png" class="w-full h-full object-contain object-right opacity-30 scale-110" />
+            <div class="relative group">
+                <input 
+                    v-model="search" 
+                    type="text" 
+                    placeholder="Find MQ item..." 
+                    :class="['w-full border-[3px] rounded-xl md:rounded-2xl py-4 md:py-5 pr-4 pl-14 text-sm font-bold outline-none transition-all focus:border-indigo-500', 
+props.isDark ? 'bg-white/5 border-white/10 text-white placeholder:text-white/20' : 'bg-slate-50 border-slate-200 text-slate-900']"/>
+                
+                <div class="absolute left-4 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none group-focus-within:scale-110 transition-transform">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"/>
+                        <path d="m21 21-4.3-4.3"/>
+                    </svg>
                 </div>
-                <div class="relative z-10 text-center md:text-left">
-                    <h2 :class="['text-3xl md:text-6xl font-black italic uppercase leading-none tracking-tighter', props.isDark ? 'text-white' : 'text-slate-900']">
-                        MAIN QUEST<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">LIST DB</span>
-                    </h2>
+            </div>
+        </div>
 
-                    <div class="mt-8 flex flex-col md:flex-row items-center justify-center md:justify-start gap-4">
-            <div class="flex items-center gap-3">
-              <div class="h-1.5 w-16 bg-blue-600 rounded-full"></div>
-              <img src="/images/logo.png" class="h-8 md:h-12 w-auto object-contain" />
-            </div>
-
-                    <div class="flex items-center gap-2 select-none whitespace-nowrap">
-              <span :class="[
-                'font-[1000] tracking-tighter italic uppercase leading-none transition-all duration-700 text-4xl md:text-4xl', 
-                isDark ? 'text-white' : 'text-slate-900'
-              ]">
-                TIMI
-              </span>
-              <span class="text-3xl md:text-4xl font-[1000] tracking-tighter italic uppercase leading-none text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">
-                DB
-              </span>
-            </div>
-            </div>
-            
-                </div>
-            </div>
-
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-                <div v-for="stat in stats" :key="stat.label" 
-                     :class="['py-8 px-5 flex flex-col items-center justify-center rounded-[2rem] md:rounded-[2.5rem] border-[2px] border-white/20 shadow-lg text-white bg-gradient-to-br transition-all hover:scale-105 active:scale-95', stat.grad]">
-                    <span class="text-[8px] md:text-[10px] font-black uppercase tracking-[0.1em] opacity-80 mb-0.5">{{ stat.label }}</span>
-                    <span class="text-xl md:text-3xl font-black italic tracking-tighter leading-none">{{ stat.val }}</span>
-                </div>
-            </div>
-
-            <div :class="['grid grid-cols-1 md:grid-cols-2 gap-6 p-6 md:p-10 border-[4px] rounded-[2rem] md:rounded-[3.5rem] shadow-2xl backdrop-blur-md',
-                props.isDark ? 'border-fuchsia-500 bg-black/40' : 'border-fuchsia-600 bg-white/80']">
-                <div class="flex flex-col gap-2">
-            
-                    <label class="text-[10px] font-black uppercase tracking-widest ml-4 text-fuchsia-500">Search Item</label>
-                    <div class="relative group">
-                    <input v-model="search" type="text" placeholder="       Find MQ item..." 
-                        :class="['w-full border-[3px] rounded-xl md:rounded-2xl p-4 md:p-5 text-sm font-bold outline-none transition-all focus:border-indigo-500', 
-                        props.isDark ? 'bg-white/5 border-white/10 text-white placeholder:text-white/20' : 'bg-slate-50 border-slate-200 text-slate-900']" />
-                        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-indigo-500 pointer-events-none group-focus-within:scale-110 transition-transform">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                </div>
-                </div>
-                </div>
                 
                 <div class="flex flex-col gap-1.5 relative">
                     <label class="text-[9px] font-black uppercase tracking-widest ml-4 text-fuchsia-500">Chapter Filter</label>
