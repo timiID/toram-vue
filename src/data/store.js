@@ -2762,7 +2762,7 @@ export const crystalData = [
           code: 396,
           link: null,
           type: "SPECIAL",
-          name: "Zodiac's Blessing (EN)",
+          name: "Berkah Shio",
           view: `\n.ATK +10\nMATK +10\nDEF +100\nMDEF +100\nAkurasi +10\nASPD +100\nCSPD +100\nCritical Rate +10\nEXP +10%`,
         },
         {
@@ -3581,7 +3581,7 @@ export const crystalData = [
           code: 512,
           link: 402,
           type: "UPGRADE",
-          name: "Abyssal Crystal Monster (EN)",
+          name: "Monster Kristal Abisal",
           view: `\nStability +4%\nKekebalan Fisik +6%\nKekebalan Sihir +6%\nDaya Jarak Dekat +4%\nMaxMP -200\nDengan Perisai:\nResistansi Status Buruk +5%`,
         },
         {
@@ -3660,7 +3660,21 @@ export const crystalData = [
           type: "UPGRADE",
           name: "Seele Zauga II",
           view: `\nCritical Rate +20\nKekebalan Fisik +10%\nKekebalan Sihir +10%\nKecepatan Item -1.0s`,
-        }    
+        },
+        {
+          code: 524,
+          link: 395,
+          type: "UPGRADE",
+          name: "Velcaroy",
+          view: `\nMaxMP +300\nDaya Jarak Jauh +5%\nTambahan Fisik +75%\nDengan Perisai:\nAggro +35%`,
+        },
+        {
+          code: 525,
+          link: 442,
+          type: "UPGRADE",
+          name: "Sanmurbon",
+          view: `\n.ATK +12%\nPhysical Pierce +10%\nCritical Rate +16\nMATK -4%\nKekebalan Fisik -20%\nDengan Zirah Berat:\nKekebalan Fisik +24%`,
+        },   
       ];
       
       import iconNormal from '@/assets/icons/crysta_normal.jpg'
