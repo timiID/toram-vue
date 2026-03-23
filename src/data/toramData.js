@@ -1,6 +1,6 @@
 "use strict";
 
-export const LV_CAP = 310;
+export const LV_CAP = 315;
 
 export const quest_data = {
     "Custom Experience Value": 0,
@@ -151,6 +151,11 @@ export const mq_data = {
     "Ark Crisis": 210500000,
     "Coastal Clash": 216300000,
     "Unda's Rescue Operation": 222200000,
+    "Unda's Return": 228100000,
+    "The Young Man and the Old Tree": 234000000,
+    "The Village of Lixis": 240000000,
+    "Visions of a Distant Past": 246000000,
+
 };
 
 // Logika Fungsi Dasar dari xp.js
