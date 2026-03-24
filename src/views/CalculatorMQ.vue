@@ -312,7 +312,7 @@ const calculation = computed(() => {
                 <h4 class="text-[12px] font-black uppercase tracking-[0.3em] text-indigo-500">Diary Adventure</h4>
                 <p class="text-[10px] opacity-40 font-bold uppercase mt-1">Simulated Progress</p>
               </div>
-              <div class="px-6 py-4 rounded-[2rem] bg-gradient-to-br from-yellow-600 to-purple-700 shadow-x9 shadow-indigo-500/20 flex flex-col items-center justify-center border-t border-white/10 transition-all active:scale-95 cursor-default">
+              <div class="px-6 py-4 rounded-[2rem] bg-gradient-to-br from-yellow-200 to-purple-700 shadow-x9 shadow-indigo-500/20 flex flex-col items-center justify-center border-t border-white/10 transition-all active:scale-95 cursor-default">
   <span class="text-[9px] font-black opacity-100 uppercase tracking-[0.2em] leading-none mb-1">Total Run</span>
   <span class="text-3xl font-black italic tracking-tighter leading-none text-white">
     {{ calculation?.diaryRuns?.length || 0 }}
