@@ -134,7 +134,7 @@ const navigateTo = (path) => router.push(path);
   </h2>
   <div class="h-[1px] flex-1 bg-gradient-to-r from-purple-500 via-red-500 to-transparent"></div>
 </div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl animate-slide-up">
+    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-7 w-full max-w-6xl animate-slide-up">
   <div v-for="item in other" :key="item.path"
        @click="navigateTo(item.path)"
        class="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 backdrop-blur-xl p-8 cursor-pointer transition-all duration-500 hover:-translate-y-2 hover:bg-white/10 hover:shadow-2xl hover:shadow-indigo-500/10">
@@ -163,7 +163,7 @@ const navigateTo = (path) => router.push(path);
       :class="isDark ? 'bg-slate-900/80 text-slate-400' : 'bg-black text-slate-400'">
       
       <div class="max-w-7xl mx-auto px-6 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+        <div class="grid grid-cols-3 md:grid-cols-7 gap-12">
           
           <div class="md:col-span-2 space-y-6">
             <div class="flex items-center gap-3">
