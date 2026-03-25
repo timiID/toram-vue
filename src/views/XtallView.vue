@@ -1,14 +1,13 @@
 <template>
-  <div :class="['min-h-screen relative overflow-x-hidden font-sans transition-all duration-700 bg-transparent', isDark ? 'text-slate-200' : 'text-slate-900']">
+  <div :class="['relative font-sans transition-all duration-700 bg-transparent', isDark ? 'text-slate-200' : 'text-slate-900']">
+    
     <div class="fixed inset-0 pointer-events-none z-0">
       <div :class="['absolute inset-0 bg-[url(\'/images/logo.png\')] bg-center bg-no-repeat bg-[length:60%_auto] opacity-[0.03] transition-opacity duration-1000', isDark ? 'brightness-200' : 'invert opacity-[0.02]']"></div>
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent to-transparent"></div>
       <div v-if="isDark" class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full animate-pulse"></div>
-      
       <div v-if="isDark" class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-600/10 blur-[120px] rounded-full animate-pulse" style="animation-delay: 2s"></div>
     </div>
 
-    <div class="relative z-10 max-w-[1700px] mx-auto p-4 md:p-10 space-y-0">
+    <div class="relative z-10 max-w-[1700px] mx-auto p-4 md:p-10 space-y-0 overflow-visible">
       
       <header :class="['relative group flex flex-col md:flex-row justify-between items-center md:items-end gap-8 pb-10 border-b-2 transition-all duration-500', isDark ? 'border-white/5' : 'border-black/5']">
         <div class="flex items-center gap-1">
@@ -16,10 +15,9 @@
             <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
             <img src="/images/logo.png" class="relative h-16 w-auto object-contain drop-shadow-2xl transition-transform duration-500 group-hover:scale-110" alt="Logo" />
           </div>
-          
           <div class="text-center md:text-left space-y-1">
             <div class="flex items-center gap-3">
-              <h1 class="text-4xl md:text-6xl font-[1000] italic uppercase tracking-tighter leading-none transition-all">
+              <h1 class="text-4xl md:text-6xl font-[800] italic uppercase tracking-tighter leading-none transition-all">
                 <span :class="text-white">TIMI </span>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-red-500">DB</span>
               </h1>
@@ -31,214 +29,123 @@
         <div class="flex flex-col items-center md:items-end gap-3">
           <div :class="['group relative px-8 py-3 rounded-2xl border-2 overflow-hidden transition-all duration-500', isDark ? 'bg-slate-900/40 border-white/10' : 'bg-white border-slate-200 shadow-xl shadow-slate-200/50']">
             <div class="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-            <span :class="['relative text-xs font-black uppercase tracking-[0.2em]', isDark ? 'text-cyan-400' : 'text-blue-600']">
-              Results : {{ filteredResults.length }} Xtall
-            </span>
-          </div>
-          <div class="flex gap-2">
-            <div v-for="i in 3" :key="i" class="w-8 h-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-20"></div>
+            <span :class="['relative text-xs font-black uppercase tracking-[0.2em]', isDark ? 'text-cyan-400' : 'text-blue-600']">Hasil : {{ filteredResults.length }} Xtall</span>
           </div>
         </div>
       </header>
 
-      <RouterLink
-  to="/xtall/advanced"
-  class="mb-6 block w-full rounded-2xl border-2 border-indigo-500
-         bg-gradient-to-t from-indigo-400 to-purple-500
-         px-6 py-5 text-center text-lg font-black text-white
-         shadow-xl hover:scale-[1.02] transition"
->
-  🔎 Advanced Xtall Search
-</RouterLink>
-
-      <section :class="['grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 p-6 md:p-8 rounded-[3rem] border-2 backdrop-blur-3xl relative z-[100] transition-all duration-500 shadow-2xl', 
-        isDark ? 'bg-slate-950/60 border-red/100 shadow-black/40' : 'bg-red/80 border-slate-200 shadow-slate-300/50']">
-        
-        <div class="space-y-2 col-span-2 md:col-span-2 lg:col-span-2">
-          <label class="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-500 ml-4 flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-cyan-500 animate-ping"></span>
-            Search Name
-          </label>
-          <div class="relative group">
-            <div class="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur opacity-0 group-focus-within:opacity-20 transition-opacity duration-500"></div>
-            <input v-model="searchQuery" type="text" placeholder="Search xtall name..." 
-              :class="['relative w-full pl-12 pr-4 py-4 rounded-2xl border-2 outline-none transition-all font-bold text-sm', 
-              isDark ? 'bg-slate-900/50 border-white/5 focus:border-cyan-500 text-white placeholder-slate-600' : 'bg-white border-slate-200 focus:border-cyan-500 text-slate-800 placeholder-slate-400']">
-            <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-cyan-500 transition-transform group-focus-within:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="3"/></svg>
-          </div>
+      <section class="py-8">
+        <div :class="['p-6 md:p-8 rounded-[2rem] border-2 backdrop-blur-xl transition-all duration-500', isDark ? 'bg-slate-900/40 border-white/5 shadow-2xl' : 'bg-white/60 border-slate-200 shadow-lg']">
+          <h2 class="text-xl md:text-2xl font-black uppercase tracking-tight italic">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">Crysta (Xtall) Bahasa Indonesia</span>
+          </h2>
+          <p :class="['mt-2 text-sm md:text-base leading-relaxed font-medium', isDark ? 'text-slate-400' : 'text-slate-600']">
+            Selamat datang di database Xtall Timi DB. Gunakan fitur pencarian di bawah untuk menemukan xtall yang cocok.
+          </p>
         </div>
-
-       
-        <div class="space-y-2 col-span-1">
-          <label class="text-[10px] font-black uppercase tracking-[0.2em] text-purple-500 ml-4">Scale</label>
-          <div class="relative group">
-            <select v-model="itemsPerPage" :class="['w-full px-4 py-4 rounded-2xl border-2 outline-none font-bold text-sm appearance-none cursor-pointer transition-all pr-10',
-              isDark ? 'bg-slate-900/50 border-white/5 focus:border-purple-500 text-slate-200' : 'bg-white border-slate-200 focus:border-purple-500 shadow-sm']">
-              <option :value="10">10 Units</option>
-              <option :value="25">25 Units</option>
-              <option :value="50">50 Units</option>
-              <option :value="9999">Show All</option>
-            </select>
-            <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-width="3"/></svg>
-          </div>
-        </div>
-
-<div class="space-y-0 w-full col-span-2 lg:col-span-3">
-  <div class="flex items-center gap-2 ml-4">
-    <div class="w-1.5 h-4 bg-red-600 rounded-full"></div>
-    <label class="text-[11px] font-[1000] uppercase tracking-[0.25em] text-red-600">
-      Sequence & Reset Control Center
-    </label>
-  </div>
-  
-  <div class="flex flex-col md:flex-row items-center gap-3 w-full">
-    
-    <div class="relative group  w-full">
-      <select v-model="sortOrder" :class="['w-full h-[60px] px-6 rounded-2xl border-2 outline-none font-bold text-sm appearance-none cursor-pointer transition-all pr-12',
-        isDark ? 'bg-slate-900 border-white/10 focus:border-red-500 text-slate-200' : 'bg-white border-slate-200 focus:border-red-500 shadow-sm']">
-        <option value="asc">Sequence: A to Z</option>
-        <option value="desc">Sequence: Z to A</option>
-      </select>
-      <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-red-500">
-        <svg class="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-    </div>
-
-
-    <button 
-      @click="handleResetAll"
-      class="h-[60px] w-full px-1 rounded-2xl bg-red-600 hover:bg-red-700 text-white transition-all duration-300 flex items-center justify-center gap-3 shadow-lg shadow-red-600/20 group font-black uppercase tracking-widest text-[10px]"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:rotate-180 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-      </svg>
-      <span class="whitespace-nowrap">Reset</span>
-    </button>
-
-  </div>
-</div>
-
-
-        
       </section>
 
-      <div class="relative py-4 flex items-center justify-center">
-        <div :class="['absolute inset-0 h-[1px] my-auto', isDark ? 'bg-white/5' : 'bg-slate-200']"></div>
-        <div class="absolute h-[2px] w-[30%] bg-gradient-to-r from-transparent via-blue-500 to-transparent animate-shimmer"></div>
-        <div :class="['relative px-6 py-1 rounded-full border-2 text-[8px] font-black uppercase tracking-[0.4em] transition-all', isDark ? 'bg-[#020617] border-white/10 text-slate-500' : 'bg-transparent-50 border-slate-200 text-slate-400']">
-          Xtall Versi Indonesia
-        </div>
-      </div>
+      <RouterLink to="/xtall/advanced" class="my-6 block w-full rounded-2xl border-2 border-indigo-500 bg-gradient-to-t from-indigo-400 to-purple-500 px-6 py-5 text-center text-lg font-black text-white shadow-xl hover:scale-[1.02] transition">
+        🔎 Pencarian Xtall dengan Status
+      </RouterLink>
 
-      <main class="space-y-10 relative z-10 pb-32">
+      <section :class="['grid grid-cols-1 md:grid-cols-6 gap-6 p-6 md:p-10 rounded-[3rem] border-2 backdrop-blur-3xl relative z-[100] transition-all duration-500 shadow-2xl mb-12', 
+  isDark ? 'bg-slate-950/60 border-white/10 shadow-black/40' : 'bg-white/80 border-slate-200 shadow-slate-300/50']">
+  
+  <div class="space-y-3 col-span-1 md:col-span-2">
+    <label class="text-[10px] font-black uppercase tracking-[0.2em] text-cyan-500 ml-4 flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-cyan-500/40"></span> CARI NAMA
+    </label>
+    <div class="relative group">
+      <span class="absolute left-5 top-1/2 -translate-y-1/2 text-cyan-500/50 group-focus-within:text-cyan-500 transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </span>
+      <input v-model="searchQuery" type="text" placeholder="Ketik nama xtall..." 
+        :class="['w-full pl-14 pr-6 py-4 rounded-2xl border-2 outline-none font-bold text-sm transition-all', 
+        isDark ? 'bg-[#0f172a] border-white/5 focus:border-cyan-500 text-white placeholder-slate-600' : 'bg-white border-slate-200 focus:border-cyan-500']">
+    </div>
+  </div>
+
+  <div class="space-y-3 col-span-1">
+    <label class="text-[10px] font-black uppercase tracking-[0.2em] text-purple-500 ml-4">SKALA</label>
+    <div class="relative">
+      <select v-model="itemsPerPage" :class="['w-full px-5 py-4 rounded-2xl border-2 outline-none font-bold text-sm cursor-pointer appearance-none transition-all',
+        isDark ? 'bg-[#0f172a] border-white/5 focus:border-purple-500 text-slate-200' : 'bg-white border-slate-200 focus:border-purple-500']">
+        <option :value="10">10 Unit</option>
+        <option :value="25">25 Unit</option>
+        <option :value="50">50 Unit</option>
+      </select>
+      <span class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none opacity-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 9l-7 7-7-7" /></svg>
+      </span>
+    </div>
+  </div>
+
+  <div class="space-y-3 col-span-1 md:col-span-3">
+    <label class="text-[10px] font-[1000] uppercase tracking-[0.2em] text-red-600 ml-4 flex items-center gap-2">
+      <span class="w-1 h-3 bg-red-600 rounded-full"></span> URUTAN & RESET DATA
+    </label>
+    <div class="flex gap-4">
+      <div class="relative flex-1">
+        <select v-model="sortOrder" :class="['w-full h-[60px] px-6 rounded-2xl border-2 font-bold text-sm cursor-pointer appearance-none transition-all',
+          isDark ? 'bg-[#0f172a] border-white/5 focus:border-red-500 text-slate-200' : 'bg-white border-slate-200 focus:border-red-500']">
+          <option value="asc">Urut: A ke Z</option>
+          <option value="desc">Urut: Z ke A</option>
+        </select>
+        <span class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-red-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
+          </svg>
+        </span>
+      </div>
+      
+      <button @click="handleResetAll" 
+        class="h-[60px] flex-1 px-8 rounded-2xl bg-red-600 hover:bg-red-500 text-white font-black uppercase text-xs tracking-widest shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_30px_rgba(220,38,38,0.6)] active:scale-95 transition-all flex items-center justify-center gap-3">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        </svg>
+        ATUR ULANG
+      </button>
+    </div>
+  </div>
+</section>
+
+      <main class="space-y-6 relative z-10 pb-20 overflow-visible">
         <div v-for="(xtall, idx) in paginatedResults" :key="xtall.code" 
           class="flex flex-col lg:grid lg:grid-cols-12 gap-6 items-stretch animate-entry"
           :style="{ animationDelay: (idx * 70) + 'ms' }">
           
-          <div class="lg:col-span-3 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 scroll-hide">
+          <div class="lg:col-span-3 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 scroll-hide"> 
             <div v-if="getBaseFor(xtall)" @click="setSearch(getBaseFor(xtall).name)"
-              :class="['flex-shrink-0 w-[200px] lg:w-full p-5 rounded-[1.5rem] border-2 cursor-pointer transition-all duration-500 relative overflow-hidden group shadow-xl',
-              isDark ? 'bg-slate-900/300 border-white/65 hover:border-cyan-500/50 hover:bg-slate-900/60' : 'bg-white border-slate-200 hover:border-cyan-400']">
-              <div class="absolute left-0 top-0 h-full w-2 bg-gradient-to-b from-sky-400 to cyan-500 to-blue-600 opacity-40 group-hover:opacity-100 transition-opacity"></div>
-              <div class="flex items-center gap-2 mb-2">
-                <svg class="w-3 h-3 text-cyan-500" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9l1.42 1.42L8.83 14H18V4h2v12H8.83l3.59 3.58L11 21l-6-6 6-6z"/></svg>
-                <span class="text-[9px] font-black uppercase text-cyan-500 tracking-widest">Previous</span>
-              </div>
-              <p :class="['text-xs font-bold truncate group-hover:translate-x-1 transition-transform duration-300', isDark ? 'text-slate-300' : 'text-slate-700']">
-                {{ getBaseFor(xtall).name }}
-              </p>
-              <div class="absolute bottom-[-10px] right-[-10px] text-4xl opacity-[0.03] group-hover:scale-125 transition-transform">🧬</div>
+              :class="['flex-shrink-0 w-[200px] lg:w-full p-5 rounded-[1.5rem] border-2 cursor-pointer transition-all shadow-xl relative overflow-hidden group',
+              isDark ? 'bg-slate-900/30 border-white/10 hover:border-cyan-500/50' : 'bg-white border-slate-200 hover:border-cyan-400']">
+              <div class="absolute left-0 top-0 h-full w-2 bg-gradient-to-b from-sky-400 to-blue-600 opacity-40"></div>
+              <span class="text-[9px] font-black uppercase text-cyan-500 tracking-widest">Previous</span>
+              <p :class="['text-xs font-bold truncate', isDark ? 'text-slate-300' : 'text-slate-700']">{{ getBaseFor(xtall).name }}</p>
             </div>
-            <div v-else class="hidden lg:flex flex-1 items-center justify-center opacity-10">
-               <div class="w-[2px] h-full bg-gradient-to-b from-transparent via-slate-500 to-transparent"></div>
-            </div>
+            <div v-else class="hidden lg:block flex-1 opacity-5 border-l-2 border-slate-500 ml-4"></div>
           </div>
 
-          <div class="lg:col-span-6 relative group">
-            <div :class="['absolute -inset-1 rounded-[3rem] blur-2xl opacity-0 group-hover:opacity-20 transition-opacity duration-700', 
-              xtall.type === 'UPGRADE' ? 'bg-purple-600' : 'bg-blue-600']"></div>
-
-            <div :class="['h-full relative rounded-[2.5rem] border-2 overflow-hidden transition-all duration-500 shadow-2xl',
-              isDark ? 'bg-[#0b1226]/90 border-white/80 group-hover:border-white/80' : 'bg-white border-slate-200 group-hover:border-blue-400']">
-              
-              <div class="relative p-6 md:p-10">
-                 <div class="flex flex-col md:flex-row gap-8 items-start">
-                    <div class="relative shrink-0 mx-auto md:mx-0">
-                      <div class="absolute inset-0 bg-gradient-to-tr from-sky-600 to-purple-600 rounded-[2rem] blur-xl opacity-20 group-hover:opacity-40 animate-pulse"></div>
-                      <div :class="['relative w-24 h-24 md:w-32 md:h-32 rounded-[2.5rem] border-2 flex items-center justify-center shadow-inner transition-all duration-700 group-hover:rotate-[10deg] group-hover:scale-110',
-                        isDark ? 'bg-slate-950 border-white/70' : 'bg-slate-50 border-slate-200']">
-                        <img :src="getIconPath(xtall)" class="w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_15px_15px_rgba(0,0,0,0.4)]" :alt="xtall.type" />
-                      </div>
-                      <div :class="['absolute -bottom-2 -right-2 w-10 h-10 rounded-2xl border-2 flex items-center justify-center text-[10px] font-black', getBadgeColor(xtall.type)]">
-                         {{ xtall.type.charAt(0) }}
-                      </div>
-                    </div>
-
-                    <div class="flex-1 space-y-6 w-full">
-                       <div class="space-y-2">
-                          <div class="flex flex-wrap items-center gap-3">
-                        </div>
-                          <h3 :class="[
-  'text-2xl md:text-4xl font-[1000] tracking-tighter leading-none transition-all duration-500 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400',
-  getLabelColor(xtall)
-]">
-
-                            {{ xtall.name }}
-                          </h3>
-                       </div>
-
-                       <div :class="['p-6 rounded-3xl border-2 transition-all duration-500 group-hover:scale-[1.02]', isDark ? 'bg-white/[0.02] border-white/5 group-hover:bg-white/[0.04]' : 'bg-slate-50 border-slate-100']">
-  <div class="grid grid-cols-1 gap-4">
-    <div v-for="(stat, sIdx) in parseStats(xtall.view)" :key="sIdx" 
-      class="flex items-center gap-4 group/item">
-      
-      <div v-if="!stat.includes('Dengan')" 
-        class="w-2 h-2 rounded-full bg-gradient-to-r from-green-500 to-cyan-400 group-hover/item:scale-150 transition-transform flex-shrink-0">
-      </div>
-      
-      <p :class="[
-        'text-xs md:text-sm font-bold tracking-tight transition-all duration-300', 
-        stat.includes('Dengan') 
-          ? 'text-green-500 italic' 
-          : (stat.includes('-') 
-              ? 'text-red-500' 
-              : (isDark ? 'text-slate-300 group-hover/item:text-white' : 'text-slate-600 group-hover/item:text-slate-900')
-            )
-      ]">
-        {{ stat }}
-      </p>
-    </div>
-  </div>
-
-                       </div>
-                    </div>
-                 </div>
-              </div>
-
-              <div :class="['px-8 py-5 border-t-2 flex flex-col sm:flex-row justify-between items-center gap-4', isDark ? 'bg-white/[0.02] border-white/5' : 'bg-slate-50 border-slate-100']">
-                <div class="flex items-center gap-4">
-                  <div class="flex flex-col">
-                   <span :class="['text-[10px] font-black tracking-widest transition-colors', isDark ? 'text-slate-400' : 'text-slate-500']">
-    TYPE XTALL
-  </span>
-  
-  <span :class="[
-    'text-[9px] font-black px-2.5 py-0.5 rounded-full border transition-all uppercase tracking-tighter', 
-    getBadgeColor(xtall.type)
-  ]">
-    {{ xtall.type }}
-  </span>
-                  </div>
-                  <div class="h-8 w-[1px] bg-white/10 hidden sm:block"></div>
+          <div class="lg:col-span-6 relative">
+            <div :class="['h-full rounded-[2.5rem] border-2 transition-all shadow-2xl overflow-hidden',
+              isDark ? 'bg-[#0b1226]/90 border-white/10' : 'bg-white border-slate-200']">
+              <div class="p-6 md:p-10 flex flex-col md:flex-row gap-8 items-start">
+                <div :class="['w-24 h-24 md:w-32 md:h-32 rounded-[2.5rem] border-2 flex items-center justify-center shrink-0 mx-auto md:mx-0',
+                  isDark ? 'bg-slate-950 border-white/10' : 'bg-slate-50 border-slate-200']">
+                  <img :src="getIconPath(xtall)" class="w-16 h-16 md:w-20 md:h-20 object-contain" />
                 </div>
-                <router-link 
-  :to="'/xtall/' + xtall.code"
-  class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-black uppercase tracking-widest shadow-lg shadow-blue-600/20 hover:shadow-blue-600/40 hover:-translate-y-0.5 transition-all duration-300 text-center"
->
-  Details
-</router-link>
+                <div class="flex-1 w-full space-y-4">
+                  <h3 :class="['text-2xl md:text-3xl font-[1000] tracking-tighter uppercase italic', getLabelColor(xtall)]">{{ xtall.name }}</h3>
+                  <div :class="['p-5 rounded-3xl border-2', isDark ? 'bg-white/[0.02] border-white/5' : 'bg-slate-50 border-slate-100']">
+                    <div v-for="(stat, sIdx) in parseStats(xtall.view)" :key="sIdx" class="text-xs md:text-sm font-bold mb-1">
+                      <p :class="[stat.includes('Dengan') ? 'text-green-500 italic' : (stat.includes('-') ? 'text-red-500' : (isDark ? 'text-slate-300' : 'text-slate-600'))]">
+                        {{ stat }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -246,86 +153,28 @@
           <div class="lg:col-span-3 flex flex-row lg:flex-col gap-3 overflow-x-auto lg:overflow-visible pb-2 scroll-hide">
             <template v-if="getEvoFor(xtall).length">
               <div v-for="evo in getEvoFor(xtall)" :key="evo.code" @click="setSearch(evo.name)"
-                :class="['flex-shrink-0 w-[200px] lg:w-full p-5 rounded-[1.5rem] border-2 cursor-pointer transition-all duration-500 relative overflow-hidden group shadow-xl',
-                isDark ? 'bg-slate-900/30 border-white/65 hover:border-purple-500/50 hover:bg-slate-900/60' : 'bg-white border-slate-200 hover:border-purple-400']">
-                <div class="absolute right-0 top-0 h-full w-2 bg-gradient-to-b from-purple-400 to-pink-600 to-yellow-700 opacity-40 group-hover:opacity-100 transition-opacity"></div>
-                <div class="flex items-center justify-end gap-2 mb-2 text-right">
-                  <span class="text-[9px] font-black uppercase text-purple-500 tracking-widest">Next Upgrade</span>
-                  <svg class="w-3 h-3 text-purple-500 rotate-180" fill="currentColor" viewBox="0 0 24 24"><path d="M11 9l1.42 1.42L8.83 14H18V4h2v12H8.83l3.59 3.58L11 21l-6-6 6-6z"/></svg>
-                </div>
-                <p :class="['text-xs font-bold truncate text-right group-hover:-translate-x-1 transition-transform duration-300', isDark ? 'text-slate-300' : 'text-slate-700']">
-                  {{ evo.name }}
-                </p>
-                <div class="absolute bottom-[-10px] left-[-10px] text-4xl opacity-[0.03] group-hover:scale-125 transition-transform">🚀</div>
+                :class="['flex-shrink-0 w-[200px] lg:w-full p-5 rounded-[1.5rem] border-2 cursor-pointer transition-all shadow-xl relative overflow-hidden group',
+                isDark ? 'bg-slate-900/30 border-white/10 hover:border-purple-500/50' : 'bg-white border-slate-200 hover:border-purple-400']">
+                <div class="absolute right-0 top-0 h-full w-2 bg-gradient-to-b from-purple-400 to-yellow-700 opacity-40"></div>
+                <span class="text-[9px] font-black uppercase text-purple-500 tracking-widest block text-right">Next Upgrade</span>
+                <p :class="['text-xs font-bold truncate text-right', isDark ? 'text-slate-300' : 'text-slate-700']">{{ evo.name }}</p>
               </div>
             </template>
-            <div v-else class="hidden lg:flex flex-1 items-center justify-center opacity-10">
-               <div class="w-[2px] h-full bg-gradient-to-b from-transparent via-slate-500 to-transparent"></div>
-            </div>
+            <div v-else class="hidden lg:block flex-1 opacity-5 border-r-2 border-slate-500 mr-4"></div>
           </div>
         </div>
+      </main>
 
-        <div v-if="filteredResults.length === 0" class="py-40 text-center animate-pulse">
-          <div class="inline-flex relative mb-8">
-            <div class="absolute inset-0 bg-blue-500 blur-3xl opacity-20 animate-ping"></div>
-            <div class="text-8xl relative">🔎</div>
-          </div>
-          <h2 class="text-3xl font-[1000] uppercase italic tracking-tighter">Xtall not found</h2>
-          <p class="text-slate-500 font-bold uppercase tracking-[0.3em] text-xs mt-4">Search xtall name with correct Indonesian name.</p>
-          <button @click="resetFilters" class="mt-8 px-8 py-3 bg-white/5 hover:bg-white/10 border border-blue/10 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all">Reset</button>
-        </div>
-
-        <div class="flex flex-col items-center gap-10 py-20">
-  <nav v-if="totalPages > 1 && itemsPerPage < 1000" class="flex flex-wrap justify-center items-center gap-3">
-    <button @click="currentPage--" :disabled="currentPage === 1" 
-      class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 font-black disabled:opacity-30 transition-all duration-300 shadow-sm
-      isDark ? 'bg-slate-900 border-white/10 text-slate-400 hover:border-blue-500 hover:text-blue-500' : 'bg-white border-slate-200 text-slate-400 hover:border-blue-500 hover:text-blue-500'">
-      «
-    </button>
-    
-    <div class="flex gap-2.5 items-center">
-      <template v-for="page in visiblePages" :key="page">
-        <button v-if="page !== '...'" @click="currentPage = page"
-          :class="['w-14 h-14 rounded-2xl font-black text-lg transition-all duration-300 border-2 flex items-center justify-center', 
-          currentPage === page 
-            ? 'bg-blue-600 border-blue-600 text-white shadow-[0_10px_25px_rgba(37,99,235,0.4)] scale-110 -translate-y-1' 
-            : (isDark ? 'bg-slate-900 border-white/5 text-blue-500 hover:border-blue-500' : 'bg-white border-slate-100 text-blue-600 hover:border-blue-200 shadow-sm')]">
+      <div v-if="totalPages > 1" class="flex justify-center gap-2 py-10">
+        <button @click="currentPage--" :disabled="currentPage === 1" class="w-12 h-12 rounded-xl border-2 disabled:opacity-20">«</button>
+        <button v-for="page in visiblePages" :key="page" @click="currentPage = page"
+          :class="['w-12 h-12 rounded-xl border-2 font-black transition-all', 
+          currentPage === page ? 'bg-blue-600 border-blue-600 text-white' : (isDark ? 'bg-slate-900 border-white/5 text-blue-400' : 'bg-white border-slate-200')]">
           {{ page }}
         </button>
-        
-        <span v-else class="px-2 font-black text-blue-500">...</span>
-      </template>
-    </div>
-
-    <button @click="currentPage++" :disabled="currentPage === totalPages" 
-      class="w-14 h-14 flex items-center justify-center rounded-2xl border-2 font-black disabled:opacity-30 transition-all duration-300 shadow-sm
-      isDark ? 'bg-slate-900 border-white/10 text-slate-400 hover:border-blue-500 hover:text-blue-500' : 'bg-white border-slate-200 text-slate-400 hover:border-blue-500 hover:text-blue-500'">
-      »
-    </button>
-  </nav>
-
-  <button @click="itemsPerPage = 9999" v-if="itemsPerPage < 100"
-    class="group relative px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-[0_15px_40px_rgba(37,99,235,0.4)] shadow-xl">
-    <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-    <span class="relative text-xs font-[1000] text-white uppercase tracking-[0.3em] italic">Explore All</span>
-  </button>
-  
-  <div class="flex items-center gap-4 opacity-50">
-     <div class="h-[1px] w-12 bg-blue-500/30"></div>
-     <p class="text-[10px] font-black text-slate-500 uppercase tracking-[0.4em]">Page {{ currentPage }} of {{ totalPages }}</p>
-     <div class="h-[1px] w-12 bg-blue-500/30"></div>
-  </div>
-</div>
-      </main>
-    </div>
-
-    <div class="fixed bottom-8 left-8 z-[200] hidden lg:block">
-      <div :class="['px-6 py-3 rounded-2xl border-2 backdrop-blur-xl transition-all duration-500', isDark ? 'bg-slate-900/80 border-white/10' : 'bg-white/80 border-slate-200 shadow-2xl']">
-        <div class="flex items-center gap-4">
-          <div class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
-          <span class="text-[9px] font-black uppercase tracking-widest opacity-60">Versi Nama Indonesia</span>
-        </div>
+        <button @click="currentPage++" :disabled="currentPage === totalPages" class="w-12 h-12 rounded-xl border-2 disabled:opacity-20">»</button>
       </div>
+
     </div>
   </div>
 </template>
@@ -766,59 +615,41 @@ watch([searchQuery, selectedTypes, selectedStats, itemsPerPage, sortOrder], () =
 </script>
 
 <style scoped>
-/* CUSTOM SCROLLBAR REFINEMENT */
-.custom-scroll::-webkit-scrollbar { width: 16px; }
-.custom-scroll::-webkit-scrollbar-track { background: transparent; }
-.custom-scroll::-webkit-scrollbar-thumb { 
-  background: rgba(59, 130, 246, 0.2); 
-  border-radius: 20px;
-  border: 2px solid transparent;
-  background-clip: content-box;
+/* PERBAIKAN TOTAL DOUBLE SCROLLBAR */
+
+/* 1. Matikan semua scrollbar internal di dalam view ini */
+:deep(*) {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE/Edge */
 }
-.custom-scroll::-webkit-scrollbar-thumb:hover { background: rgba(59, 130, 246, 0.5); }
 
-.scroll-hide::-webkit-scrollbar { display: none; }
+:deep(*::-webkit-scrollbar) {
+  display: none !important; /* Chrome/Safari */
+  width: 0 !important;
+  height: 0 !important;
+}
 
-/* ANIMATION KEYFRAMES */
+/* 2. Pastikan elemen pembungkus TIDAK MEMILIKI overflow yang memicu scrollbar */
+div, section, main {
+  overflow: visible !important;
+  height: auto !important;
+}
+
+/* 3. Pengecualian: Biarkan area 'Next/Previous Upgrade' tetap bisa di-swipe horizontal di Mobile */
+/* Tapi kita tetap sembunyikan batang scrollbar-nya agar bersih */
+.scroll-hide {
+  overflow-x: auto !important;
+  display: flex !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Animasi Entry */
 .animate-entry { 
-  animation: slide-up 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
+  animation: slide-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; 
   opacity: 0; 
 }
-
 @keyframes slide-up {
-  from { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(10px); }
-  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-}
-
-.animate-shimmer {
-  animation: shimmer-effect 4s infinite linear;
-  background-size: 200% 100%;
-}
-
-@keyframes shimmer-effect {
-  0% { transform: translateX(-150%); opacity: 0; }
-  50% { opacity: 0.5; }
-  100% { transform: translateX(150%); opacity: 0; }
-}
-
-/* TRANSITIONS */
-.dropdown-slide-enter-active { animation: ds-in 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-.dropdown-slide-leave-active { animation: ds-out 0.3s cubic-bezier(0.7, 0, 0.84, 0); }
-
-@keyframes ds-in {
-  from { opacity: 0; transform: translateY(-12px) scale(0.95); filter: blur(4px); }
-  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-}
-
-@keyframes ds-out {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-8px) scale(0.98); filter: blur(4px); }
-}
-
-/* INTERACTIVE HUD */
-input:focus::placeholder {
-  transform: translateX(10px);
-  opacity: 0;
-  transition: all 0.4s;
+  from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 </style>

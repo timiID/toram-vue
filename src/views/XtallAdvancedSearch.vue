@@ -80,11 +80,11 @@ function applyFilter() {
     <div class="max-w-[1600px] mx-auto mb-12 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
       <div>
         <h1 class="text-5xl md:text-7xl font-[1000] tracking-tighter uppercase italic leading-[0.8]">
-          <span :class="isDark ? 'text-white' : 'text-black'">Advanced</span><br/>
-          <span class="bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 bg-clip-text text-transparent animate-gradient-x">Search</span>
+          <span :class="isDark ? 'text-white' : 'text-black'">Pencarian</span><br/>
+          <span class="bg-gradient-to-r from-orange-500 via-red-500 to-yellow-500 bg-clip-text text-transparent animate-gradient-x">Lanjutan</span>
         </h1>
         <h2 class="text-2xl md:text-2xl font-[100] tracking-tighter uppercase italic leading-[0.8]">
-          <br/><span :class="isDark ? 'text-white' : 'text-black'">All Flat and percent(%) stats are combined </span><br/>
+          <br/><span :class="isDark ? 'text-white' : 'text-black'">Semua statistik Flat dan persentase (%) digabungkan </span><br/>
         </h2>
       </div>
 

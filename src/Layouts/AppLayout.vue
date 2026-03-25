@@ -62,9 +62,9 @@ watch(() => route.path, () => {
 </script>
 
 <template>
-  <div :class="['min-h-screen transition-all duration-[1000ms] relative overflow-x-hidden bg-fixed', isDark ? 'bg-mesh-dark text-white' : 'bg-mesh-light text-slate-900']">
+  <div :class="['min-h-screen flex flex-col transition-all duration-[1000ms] relative overflow-x-hidden', isDark ? 'bg-mesh-dark text-white' : 'bg-mesh-light text-slate-900']">
     
-    <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
       <div v-for="dust in dusts" :key="'dust-'+dust.id" 
         class="absolute rounded-full blur-[1px] animate-pulse opacity-20" 
         :class="isDark ? 'bg-indigo-400' : 'bg-blue-300'" 
@@ -154,39 +154,42 @@ watch(() => route.path, () => {
               isDark ? 'text-indigo-400' : 'text-slate-500']">
               {{ isDark ? 'DARK MODE' : 'LIGHT MODE' }}
             </span>
-        </div>
+          </div>
 
           <div @click="$emit('toggleDark')" :class="['relative h-7 w-12 md:h-9 md:w-16 rounded-full cursor-pointer transition-all duration-500 border p-1 shadow-inner',
             isDark ? 'bg-indigo-950 border-white/20' : 'bg-blue-100 border-slate-300']">
             
             <div :class="[
-  'absolute top-0.5 md:top-0.5 w-5 h-5 md:w-7 md:h-7 rounded-full flex items-center justify-center z-10 transition-all duration-500 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform active:scale-90',
-  isDark 
-    ? 'translate-x-5 md:translate-x-7 bg-gradient-to-br from-blue-300 to-cyan-800 shadow-[0_0_15px_3px_rgba(139,92,246,0.6)]' 
-    : 'translate-x-0 bg-gradient-to-br from-yellow-100 to-orange-400 shadow-[0_0_10px_2px_rgba(251,191,36,0.4)]'
-]">
-  <span class="text-[10px] md:text-sm">{{ isDark ? '🌙' : '☀️' }}</span>
-</div>
+              'absolute top-0.5 md:top-0.5 w-5 h-5 md:w-7 md:h-7 rounded-full flex items-center justify-center z-10 transition-all duration-500 ease-[cubic-bezier(0.68,-0.55,0.27,1.55)] transform active:scale-90',
+              isDark 
+                ? 'translate-x-5 md:translate-x-7 bg-gradient-to-br from-blue-300 to-cyan-800 shadow-[0_0_15px_3px_rgba(139,92,246,0.6)]' 
+                : 'translate-x-0 bg-gradient-to-br from-yellow-100 to-orange-400 shadow-[0_0_10px_2px_rgba(251,191,36,0.4)]'
+            ]">
+              <span class="text-[10px] md:text-sm">{{ isDark ? '🌙' : '☀️' }}</span>
+            </div>
           </div>
         </div>
 
       </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto pt-24 md:pt-36 px-4 pb-20 relative z-10 animate-fade-in">
+    <main class="flex-1 max-w-7xl mx-auto pt-24 md:pt-36 px-4 pb-20 relative z-10 animate-fade-in w-full">
       <slot />
     </main>
+
   </div>
 </template>
 
 <style scoped>
-
+/* background-attachment: fixed menjaga gradient tidak putus saat scroll */
 .bg-mesh-dark {
   background-color: #020617;
+  background-attachment: fixed;
   background-image: radial-gradient(at 0% 0%, #1e1b4b 0, transparent 50%), radial-gradient(at 100% 0%, #450a0a 0, transparent 50%), radial-gradient(at 100% 100%, #3b0764 0, transparent 50%);
 }
 .bg-mesh-light {
   background-color: #ffffff;
+  background-attachment: fixed;
   background-image: radial-gradient(at 0% 0%, #e0f2fe 0, transparent 50%), radial-gradient(at 100% 0%, #fee2e2 0, transparent 50%), radial-gradient(at 100% 100%, #f3e8ff 0, transparent 50%);
 }
 
@@ -198,4 +201,19 @@ watch(() => route.path, () => {
 
 @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 .animate-fade-in { animation: fade-in 0.6s ease-out forwards; }
+
+/* Custom Scrollbar Modern */
+:global(::-webkit-scrollbar) {
+  width: 1px;
+}
+:global(::-webkit-scrollbar-track) {
+  background: transparent;
+}
+:global(::-webkit-scrollbar-thumb) {
+  background: rgba(122, 7, 120, 0.9);
+  border-radius: 100px;
+}
+:global(::-webkit-scrollbar-thumb:hover) {
+  background: rgb(255, 11, 96);
+}
 </style>
