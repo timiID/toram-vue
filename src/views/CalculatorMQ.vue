@@ -129,7 +129,7 @@ const calculation = computed(() => {
       </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
       
       <div class="lg:col-span-2 space-y-8">
         <div :class="['p-10 rounded-[3rem] border backdrop-blur-3xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] transition-all duration-700', 
@@ -376,7 +376,7 @@ const calculation = computed(() => {
   border: 1px solid rgba(99, 102, 241, 0.2);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
-  max-height: 320px;
+  max-height: 240px;
   overflow-y: auto;
 }
 
