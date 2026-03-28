@@ -136,8 +136,60 @@ const navigateTo = (path) => router.push(path);
           "Your ultimate companion for Toram Online adventures."
         </p>
         <p class="max-w-xl text-sm md:text-sm opacity-70 font-lower leading-relaxed italic uppercase tracking-widest">
-          "© 2026 TIMI DB • Toram Online Digital Database Project"
-        </p>
+  © 2026 
+  <a href="https://timiid.github.io/toram-vue/#/" 
+     target="_blank" 
+     class="font-black text-blue-500 hover:text-cyan-400 underline decoration-blue-500/30 hover:decoration-cyan-400 transition-all">
+    TIMI DB
+  </a> 
+  • Toram Online Digital Database Project
+</p>
+        <div class="space-y-1 mt-11">
+  <div class="flex flex-col items-center text-center space-y-6 mt-2 pb-10">
+  
+  <!-- Section: Contribution -->
+  <div class="space-y-1">
+    <p class="text-[14px] font-black uppercase tracking-[0.3em] 
+          text-transparent bg-clip-text bg-gradient-to-b
+          from-amber-400 to-orange-600 to-red-800
+          dark:from-yellow-100 dark:to-amber-300 dark:to-orange-400">
+  Contribution
+</p>
+    <a href="https://www.facebook.com/J7Timi" 
+       target="_blank" 
+       class="block font-black italic uppercase transition-all duration-300
+              text-blue-600 dark:text-blue-400 
+              hover:text-cyan-500 dark:hover:text-cyan-300
+              underline decoration-blue-600/30 dark:decoration-blue-400/30">
+      TIMI
+    </a>
+  </div>
+
+  <!-- Section: Reference -->
+  <div class="space-y-1">
+    <p class="text-[14px] font-black uppercase tracking-[0.3em] 
+          text-transparent bg-clip-text bg-gradient-to-b
+          from-amber-400 to-orange-600 to-red-800
+          dark:from-yellow-100 dark:to-amber-300 dark:to-orange-400">
+  Reference
+</p>
+    <div class="flex flex-col items-center">
+      <a href="https://en.toram.jp/information/?type_code=update" 
+         target="_blank" 
+         class="font-black italic uppercase transition-all duration-300
+                text-blue-600 dark:text-blue-400 
+                hover:text-cyan-500 dark:hover:text-cyan-300
+                underline decoration-blue-600/30 dark:decoration-blue-400/30">
+        Toram Online Official Website
+      </a>
+      <p class="text-[10px] font-black uppercase tracking-[0.4em] opacity-40 dark:opacity-50 mt-1">
+        and Other Database Websites
+      </p>
+    </div>
+  </div>
+
+</div>
+</div>
       </div>
     </div>
 
@@ -230,7 +282,7 @@ const navigateTo = (path) => router.push(path);
           </div>
           <h3 class="text-xl font-black mb-2 tracking-tight">{{ item.name }}</h3>
           <p class="text-xs opacity-60 leading-loose">{{ item.desc }}</p>
-          <div class="mt-6 flex items-center gap-2 text-[10px] font-black tracking-widest text-orange-400 group-hover:text-indigo-300 transition-colors uppercase">
+          <div class="mt-6 flex items-center gap-2 text-[10px] font-black tracking-widest text-orange-400 group-hover:text-red-600 transition-colors uppercase">
             Open Tools <span class="group-hover:translate-x-1 transition-transform">→</span>
           </div>
         </div>
@@ -259,6 +311,7 @@ const navigateTo = (path) => router.push(path);
               <li><a href="#/xtall" class="hover:text-indigo-400 transition-colors">Xtall Database (Indonesia)</a></li>
               <li><a href="#/event" class="hover:text-indigo-400 transition-colors">Event Guide</a></li>  
               <li><a href="#/lvling" class="hover:text-indigo-400 transition-colors">Leveling Guide</a></li>                    
+              <li><a href="#/favorite" class="hover:text-indigo-400 transition-colors">Favorite Xtall</a></li>                    
             </ul>
           </div>
           <div class="space-y-4">
@@ -266,7 +319,7 @@ const navigateTo = (path) => router.push(path);
             <ul class="space-y-2 text-[11px] font-bold uppercase tracking-wider">
               <li><a href="#" class="hover:text-indigo-400 transition-colors">About Timi DB</a></li>
               <li><a href="#" class="hover:text-indigo-400 transition-colors">Contribution</a></li>
-              <li><a href="#" class="hover:text-indigo-400 transition-colors">Privacy Policy</a></li>
+              <li><a href="#" class="hover:text-indigo-400 transition-colors">Reference</a></li>
             </ul>
           </div>
         </div>

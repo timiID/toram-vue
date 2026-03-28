@@ -2314,8 +2314,8 @@ export const crystalData = [
           code: 332,
           link: null,
           type: "WEAPON",
-          name: "",
-          view: `\n`,
+          name: "Mortares",
+          view: `\nATK +13%\nDEX +4%\nGuard Break +10%\nAggro -20%\nMaxMP -200`,
         },
         {
           code: 333,
@@ -3676,11 +3676,46 @@ export const crystalData = [
           view: `\n.ATK +12%\nPhysical Pierce +10%\nCritical Rate +16\nMATK -4%\nKekebalan Fisik -20%\nDengan Zirah Berat:\nKekebalan Fisik +24%`,
         },   
         {
-          code: 530,
+          code: 526,
           link: 490,
           type: "UPGRADE",
           name: "Grandanbit",
           view: `\nMATK +12%\nCritical Damage +8\nDex +5%\nAccuracy -20%`,
+        },
+        {
+          code: 527,
+          link: 139,
+          type: "UPGRADE",
+          name: "Gioco",
+          view: `\nDaya Jarak Dekat +12%\nAkurasi +7%\nMaxMP +200\nCritical Rate -9\nMaxHP -500`,
+        },
+        {
+          code: 528,
+          link: 185,
+          type: "UPGRADE",
+          name: "Mari",
+          view: `\nMaxHP +70%\nKekebalan Sihir -3%\nKekebalan Fisik -3%\nDengan Sarung Tinju:\nAggro +20%\nDengan Pedang 1 Tangan:\nAggro +20%`,
+        },
+        {
+          code: 529,
+          link: 488,
+          type: "UPGRADE",
+          name: "Aralago",
+          view: `\nResistensi Status Buruk +7%\nKekebalan Fisik +7%\nKekebalan Sihir +7%`,
+        },
+        {
+          code: 530,
+          link: 252,
+          type: "UPGRADE",
+          name: "Baratok",
+          view: `\nMaxHP +7000\nWeapon ATK +7%\nStability +7%`,
+        },
+        {
+          code: 531,
+          link: 136,
+          type: "UPGRADE",
+          name: "Doy",
+          view: `\n.ATK +12%\nSTR +8%\nCritical Rate +10%\n.DEF -33%`,
         }
       ];
       
